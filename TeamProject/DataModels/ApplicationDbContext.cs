@@ -8,8 +8,10 @@ namespace TeamProject.DataModels
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+        
         public IDbSet<Post> Posts { get; set; }
         public IDbSet<Comment> Comments { get; set; }
+        public IDbSet<UserImage> UserImages { get; set; }
 
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
@@ -20,5 +22,6 @@ namespace TeamProject.DataModels
         {
             return new ApplicationDbContext();
         }
+
     }
 }

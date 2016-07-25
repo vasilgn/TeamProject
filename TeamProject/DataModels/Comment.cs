@@ -13,7 +13,9 @@ namespace TeamProject.DataModels
             this.Date = DateTime.Now;
         }
 
+        [Key]
         public int Id { get; set; }
+
         [Required]
         public string Text { get; set; }
         [Required]
@@ -22,6 +24,7 @@ namespace TeamProject.DataModels
         public string AuthorId { get; set; }
 
         public virtual ApplicationUser Author { get; set; }
+
         public int PostId { get; set; }
 
         [Required]

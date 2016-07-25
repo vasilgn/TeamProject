@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Web;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
+using TeamProject.DataModels;
 
 namespace TeamProject.Models
 {
@@ -23,6 +25,12 @@ namespace TeamProject.Models
     public class FactorViewModel
     {
         public string Purpose { get; set; }
+    }
+
+    public class UploadProfilePicture
+    {
+        [Display(Name = "UserPhoto")]
+        public UserImage UserPhoto { get; set; }
     }
 
     public class SetPasswordViewModel

@@ -12,10 +12,12 @@ namespace TeamProject.DataModels
         {
             this.IsPublic = true;
             this.PostDate = DateTime.Now;
-            //this.Comments = new HashSet<Comment>();
+            this.Comments = new HashSet<Comment>();
         }
 
+        [Key]
         public int Id { get; set; }
+
         [Required]
         public string Body { get; set; }
         [Required]

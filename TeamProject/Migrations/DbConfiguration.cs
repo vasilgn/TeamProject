@@ -35,15 +35,29 @@ namespace TeamProject.Migrations
 
             if (!context.Users.Any())
             {
-                var adminEmail = "admin@admin.com";
-                var adminUserName = adminEmail;
-                var adminPassWord = adminEmail;
-                var adminFullName = "System Adminnistrator";
-                string adminRole = "Administrator";
+                var adminUser = new DbUserConfiguration ()
+                {
+                    User = "admin@admin.com",
+                    Email = "admin@admin.com",
+                    Password = "admin@admin.com",
+                    Fullname = "System Adminnistrator",
+                    UserRole = "Administrator"
+                };
+                var commonUser = new DbUserConfiguration()
+                {
+                    User = "test@test.com",
+                    Email = "test@email.com",
+                    Password = "test@test.com",
+                    Fullname = "Common user",
+                    UserRole = "Members"
+                };
 
-                CreateAdminUser(context, adminEmail, adminUserName, adminFullName, adminPassWord, adminRole);
+
+                CreateUsers(context, adminUser);
+                CreateUsers(context, commonUser);
                 CreateSeverealTestEvents(context);
             }
+            
         }
 
         private void CreateSeverealTestEvents(ApplicationDbContext context)
@@ -59,6 +73,7 @@ namespace TeamProject.Migrations
             {
                 Body = "Test test Test test",
                 PostDate = DateTime.Now.AddDays(-2),
+                Author = context.Users.First(),
                 Comments = new HashSet<Comment>()
                 {
                     new Comment() { Text ="<Anonymus> comment", },
@@ -67,13 +82,13 @@ namespace TeamProject.Migrations
             });
         }
 
-    private void CreateAdminUser(ApplicationDbContext context, string adminEmail, string adminUserName, string adminFullName, string adminPassWord, string adminRole)
+        private void CreateUsers(ApplicationDbContext context, DbUserConfiguration currentUser)
         {
-            var adminUser = new ApplicationUser
+            var user = new ApplicationUser
             {
-                UserName = adminUserName,
-                FullName = adminFullName,
-                Email = adminEmail
+                UserName = currentUser.User,
+                FullName = currentUser.Fullname,
+                Email = currentUser.Email
             };
             var userStore = new UserStore<ApplicationUser>(context);
             var userManeger = new UserManager<ApplicationUser>(userStore);
@@ -86,7 +101,7 @@ namespace TeamProject.Migrations
                 RequireUppercase = false
             };
 
-            var userCreateResult = userManeger.Create(adminUser, adminPassWord);
+            var userCreateResult = userManeger.Create(user, currentUser.Password);
             if (!userCreateResult.Succeeded)
             {
                 throw new Exception(string.Join("; ", userCreateResult.Errors));
@@ -94,19 +109,18 @@ namespace TeamProject.Migrations
 
             var roleManeger = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
 
-            var roleCreateResult = roleManeger.Create(new IdentityRole(adminRole));
+            var roleCreateResult = roleManeger.Create(new IdentityRole(currentUser.UserRole));
             if (!roleCreateResult.Succeeded)
             {
                 throw new Exception(string.Join("; ", roleCreateResult.Errors));
             }
 
-            var addAdminRoleResult = userManeger.AddToRole(adminUser.Id, adminRole);
+            var addAdminRoleResult = userManeger.AddToRole(user.Id, currentUser.UserRole);
             if (!addAdminRoleResult.Succeeded)
             {
                 throw new Exception(string.Join("; ", userCreateResult.Errors));
             }
         }
-
     }
 }
 

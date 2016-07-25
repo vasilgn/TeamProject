@@ -32,9 +32,9 @@ namespace TeamProject.Controllers
             {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
-            private set 
-            { 
-                _signInManager = value; 
+            private set
+            {
+                _signInManager = value;
             }
         }
 
@@ -49,6 +49,8 @@ namespace TeamProject.Controllers
                 _userManager = value;
             }
         }
+
+
 
         //
         // GET: /Manage/Index
@@ -98,6 +100,17 @@ namespace TeamProject.Controllers
             }
             return RedirectToAction("ManageLogins", new { Message = message });
         }
+
+        //
+        // Get: /Manage/GetProfilePicture
+
+        //TODO
+
+        //
+        // POST : /Manage/Post
+
+        //TODO
+
 
         //
         // GET: /Manage/AddPhoneNumber
@@ -331,7 +344,7 @@ namespace TeamProject.Controllers
             base.Dispose(disposing);
         }
 
-#region Helpers
+        #region Helpers
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";
 
@@ -382,6 +395,6 @@ namespace TeamProject.Controllers
             Error
         }
 
-#endregion
+        #endregion
     }
 }
