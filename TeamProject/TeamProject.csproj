@@ -163,11 +163,14 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="DataModels\ApplicationUser.cs" />
+    <Compile Include="DataModels\Comment.cs" />
+    <Compile Include="DataModels\Post.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\DbConfiguration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="DataModels\DbContext.cs" />
+    <Compile Include="DataModels\ApplicationDbContext.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />

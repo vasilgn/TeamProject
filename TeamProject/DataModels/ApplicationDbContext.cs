@@ -6,16 +6,19 @@ using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace TeamProject.DataModels
 {
-    public class DbContext : IdentityDbContext<ApplicationUser>
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
-        public DbContext()
+        public IDbSet<Post> Posts { get; set; }
+        public IDbSet<Comment> Comments { get; set; }
+
+        public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
         }
 
-        public static DbContext Create()
+        public static ApplicationDbContext Create()
         {
-            return new DbContext();
+            return new ApplicationDbContext();
         }
     }
 }

@@ -5,14 +5,13 @@ using System.Web;
 using System.Web.Mvc;
 
 namespace TeamProject.Controllers
-	{
-	public class HomeController : Controller
-		{
-		public ActionResult Index()
-			{
-			return View();
-			}
+{
+    public class HomeController : Controller
+    {
+        public ActionResult Index()
+        {
+            return View();
+        }
 
-
-		}
-	}
+    }
+}
