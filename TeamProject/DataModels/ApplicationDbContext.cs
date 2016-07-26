@@ -11,7 +11,11 @@ namespace TeamProject.DataModels
         
         public IDbSet<Post> Posts { get; set; }
         public IDbSet<Comment> Comments { get; set; }
+
+        public IDbSet<PostLike> PostLikes { get; set; }
+        public IDbSet<PostImage> PostImages { get; set; }
         public IDbSet<UserImage> UserImages { get; set; }
+
 
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)

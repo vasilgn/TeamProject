@@ -5,8 +5,8 @@ using System.Web;
 
 namespace TeamProject.DataModels
 {
-    public class UserImage : Image
+    public class PostImage : Image
     {
-      
+        public virtual Post Post { get; set; }
     }
 }

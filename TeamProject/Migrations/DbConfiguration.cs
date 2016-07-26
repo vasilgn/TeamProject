@@ -64,20 +64,32 @@ namespace TeamProject.Migrations
         {
             context.Posts.Add(new Post()
             {
+                Title = "BFS",
                 Body = "Breadth-first search (BFS) is an algorithm for traversing or searching tree or graph data structures. It starts at the tree root (or some arbitrary node of a graph, sometimes referred to as a 'search key'[1]) and explores the neighbor nodes first, before moving to the next level neighbors.",
-                PostDate = DateTime.Now.AddDays(5),
-                Author = context.Users.First()
+                Description = "Some Description",
+                NetLikeCounter = 2,
+                PostedOn = DateTime.Now.AddDays(5),
+                Modified = DateTime.Now.AddDays(4),
+                User = context.Users.OrderByDescending(e => e.Id).First(),
+                Comments = new HashSet<Comment>()
+                {
+                    new Comment() { Text ="Last User comment",},
+                    new Comment() { Text ="First User comment", User = context.Users.First()}
+                }
             });
 
             context.Posts.Add(new Post()
             {
-                Body = "Test test Test test",
-                PostDate = DateTime.Now.AddDays(-2),
-                Author = context.Users.First(),
+                Title = "Testing Title",
+                Body = "Test Brum",
+                Description = "Some Description",
+                NetLikeCounter = 5,
+                PostedOn = DateTime.Now.AddDays(-2),
+                User = context.Users.First(),
                 Comments = new HashSet<Comment>()
                 {
-                    new Comment() { Text ="<Anonymus> comment", },
-                    new Comment() { Text ="User comment", Author = context.Users.First()}
+                    new Comment() { Text ="<Anonymus> comment", User = context.Users.First()},
+                    new Comment() { Text ="User comment", }
                 }
             });
         }

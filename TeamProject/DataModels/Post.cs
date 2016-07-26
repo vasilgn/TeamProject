@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using Newtonsoft.Json;
 
 namespace TeamProject.DataModels
 {
@@ -11,7 +13,7 @@ namespace TeamProject.DataModels
         public Post()
         {
             this.IsPublic = true;
-            this.PostDate = DateTime.Now;
+            this.PostedOn = DateTime.Now;
             this.Comments = new HashSet<Comment>();
         }
 
@@ -19,16 +21,29 @@ namespace TeamProject.DataModels
         public int Id { get; set; }
 
         [Required]
+        [Display(Name = "Title")]
+        public string Title { get; set; }
+        [Required]
+        [Display(Name = "Body")]
         public string Body { get; set; }
         [Required]
-        public DateTime PostDate { get; set; }
+        [Display(Name = "Description")]
+        public string Description { get; set; }
 
-        public string AuthorId { get; set; }
+        public DateTime PostedOn { get; set; }
+        public DateTime? Modified { get; set; }
 
-        public virtual ApplicationUser Author { get; set; }
+        [DefaultValue(0)]
+        public int NetLikeCounter { get; set; }
+
+        public string UserId { get; set; }
+
+        public virtual ApplicationUser User { get; set; }
 
         public bool IsPublic { get; set; }
 
-        public virtual ICollection<Comment> Comments { get; set; }
+        public ICollection<Comment> Comments { get; set; }
+        public ICollection<PostLike> PostLikes { get; set; }
+        public ICollection<PostImage> PostImages { get; set; }
     }
 }

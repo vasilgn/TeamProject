@@ -16,6 +16,7 @@ namespace TeamProject.Models
         public bool BrowserRemembered { get; set; }
     }
 
+
     public class ManageLoginsViewModel
     {
         public IList<UserLoginInfo> CurrentLogins { get; set; }
@@ -27,11 +28,7 @@ namespace TeamProject.Models
         public string Purpose { get; set; }
     }
 
-    public class UploadProfilePicture
-    {
-        [Display(Name = "UserPhoto")]
-        public UserImage UserPhoto { get; set; }
-    }
+   
 
     public class SetPasswordViewModel
     {

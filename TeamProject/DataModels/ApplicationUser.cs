@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Data.Entity;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -13,10 +14,14 @@ namespace TeamProject.DataModels
 {
     public class ApplicationUser : IdentityUser
     {
-          
+        public ApplicationUser()
+        {
+            this.UserImages = new HashSet<UserImage>();
+        }
+        
         [Required]
         public string FullName { get; set; }
-
+        public ICollection<UserImage> UserImages { get; set; }
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType

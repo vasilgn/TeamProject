@@ -21,13 +21,10 @@ namespace TeamProject.DataModels
         [Required]
         public DateTime Date { get; set; }
 
-        public string AuthorId { get; set; }
+        public string UserId { get; set; }
 
-        public virtual ApplicationUser Author { get; set; }
-
-        public int PostId { get; set; }
-
+        public virtual ApplicationUser User { get; set; }
         [Required]
-        public virtual Post Post { get; set; }
+        public Post Post { get; set; }
     }
 }
