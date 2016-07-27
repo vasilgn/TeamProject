@@ -21,13 +21,10 @@
                 @Html.ActionLink("MySocial", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
-					<ul class="nav navbar-nav">
-						<li>@Html.ActionLink("Posts", "Index", "Posts")</li>
-					</ul>
-					@Html.Partial("_LoginPartial")
-				</div>
-			</div>
-		</div>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
     <div class="container body-content">
         @RenderBody()
         <hr />
