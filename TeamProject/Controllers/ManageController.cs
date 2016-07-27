@@ -2,10 +2,12 @@
 using System.ComponentModel.DataAnnotations;
 using System.IO;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Net;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI.WebControls;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
@@ -105,18 +107,53 @@ namespace TeamProject.Controllers
             return RedirectToAction("ManageLogins", new { Message = message });
         }
 
-        //
-        // Get: /Manage/GetProfilePicture
-
-        //TODO
-     
 
         //
-        // POST : /Manage/Post
-
+        // GET : /Manage/Post
         //TODO
-
         
+
+        //
+        // POST: /Manage/GetProfilePicture
+        [HttpPost]
+        public async Task<ActionResult> Upload(HttpPostedFileBase file)
+        {
+
+            if (file != null && file.ContentLength > 0)
+                try
+                {
+                    string fileExtencion = Path.GetExtension(file.FileName);
+                    var fileName = Guid.NewGuid().ToString();
+                    fileName += fileExtencion;
+                    string path = "~/App_Data/Images/";
+                    string combination = Path.Combine(Server.MapPath(path),
+                                               Path.GetFileName(fileName));
+                    combination = "~/App_Data/Images/" + fileName;
+
+                    file.SaveAs(combination);
+                    var image = new UserImage
+                    {
+                        UserId = this.User.Identity.GetUserId(),
+                        ImageUrl = combination
+                    };
+                    this.db.UserImages.Add(image);
+                    this.db.SaveChanges();
+
+                    ViewBag.Message = "File uploaded successfully";
+                }
+                catch (Exception ex)
+                {
+                    ViewBag.Message = "ERROR:" + ex.Message.ToString();
+                    
+                }
+            else
+            {
+                ViewBag.Message = "You have not specified a file.";
+            }
+            return RedirectToAction("Index", "Manage");
+        }
+
+
 
         //
         // GET: /Manage/AddPhoneNumber

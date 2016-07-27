@@ -40,7 +40,7 @@ namespace TeamProject.Migrations
                     User = "admin@admin.com",
                     Email = "admin@admin.com",
                     Password = "admin@admin.com",
-                    Fullname = "System Adminnistrator",
+                    Fullname = "System Administrator",
                     UserRole = "Administrator"
                 };
                 var commonUser = new DbUserConfiguration()

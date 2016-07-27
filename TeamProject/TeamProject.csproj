@@ -167,6 +167,7 @@
     <Compile Include="DataModels\Comment.cs" />
     <Compile Include="DataModels\Post.cs" />
     <Compile Include="DataModels\Image.cs" />
+    <Compile Include="DataModels\PostDislike.cs" />
     <Compile Include="DataModels\PostImage.cs" />
     <Compile Include="DataModels\PostLike.cs" />
     <Compile Include="DataModels\UserImage.cs" />

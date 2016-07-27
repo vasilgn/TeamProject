@@ -13,9 +13,9 @@ namespace TeamProject.DataModels
         [Key]
         public int Id { get; set; }
         [Required]
-        [Display(Name = "ImageUrl")]
         [DataType(DataType.ImageUrl)]
         public string ImageUrl { get; set; }
+        public string UserId { get; set; }
         public  virtual ApplicationUser User { get; set; }
 
     }
