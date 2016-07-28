@@ -26,5 +26,6 @@ namespace TeamProject.DataModels
             return new ApplicationDbContext();
         }
 
+        public System.Data.Entity.DbSet<TeamProject.DataModels.ApplicationUser> ApplicationUsers { get; set; }
     }
 }

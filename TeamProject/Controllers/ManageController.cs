@@ -116,7 +116,8 @@ namespace TeamProject.Controllers
         //
         // POST: /Manage/GetProfilePicture
         [HttpPost]
-        public async Task<ActionResult> Upload(HttpPostedFileBase file)
+        [Authorize]
+        public ActionResult Upload(HttpPostedFileBase file)
         {
 
             if (file != null && file.ContentLength > 0)
