@@ -55,7 +55,7 @@ namespace TeamProject.Migrations
                 Title = "BFS",
                 Body = "Breadth-first search (BFS) is an algorithm for traversing or searching tree or graph data structures. It starts at the tree root (or some arbitrary node of a graph, sometimes referred to as a 'search key'[1]) and explores the neighbor nodes first, before moving to the next level neighbors.",
                 Description = "Some Description",
-                NetLikeCounter = 2,
+                PostLikeCounter = 2,
                 PostedOn = DateTime.Now.AddDays(5),
                 Modified = DateTime.Now.AddDays(4),
                 User = context.Users.OrderByDescending(e => e.Id).First(),
@@ -71,7 +71,7 @@ namespace TeamProject.Migrations
                 Title = "Testing Title",
                 Body = "Test Brum",
                 Description = "Some Description",
-                NetLikeCounter = 5,
+                PostLikeCounter = 5,
                 PostedOn = DateTime.Now.AddDays(-2),
                 User = context.Users.First(),
                 Comments = new HashSet<Comment>()

@@ -15,7 +15,6 @@ namespace TeamProject.Models
 
         public string Title { get; set; }
         public string Body { get; set; }
-        public string PictureId { get; set; }
         public DateTime PostDate { get; set; }
         public string Author { get; set; }
 
@@ -41,12 +40,9 @@ namespace TeamProject.Models
     public partial class PostDetailsViewModel
     {
         public int Id { get; set; }
-
         public string Description { get; set; }
         public DateTime? ModifiedDate { get; set; }
-        public int LikesDislikeCounter { get; set; }
-        public bool IsPublic { get; set; }
-
+        public int PostLikeDislikeCounter { get; set; }
         public string AuthorId { get; set; }
         public IEnumerable<CommentViewModel> Comments { get; set; }
 
@@ -59,9 +55,8 @@ namespace TeamProject.Models
                     Id = e.Id,
                     Description = e.Description,
                     ModifiedDate = e.Modified,
-                    LikesDislikeCounter = e.NetLikeCounter,
+                    PostLikeDislikeCounter = e.PostLikeCounter,
                     AuthorId = e.User.Id,
-                    IsPublic = e.IsPublic,
                     Comments = e.Comments.AsQueryable().Select(CommentViewModel.ViewModel)
 
                 };

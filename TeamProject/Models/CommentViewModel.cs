@@ -11,6 +11,8 @@ namespace TeamProject.Models
     {
         public string Text { get; set; }
         public string Author { get; set; }
+        public DateTime CommentPostDateDate { get; set; }
+        public int CommentLikes { get; set; }
         public IEnumerable<Comment> Comments { get; set; }
         public static Expression<Func<Comment, CommentViewModel>> ViewModel
         {
@@ -19,16 +21,11 @@ namespace TeamProject.Models
                 return c => new CommentViewModel()
                 {
                     Text = c.Text,
-                    Author = c.User.FullName
+                    Author = c.User.FullName,
+                    CommentPostDateDate = c.CommentDate,
+
                 };
             }
-        }
-
-        public partial class CommentDetailsViewModel
-        {
-            public DateTime CommentDate { get; set; }
-            public string CommentId { get; set; }
-
         }
     }
 }

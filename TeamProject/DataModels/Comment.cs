@@ -20,7 +20,7 @@ namespace TeamProject.DataModels
         public string Text { get; set; }
         public DateTime CommentDate { get; set; }
         [DefaultValue(0)]
-        public int NetLikeCounter { get; set; }
+        public int ComentsLikeCounter { get; set; }
         public virtual ApplicationUser User { get; set; }
         public  Post Post { get; set; }
         public ICollection<CommentLike> CommentLikes { get; set; }
