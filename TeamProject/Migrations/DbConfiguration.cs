@@ -20,22 +20,10 @@ namespace TeamProject.Migrations
 
         protected override void Seed(TeamProject.DataModels.ApplicationDbContext context)
         {
-            //  This method will be called after migrating to the latest version.
-
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-            //  to avoid creating duplicate seed data. E.g.
-            //
-            //    context.People.AddOrUpdate(
-            //      p => p.FullName,
-            //      new Person { FullName = "Andrew Peters" },
-            //      new Person { FullName = "Brice Lambson" },
-            //      new Person { FullName = "Rowan Miller" }
-            //    );
-            //
 
             if (!context.Users.Any())
             {
-                var adminUser = new DbUserConfiguration ()
+                var adminUser = new DbUserConfiguration()
                 {
                     User = "admin@admin.com",
                     Email = "admin@admin.com",
@@ -57,7 +45,7 @@ namespace TeamProject.Migrations
                 CreateUsers(context, commonUser);
                 CreateSeverealTestEvents(context);
             }
-            
+
         }
 
         private void CreateSeverealTestEvents(ApplicationDbContext context)
@@ -73,7 +61,7 @@ namespace TeamProject.Migrations
                 User = context.Users.OrderByDescending(e => e.Id).First(),
                 Comments = new HashSet<Comment>()
                 {
-                    new Comment() { Text ="Last User comment",},
+                    new Comment() { Text ="Last User comment", } ,
                     new Comment() { Text ="First User comment", User = context.Users.First()}
                 }
             });
@@ -92,6 +80,8 @@ namespace TeamProject.Migrations
                     new Comment() { Text ="User comment", }
                 }
             });
+
+
         }
 
         private void CreateUsers(ApplicationDbContext context, DbUserConfiguration currentUser)

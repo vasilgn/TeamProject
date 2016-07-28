@@ -14,14 +14,10 @@ namespace TeamProject.DataModels
 {
     public class ApplicationUser : IdentityUser
     {
-        public ApplicationUser()
-        {
-            this.UserImages = new HashSet<UserImage>();
-        }
+       
         
         [Required]
         public string FullName { get; set; }
-        public ICollection<UserImage> UserImages { get; set; }
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType

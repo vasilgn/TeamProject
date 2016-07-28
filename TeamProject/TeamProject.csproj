@@ -163,15 +163,14 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\PostsController.cs" />
     <Compile Include="DataModels\ApplicationUser.cs" />
     <Compile Include="DataModels\Comment.cs" />
+    <Compile Include="DataModels\CommentLike.cs" />
+    <Compile Include="DataModels\PostVideo.cs" />
+    <Compile Include="DataModels\UserImage.cs" />
     <Compile Include="DataModels\Post.cs" />
-    <Compile Include="DataModels\Image.cs" />
-    <Compile Include="DataModels\PostDislike.cs" />
     <Compile Include="DataModels\PostImage.cs" />
     <Compile Include="DataModels\PostLike.cs" />
-    <Compile Include="DataModels\UserImage.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -179,7 +178,9 @@
     <Compile Include="Migrations\DbUserConfiguration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="DataModels\ApplicationDbContext.cs" />
+    <Compile Include="Models\CommentViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\PostViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -189,7 +190,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Scripts\api\fileupload.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
@@ -243,6 +243,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\Images\" />
+    <Folder Include="Scripts\api\" />
     <Folder Include="Views\Posts\" />
   </ItemGroup>
   <ItemGroup>

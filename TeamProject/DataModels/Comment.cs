@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
@@ -10,17 +12,18 @@ namespace TeamProject.DataModels
     {
         public Comment()
         {
-            this.Date = DateTime.Now;
+            this.CommentDate = DateTime.Now;
         }
         [Key]
         public int Id { get; set; }
         [Required]
         public string Text { get; set; }
-        [Required]
-        public DateTime Date { get; set; }
-        public string UserId { get; set; }
+        public DateTime CommentDate { get; set; }
+        [DefaultValue(0)]
+        public int NetLikeCounter { get; set; }
         public virtual ApplicationUser User { get; set; }
-        [Required]
-        public Post Post { get; set; }
+        public  Post Post { get; set; }
+        public ICollection<CommentLike> CommentLikes { get; set; }
+
     }
 }

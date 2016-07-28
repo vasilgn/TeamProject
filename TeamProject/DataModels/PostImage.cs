@@ -1,12 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using Newtonsoft.Json;
 
 namespace TeamProject.DataModels
 {
-    public class PostImage : Image
+    public class PostImage
     {
+
+        [Key]
+        public int Id { get; set; }
+        [Required]
+        [DataType(DataType.ImageUrl)]
+        public string ImageUrl { get; set; }
+        
         public virtual Post Post { get; set; }
+
     }
 }
