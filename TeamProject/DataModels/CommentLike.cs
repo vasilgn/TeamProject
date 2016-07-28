@@ -6,12 +6,14 @@ using System.Web;
 
 namespace TeamProject.DataModels
 {
-    public class PostDislike
+    public class CommentLike
     {
         [Key]
-        public int PostId { get; set; }
-        public ApplicationUser User { get; set; }
+        public int CommentId { get; set; }
+        public string UserName { get; set; }
+        public bool Like { get; set; }
         public bool Dislike { get; set; }
-        public Post Post { get; set; }
+        public Comment Comment { get; set; }
+
     }
 }

@@ -26,19 +26,18 @@ namespace TeamProject.DataModels
         [Required]
         [Display(Name = "Body")]
         public string Body { get; set; }
-        [Required]
         [Display(Name = "Description")]
         public string Description { get; set; }
         public DateTime PostedOn { get; set; }
         public DateTime? Modified { get; set; }
         [DefaultValue(0)]
-        public int NetLikeCounter { get; set; }
+        public int PostLikeCounter { get; set; }
         public string UserId { get; set; }
         public virtual ApplicationUser User { get; set; }
         public bool IsPublic { get; set; }
         public ICollection<Comment> Comments { get; set; }
         public ICollection<PostLike> PostLikes { get; set; }
-        public ICollection<PostDislike> PostDislikes { get; set; }
+        public ICollection<PostVideo> PostVideo { get; set; }
         public ICollection<PostImage> PostImages { get; set; }
     }
 }

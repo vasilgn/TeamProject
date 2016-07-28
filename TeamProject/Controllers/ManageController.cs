@@ -13,6 +13,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using TeamProject.DataModels;
 using TeamProject.Models;
+using Image = TeamProject.DataModels.PostImage;
 
 namespace TeamProject.Controllers
 {
@@ -132,7 +133,7 @@ namespace TeamProject.Controllers
                     combination = "~/App_Data/Images/" + fileName;
 
                     file.SaveAs(combination);
-                    var image = new UserImage
+                    var image = new UserImage()
                     {
                         UserId = this.User.Identity.GetUserId(),
                         ImageUrl = combination

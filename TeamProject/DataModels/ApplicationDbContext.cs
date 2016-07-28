@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using System;
+using System.Data.Entity;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
@@ -11,9 +12,10 @@ namespace TeamProject.DataModels
         
         public IDbSet<Post> Posts { get; set; }
         public IDbSet<Comment> Comments { get; set; }
+        public IDbSet<CommentLike> CommentsLikes { get; set; }
         public IDbSet<PostLike> PostLikes { get; set; }
-        public IDbSet<PostDislike> PostDislike { get; set; }
         public IDbSet<PostImage> PostImages { get; set; }
+        public IDbSet<PostVideo> PostVideos { get; set; }
         public IDbSet<UserImage> UserImages { get; set; }
 
 
@@ -26,6 +28,5 @@ namespace TeamProject.DataModels
             return new ApplicationDbContext();
         }
 
-        public System.Data.Entity.DbSet<TeamProject.DataModels.ApplicationUser> ApplicationUsers { get; set; }
     }
 }
