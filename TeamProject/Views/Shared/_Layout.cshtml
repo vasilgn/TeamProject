@@ -21,28 +21,22 @@
                 @Html.ActionLink("MySocial", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
-<<<<<<< HEAD
-					<ul class="nav navbar-nav">
-						<li>
-							<div class="dropdown">
-								<button class="dropbtn">Posts</button>
-								<ul class="dropdown-content">
-									<li>@Html.ActionLink("Creating Posts", "Index", "Posts")</li>
-									<li>@Html.ActionLink("Show Posts", "Index", "Posts")</li>
-								</ul>
-							</div>
-						</li>
-					</ul>
-					@Html.Partial("_LoginPartial")
-				</div>
-			</div>
-		</div>
-=======
+                <ul class="nav navbar-nav">
+                    <li>
+                        <div class="dropdown">
+                            <button class="dropbtn">Posts</button>
+                            <ul class="dropdown-content">
+                                <li>@Html.ActionLink("Creating Posts", "Index", "Posts")</li>
+                                <li>@Html.ActionLink("Show Posts", "Index", "Posts")</li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
-    </div>
->>>>>>> origin/master
+
+        </div>
     <div class="container body-content">
         @RenderBody()
         <hr />
