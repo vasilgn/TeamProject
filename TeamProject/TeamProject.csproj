@@ -159,6 +159,7 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -176,6 +177,7 @@
     </Compile>
     <Compile Include="Migrations\DbConfiguration.cs" />
     <Compile Include="Migrations\DbUserConfiguration.cs" />
+    <Compile Include="Models\UsersModel.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="DataModels\ApplicationDbContext.cs" />
     <Compile Include="Models\CommentViewModel.cs" />
@@ -240,6 +242,7 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Manage\Profile.cshtml" />
+    <Content Include="Views\Users\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\Images\" />

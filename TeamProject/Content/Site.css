@@ -23,7 +23,7 @@ textarea {
     max-width: 280px;
 }
 .dropbtn {
-    background-color: rgba(0,0,0,0.4);
+    background-color: #222222;
     color: white;
     padding: 16px;
     font-size: 14px;
@@ -51,7 +51,7 @@ textarea {
     color: white;
     padding: 12px 16px;
     text-decoration: none;
-    display: block;
+    display: inherit;
 }
 
 /* Change color of dropdown links on hover */
@@ -65,4 +65,10 @@ textarea {
 /* Change the background color of the dropdown button when the dropdown content is shown */
 .dropdown:hover .dropbtn {
     background-color: #0f52f3;
+}
+
+.th {
+	margin-left:10px;
+	margin-top:20px;
+	    padding: 12px 16px;
 }
