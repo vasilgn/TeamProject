@@ -61,8 +61,8 @@ namespace TeamProject.Migrations
                 User = context.Users.OrderByDescending(e => e.Id).First(),
                 Comments = new HashSet<Comment>()
                 {
-                    new Comment() { Text ="Last User comment", } ,
-                    new Comment() { Text ="First User comment", User = context.Users.First()}
+                    new Comment() { Text ="Last User comment", User = context.Users.First()} ,
+                    new Comment() { Text ="First User comment", User = context.Users.OrderByDescending(u => u.Id).First()}
                 }
             });
 

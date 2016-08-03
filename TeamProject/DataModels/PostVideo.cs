@@ -9,14 +9,14 @@ namespace TeamProject.DataModels
     public class PostVideo
     {
         [Key]
-        public int Id { get; set; }
+        public int VideoId { get; set; }
         [Required]
         [Display(Name = "VideoUrl")]
         [DataType(DataType.Url)]
         public string VideoUrl { get; set; }
         public string VideoItemName { get; set; }
 
-        public string PostId { get; set; }
+        public int PostId { get; set; }
         public virtual Post Post { get; set; }
     }
 }

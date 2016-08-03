@@ -15,6 +15,7 @@ namespace TeamProject
     {
         protected void Application_Start()
         {
+            /*Database.SetInitializer<ApplicationDbContext>(new CreateDatabaseIfNotExists<ApplicationDbContext>());*/
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<ApplicationDbContext, Migrations.DbConfiguration>());
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);

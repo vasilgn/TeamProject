@@ -15,14 +15,17 @@ namespace TeamProject.DataModels
             this.CommentDate = DateTime.Now;
         }
         [Key]
-        public int Id { get; set; }
+        public int CommentId { get; set; }
         [Required]
         public string Text { get; set; }
         public DateTime CommentDate { get; set; }
         [DefaultValue(0)]
         public int ComentsLikeCounter { get; set; }
+
+        public string UserId { get; set; }
         public virtual ApplicationUser User { get; set; }
-        public  Post Post { get; set; }
+        public int PostId { get; set; }
+        public virtual Post Post { get; set; }
         public ICollection<CommentLike> CommentLikes { get; set; }
 
     }

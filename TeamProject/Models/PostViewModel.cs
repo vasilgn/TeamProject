@@ -24,7 +24,7 @@ namespace TeamProject.Models
             {
                 return p => new PostViewModel()
                 {
-                    Id = p.Id,
+                    Id = p.PostId,
                     Title = p.Title,
                     Body = p.Body,
                     PostDate = p.PostedOn,
@@ -52,7 +52,7 @@ namespace TeamProject.Models
             {
                 return e => new PostDetailsViewModel
                 {
-                    Id = e.Id,
+                    Id = e.PostId,
                     Description = e.Description,
                     ModifiedDate = e.Modified,
                     PostLikeDislikeCounter = e.PostLikeCounter,

@@ -13,6 +13,7 @@ namespace TeamProject.DataModels
         [Key]
         public int Id { get; set; }
         [Required]
+        [DataType(DataType.ImageUrl)]
         public string ImageUrl { get; set; }
 
         public string UserId { get; set; }

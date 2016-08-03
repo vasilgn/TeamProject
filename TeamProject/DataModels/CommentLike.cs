@@ -9,11 +9,12 @@ namespace TeamProject.DataModels
     public class CommentLike
     {
         [Key]
-        public int CommentId { get; set; }
+        public int CommentLikeId { get; set; }
         public string UserName { get; set; }
         public bool Like { get; set; }
         public bool Dislike { get; set; }
-        public Comment Comment { get; set; }
+        public int CommentId { get; set; }
+        public virtual Comment Comment { get; set; }
 
     }
 }
