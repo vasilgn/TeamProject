@@ -1,4 +1,5 @@
-﻿@model TeamProject.Models.IndexViewModel
+﻿@using Microsoft.AspNet.Identity
+@model TeamProject.Models.IndexViewModel
 @{
     ViewBag.Title = "Manage";
 }
@@ -82,20 +83,24 @@
         </dd>
         <dt>Upload Profile Picture:</dt>
         <dd>
-            <div>
-                @using (Html.BeginForm("Upload",
-                "Manage",
-                FormMethod.Post,
-                new { enctype = "multipart/form-data" }))
-                {
-                    <label for="file">Upload Image:</label>
-                    <input type="file" name="file" id="" /><br><br>
-                    <input type="submit" value="Upload Image" />
-                    <br><br>
-                    @ViewBag.Message
-                }
-            </div>
+            @if (User.Identity.GetUserName() != null)
+            {
+                var imageUrl = Url.Content("~/Content/images/profile/") + User.Identity.GetUserName() + ".png" + "?time=" + DateTime.Now.ToString();
+                <div class="upimage">
+                    <div class="accimg">
+                        <img src="@imageUrl" height="250" width="250"/>
+                    </div>
+                    <div class="mnging">
+                        @using (Html.BeginForm("UploadPhoto", "Manage", FormMethod.Post, new {enctype = "multipart/form-data"}))
+                        {
+                            <div class="btn btn-default browseimg">
+                                <input type="file" name="file" id="files" onchange="this.form.submit()"  />
+                            </div>
+                        }
+                    </div>
 
+                </div>
+            }
         </dd>
     </dl>
 </div>

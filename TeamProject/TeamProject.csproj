@@ -246,6 +246,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\Images\" />
+    <Folder Include="Content\images\profile\" />
+    <Folder Include="Extensions\" />
+    <Folder Include="NewFolder1\" />
     <Folder Include="Scripts\api\" />
     <Folder Include="Views\Posts\" />
   </ItemGroup>
