@@ -23,21 +23,16 @@ namespace TeamProject.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult LikeDislikeIncrement(int? id, string submit, bool? Like)
+        public ActionResult LikeDislikeIncrement(int? id, string submit )
         {
 
             var post = db.Posts.Find(id);
 
-            switch (submit)
+            if (Convert.ToBoolean(Request["isLike"]) == true)
             {
-                case "Like":
-                    post.PostLikeCounter++;
-
-                    break;
-                case "Dislike":
-                    post.PostLikeCounter--;
-                    break;
+                post.PostLikeCounter++;
             }
+            else { post.PostLikeCounter--; }
             db.SaveChanges();
 
             return RedirectToAction("Index");

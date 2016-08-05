@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using TeamProject.DataModels;
 
@@ -16,6 +17,8 @@ namespace TeamProject.Controllers
             var isAdmin = (currentUserId != null && this.User.IsInRole("Administrator"));
             return isAdmin;
         }
+
+        
 
     }
 }

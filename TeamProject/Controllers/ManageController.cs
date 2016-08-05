@@ -428,7 +428,7 @@ namespace TeamProject.Controllers
         }
 
 
-        private async Task<ApplicationUser> GetCurrentUserAsync()
+        protected async Task<ApplicationUser> GetCurrentUserAsync()
         {
             return await UserManager.FindByIdAsync(User.Identity.GetUserId());
         }
