@@ -3,36 +3,44 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using System.Web.UI.WebControls;
+using TeamProject.DataModels;
+using TeamProject.Models;
 
 namespace TeamProject.Controllers
 {
-  
     public class PostController : BaseController
     {
 
-
-        [HttpGet]
-        [AllowAnonymous]
+        // GET: Post
         public ActionResult Index()
         {
+
+            var posts = db.Posts
+                .OrderBy(p => p.PostedOn)
+
+                .Select(PostViewModel.ViewModel);
+
             return View();
         }
-
-        [ChildActionOnly]
-        public ActionResult Post()
+        [HttpPost]
+        public ActionResult LikeDislikeIncrement(int? id, string submit, bool? Like)
         {
-            return PartialView("Posts");
+
+            var post = db.Posts.Find(id);
+
+            switch (submit)
+            {
+                case "Like":
+                    post.PostLikeCounter++;
+
+                    break;
+                case "Dislike":
+                    post.PostLikeCounter--;
+                    break;
+            }
+            db.SaveChanges();
+
+            return RedirectToAction("Index");
         }
-
-
-
-        #region Helpers
-
-
-
-        #endregion
-
-
     }
 }

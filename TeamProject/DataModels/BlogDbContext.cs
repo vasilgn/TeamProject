@@ -7,7 +7,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace TeamProject.DataModels
 {
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
+    public class BlogDbContext : IdentityDbContext<ApplicationUser>
     {
         
         public IDbSet<Post> Posts { get; set; }
@@ -19,13 +19,13 @@ namespace TeamProject.DataModels
         public IDbSet<UserImage> UserImages { get; set; }
 
 
-        public ApplicationDbContext()
+        public BlogDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
         }
-        public static ApplicationDbContext Create()
+        public static BlogDbContext Create()
         {
-            return new ApplicationDbContext();
+            return new BlogDbContext();
         }
 
     }

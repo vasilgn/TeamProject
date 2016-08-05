@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNet.Identity;
+﻿using System.Linq;
+using Microsoft.AspNet.Identity;
 using TeamProject.DataModels;
 
 namespace TeamProject.Controllers
@@ -7,7 +8,7 @@ namespace TeamProject.Controllers
 
     public class BaseController : Controller
     {
-        protected ApplicationDbContext db = new ApplicationDbContext();
+        protected BlogDbContext db = new BlogDbContext();
 
         public bool IsAdmin()
         {
@@ -15,5 +16,6 @@ namespace TeamProject.Controllers
             var isAdmin = (currentUserId != null && this.User.IsInRole("Administrator"));
             return isAdmin;
         }
+
     }
 }

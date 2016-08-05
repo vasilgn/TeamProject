@@ -10,7 +10,7 @@ namespace TeamProject.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    public sealed class DbConfiguration : DbMigrationsConfiguration<TeamProject.DataModels.ApplicationDbContext>
+    public sealed class DbConfiguration : DbMigrationsConfiguration<TeamProject.DataModels.BlogDbContext>
     {
         public DbConfiguration()
         {
@@ -18,7 +18,7 @@ namespace TeamProject.Migrations
             AutomaticMigrationDataLossAllowed = true;
         }
 
-        protected override void Seed(TeamProject.DataModels.ApplicationDbContext context)
+        protected override void Seed(TeamProject.DataModels.BlogDbContext context)
         {
 
             if (!context.Users.Any())
@@ -48,7 +48,7 @@ namespace TeamProject.Migrations
 
         }
 
-        private void CreateSeverealTestEvents(ApplicationDbContext context)
+        private void CreateSeverealTestEvents(BlogDbContext context)
         {
             context.Posts.Add(new Post()
             {
@@ -84,7 +84,7 @@ namespace TeamProject.Migrations
 
         }
 
-        private void CreateUsers(ApplicationDbContext context, DbUserConfiguration currentUser)
+        private void CreateUsers(BlogDbContext context, DbUserConfiguration currentUser)
         {
             var user = new ApplicationUser
             {

@@ -20,6 +20,7 @@ namespace TeamProject.DataModels
         public int PostId { get; set; }
 
         [Required]
+        [MaxLength(200)]
         [Display(Name = "Title")]
         public string Title { get; set; }
         [Required]
@@ -27,6 +28,7 @@ namespace TeamProject.DataModels
         public string Body { get; set; }
         [Display(Name = "Description")]
         public string Description { get; set; }
+        [Required]
         public DateTime PostedOn { get; set; }
         public DateTime? Modified { get; set; }
         [DefaultValue(0)]
@@ -36,9 +38,9 @@ namespace TeamProject.DataModels
 
         [DefaultValue(true)]
         public bool IsPublic { get; set; }
-        public ICollection<Comment> Comments { get; set; }
-        public ICollection<PostLike> PostLikes { get; set; }
-        public ICollection<PostVideo> PostVideo { get; set; }
-        public ICollection<PostImage> PostImages { get; set; }
+        public virtual ICollection<Comment> Comments { get; set; }
+        public virtual ICollection<PostLike> PostLikes { get; set; }
+        public virtual ICollection<PostVideo> PostVideo { get; set; }
+        public virtual ICollection<PostImage> PostImages { get; set; }
     }
 }

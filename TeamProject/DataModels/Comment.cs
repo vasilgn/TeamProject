@@ -18,6 +18,7 @@ namespace TeamProject.DataModels
         public int CommentId { get; set; }
         [Required]
         public string Text { get; set; }
+        [Required]
         public DateTime CommentDate { get; set; }
         [DefaultValue(0)]
         public int ComentsLikeCounter { get; set; }
@@ -26,7 +27,7 @@ namespace TeamProject.DataModels
         public virtual ApplicationUser User { get; set; }
         public int PostId { get; set; }
         public virtual Post Post { get; set; }
-        public ICollection<CommentLike> CommentLikes { get; set; }
+        public virtual ICollection<CommentLike> CommentLikes { get; set; }
 
     }
 }

@@ -31,7 +31,6 @@
                         </ul>
                     </div>
                 </li>
-                <li>@Html.ActionLink("Users", "Index", "Users")</li>
             </ul>
             @Html.Partial("_LoginPartial")
         </div>
@@ -43,8 +42,8 @@
     <div class="navbar-nav side-bar-nav">
         <ul class="nav nav-pills nav-stacked">
 
-            <li  >@Html.ActionLink("Search", "Index", "Users", new {area=""},new {@class = "navbar-brand"})</li>
-            <li  >@Html.ActionLink("Find", "Index", "Users", new { area = "" }, new { @class = "navbar-brand" })</li>
+            <li  >@Html.ActionLink("Posts", "Index", "Post", new {area=""},new {@class = "navbar-brand"})</li>
+            <li  >@Html.ActionLink("Search", "Index", "Users", new { area = "" }, new { @class = "navbar-brand" })</li>
 
         </ul>
     </div>

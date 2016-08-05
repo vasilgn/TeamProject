@@ -159,6 +159,7 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Controllers\PostController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
@@ -177,9 +178,10 @@
     </Compile>
     <Compile Include="Migrations\DbConfiguration.cs" />
     <Compile Include="Migrations\DbUserConfiguration.cs" />
+    <Compile Include="Models\PostDetailsViewModel.cs" />
     <Compile Include="Models\UsersModel.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="DataModels\ApplicationDbContext.cs" />
+    <Compile Include="DataModels\BlogDbContext.cs" />
     <Compile Include="Models\CommentViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\PostViewModel.cs" />
@@ -253,13 +255,13 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Manage\Profile.cshtml" />
     <Content Include="Views\Users\Index.cshtml" />
+    <Content Include="Views\Post\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\Images\" />
     <Folder Include="Content\images\profile\" />
     <Folder Include="Extensions\" />
     <Folder Include="Scripts\api\" />
-    <Folder Include="Views\Posts\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
