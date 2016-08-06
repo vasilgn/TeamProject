@@ -41,7 +41,27 @@
 
         <div class="navbar-nav side-bar-nav">
             <ul class="nav nav-pills nav-stacked">
+				<li>
+					<div class="btn-group">
+						<button class="btn btn-link dropdown-toggle" data-toggle="dropdown" href="#" style="font-size:130%;">
+							Posts 
+						</button>
 
+						<ul class="dropdown-menu rightMenu">
+							<li>
+								<div class="btn-group">
+									<a href="#.html" style="text-align:center;" class="btn btn-link operationsButtons">
+										<h5>Create Post</h5>
+									</a>
+									<a href="#.html" style="text-align:center;" class="btn btn-link operationsButtons">
+										<h5>View Posts</h5>
+									</a>
+
+								</div>
+							</li>
+						</ul>
+					</div>
+				</li>
                 <li>@Html.ActionLink("Posts", "Index", "Post", new { area = "" }, new { @class = "navbar-brand" })</li>
                 <li>@Html.ActionLink("Search", "Index", "Users", new { area = "" }, new { @class = "navbar-brand" })</li>
 

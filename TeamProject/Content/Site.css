@@ -90,3 +90,15 @@ textarea {
     margin-left: 10px;
     margin-top:10px
 }
+
+.rightMenu {
+    position:absolute;
+    float:right;
+    top: 0;
+    left: 105px;
+}
+
+.right
+{
+    float:right;
+}

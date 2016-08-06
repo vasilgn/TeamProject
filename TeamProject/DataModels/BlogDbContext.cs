@@ -18,7 +18,6 @@ namespace TeamProject.DataModels
         public IDbSet<PostVideo> PostVideos { get; set; }
         public IDbSet<UserImage> UserImages { get; set; }
 
-
         public BlogDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {

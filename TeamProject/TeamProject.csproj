@@ -257,13 +257,10 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Manage\Profile.cshtml" />
     <Content Include="Views\Users\Index.cshtml" />
-<<<<<<< HEAD
     <Content Include="Views\Users\Details.cshtml" />
     <Content Include="Views\Users\Edit.cshtml" />
     <Content Include="Views\Users\Delete.cshtml" />
-=======
     <Content Include="Views\Post\Index.cshtml" />
->>>>>>> origin/master
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\Images\" />

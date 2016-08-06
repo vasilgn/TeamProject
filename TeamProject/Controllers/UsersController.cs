@@ -52,7 +52,7 @@ namespace TeamProject.Controllers
 				{
 				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 				}
-			UsersModel user = db.ApplicationUser.Find(id);
+			UsersModel user = db.Users.Find(id);
 			if (user == null)
 				{
 				return HttpNotFound();
@@ -68,7 +68,7 @@ namespace TeamProject.Controllers
 				{
 				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 				}
-			UsersModel user = db.ApplicationUser.Find(id);
+			UsersModel user = db.Users.Find(id);
 			if (user == null)
 				{
 				return HttpNotFound();
@@ -85,7 +85,7 @@ namespace TeamProject.Controllers
 				{
 				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 				}
-			var userToUpdate = db.ApplicationUser.Find(id);
+			var userToUpdate = db.AspNetUsers.Find(id);
 			if (TryUpdateModel(userToUpdate, "",
 			   new string[] { "UserName", "FullName", "PasswordHash", "Email" }))
 				{
@@ -115,7 +115,7 @@ namespace TeamProject.Controllers
             {
                 ViewBag.ErrorMessage = "Delete failed. Try again, and if the problem persists see your system administrator.";
             }
-			UsersModel user = db.ApplicationUser.Find(id);
+			UsersModel user = db.Users.Find(id);
             if (user == null)
             {
                 return HttpNotFound();
@@ -130,8 +130,8 @@ namespace TeamProject.Controllers
         {
             try
             {
-                UsersModel user = db.ApplicationUser.Find(id);
-				db.ApplicationUser.Remove(user);
+                UsersModel user = db.Users.Find(id);
+				db.Users.Remove(user);
                 db.SaveChanges();
             }
             catch (RetryLimitExceededException/* dex */)
