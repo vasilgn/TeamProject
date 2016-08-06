@@ -17,6 +17,8 @@ namespace TeamProject.DataModels
         public IDbSet<PostImage> PostImages { get; set; }
         public IDbSet<PostVideo> PostVideos { get; set; }
         public IDbSet<UserImage> UserImages { get; set; }
+		
+		
 
         public BlogDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
@@ -26,6 +28,12 @@ namespace TeamProject.DataModels
         {
             return new BlogDbContext();
         }
+
+		public System.Data.Entity.DbSet<TeamProject.DataModels.ApplicationUser> ApplicationUsers
+			{
+			get;
+			set;
+			}
 
     }
 }
