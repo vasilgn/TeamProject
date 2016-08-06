@@ -7,6 +7,7 @@ using System.Net;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Hosting;
 using System.Web.UI.WebControls;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
@@ -70,6 +71,8 @@ namespace TeamProject.Controllers
                 : message == ManageMessageId.Error ? "An error has occurred."
                 : message == ManageMessageId.AddPhoneSuccess ? "Your phone number was added."
                 : message == ManageMessageId.RemovePhoneSuccess ? "Your phone number was removed."
+                : message == ManageMessageId.PhotoUploadSuccess ? "Your photo has been uploaded."
+                : message == ManageMessageId.FileExtensionError ? "Only .jpg, .png or .gif allowed."
                 : "";
 
             var userId = User.Identity.GetUserId();
@@ -112,50 +115,45 @@ namespace TeamProject.Controllers
         //
         // GET : /Manage/Post
         //TODO
-        
+
 
         //
         // POST: /Manage/GetProfilePicture
+
+
         [HttpPost]
-        [Authorize]
-        public ActionResult Upload(HttpPostedFileBase file)
+        public async Task<ActionResult> UploadPhoto(HttpPostedFileBase file)
         {
-
             if (file != null && file.ContentLength > 0)
-                try
-                {
-                    string fileExtencion = Path.GetExtension(file.FileName);
-                    var fileName = Guid.NewGuid().ToString();
-                    fileName += fileExtencion;
-                    string path = "~/App_Data/Images/";
-                    string combination = Path.Combine(Server.MapPath(path),
-                                               Path.GetFileName(fileName));
-                    combination = "~/App_Data/Images/" + fileName;
-
-                    file.SaveAs(combination);
-                    var image = new UserImage()
-                    {
-                        UserId = this.User.Identity.GetUserId(),
-                        ImageUrl = combination
-                    };
-                    this.db.UserImages.Add(image);
-                    this.db.SaveChanges();
-
-                    ViewBag.Message = "File uploaded successfully";
-                }
-                catch (Exception ex)
-                {
-                    ViewBag.Message = "ERROR:" + ex.Message.ToString();
-                    
-                }
-            else
             {
-                ViewBag.Message = "You have not specified a file.";
+                var user = await GetCurrentUserAsync();
+                var username = user.UserName;
+                var fileExtension = Path.GetExtension(file.FileName);
+                var fnm = username + ".png";
+
+
+                if (fileExtension.ToLower().EndsWith(".png") || fileExtension.ToLower().EndsWith(".jpg") || fileExtension.ToLower().EndsWith(".gif"))
+                {
+                    var filePath = HostingEnvironment.MapPath("~/Content/images/profile/") + fnm;
+                    var directory = new DirectoryInfo(HostingEnvironment.MapPath("~/Content/images/profile/"));
+                    if (directory.Exists == false)
+                    {
+                        directory.Create();
+                    }
+                    ViewBag.FilePath = filePath.ToString();
+                    file.SaveAs(filePath);
+                    return RedirectToAction("Index", new { Message = ManageMessageId.PhotoUploadSuccess });
+                }
+                else
+                {
+                    return RedirectToAction("Index", new { Message = ManageMessageId.FileExtensionError });
+
+                }
             }
-            return RedirectToAction("Index", "Manage");
+
+            return RedirectToAction("Index", new { Message = ManageMessageId.Error });
+
         }
-
-
 
         //
         // GET: /Manage/AddPhoneNumber
@@ -429,6 +427,11 @@ namespace TeamProject.Controllers
             return false;
         }
 
+
+        protected async Task<ApplicationUser> GetCurrentUserAsync()
+        {
+            return await UserManager.FindByIdAsync(User.Identity.GetUserId());
+        }
         public enum ManageMessageId
         {
             AddPhoneSuccess,
@@ -437,6 +440,8 @@ namespace TeamProject.Controllers
             SetPasswordSuccess,
             RemoveLoginSuccess,
             RemovePhoneSuccess,
+            PhotoUploadSuccess,
+            FileExtensionError,
             Error
         }
 

@@ -11,8 +11,7 @@ namespace TeamProject.DataModels
         [Key]
         public int CommentLikeId { get; set; }
         public string UserName { get; set; }
-        public bool Like { get; set; }
-        public bool Dislike { get; set; }
+        public bool? Like { get; set; }
         public int CommentId { get; set; }
         public virtual Comment Comment { get; set; }
 

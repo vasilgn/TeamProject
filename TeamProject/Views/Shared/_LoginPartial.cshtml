@@ -6,9 +6,19 @@
         @Html.AntiForgeryToken()
 
         <ul class="nav navbar-nav navbar-right">
-            @*<li>
-                    <img src="@Url.Action("Photo", "Account" , new { UserId=User.Identity.GetUserId() })" />
-                </li>*@
+            <li>
+                
+                @if (User.Identity.GetUserName() != null)
+                {
+                    var imageUrl = Url.Content("~/Content/images/profile/") + User.Identity.GetUserName() + ".png" + "?time=" + DateTime.Now.ToString();
+                    <div class="upimage">
+                        <div class="accimg">
+                            <img src="@imageUrl" height="50" width="50" class="avatar" onerror='this.style.display = "none"'/>
+                        </div>
+
+                    </div>
+                }
+            </li>
             <li>
                 @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
             </li>
