@@ -12,9 +12,8 @@ using TeamProject.DataModels;
 
 namespace TeamProject.Controllers
 {
-    public class PostsController : Controller
+    public class PostsController : BaseController
     {
-        private BlogDbContext db = new BlogDbContext();
 
         // GET: Posts
         public async Task<ActionResult> Index()
@@ -41,7 +40,7 @@ namespace TeamProject.Controllers
         // GET: Posts/Create
         public ActionResult Create()
         {
-            ViewBag.UserId = new SelectList(db.ApplicationUsers, "Id", "FullName");
+            ViewBag.UserId = new SelectList(db.Users, "Id", "FullName");
             return View();
         }
 
@@ -59,7 +58,7 @@ namespace TeamProject.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.UserId = new SelectList(db.ApplicationUsers, "Id", "FullName", post.UserId);
+            ViewBag.UserId = new SelectList(db.Users, "Id", "FullName", post.UserId);
             return View(post);
         }
 
@@ -75,7 +74,7 @@ namespace TeamProject.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.UserId = new SelectList(db.ApplicationUsers, "Id", "FullName", post.UserId);
+            ViewBag.UserId = new SelectList(db.Users, "Id", "FullName", post.UserId);
             return View(post);
         }
 
@@ -92,7 +91,7 @@ namespace TeamProject.Controllers
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            ViewBag.UserId = new SelectList(db.ApplicationUsers, "Id", "FullName", post.UserId);
+            ViewBag.UserId = new SelectList(db.Users, "Id", "FullName", post.UserId);
             return View(post);
         }
 

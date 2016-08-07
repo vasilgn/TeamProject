@@ -29,11 +29,5 @@ namespace TeamProject.DataModels
             return new BlogDbContext();
         }
 
-		public System.Data.Entity.DbSet<TeamProject.DataModels.ApplicationUser> ApplicationUsers
-			{
-			get;
-			set;
-			}
-
     }
 }

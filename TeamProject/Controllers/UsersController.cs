@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Globalization;
+
 using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
-using System.Web;
+
 using System.Web.Mvc;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin.Security;
+
 using TeamProject.DataModels;
 using TeamProject.Models;
 using System.Net;
@@ -52,7 +48,7 @@ namespace TeamProject.Controllers
 				{
 				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 				}
-			UsersModel user = db.Users.Find(id);
+			ApplicationUser user = db.Users.Find(id);
 			if (user == null)
 				{
 				return HttpNotFound();
@@ -68,7 +64,7 @@ namespace TeamProject.Controllers
 				{
 				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 				}
-			UsersModel user = db.Users.Find(id);
+            ApplicationUser user = db.Users.Find(id);
 			if (user == null)
 				{
 				return HttpNotFound();
@@ -85,7 +81,7 @@ namespace TeamProject.Controllers
 				{
 				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 				}
-			var userToUpdate = db.AspNetUsers.Find(id);
+			var userToUpdate = db.Users.Find(id);
 			if (TryUpdateModel(userToUpdate, "",
 			   new string[] { "UserName", "FullName", "PasswordHash", "Email" }))
 				{
@@ -101,7 +97,7 @@ namespace TeamProject.Controllers
 					ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists, see your system administrator.");
 					}
 				}
-			return View(userToUpdate);
+			return View();
 			}
 	
 	  // User/Delete
@@ -115,12 +111,12 @@ namespace TeamProject.Controllers
             {
                 ViewBag.ErrorMessage = "Delete failed. Try again, and if the problem persists see your system administrator.";
             }
-			UsersModel user = db.Users.Find(id);
+            ApplicationUser user = db.Users.Find(id);
             if (user == null)
             {
                 return HttpNotFound();
             }
-            return View(user);
+            return View();
         }
 
         // Delete
@@ -130,7 +126,7 @@ namespace TeamProject.Controllers
         {
             try
             {
-                UsersModel user = db.Users.Find(id);
+                ApplicationUser user = db.Users.Find(id);
 				db.Users.Remove(user);
                 db.SaveChanges();
             }

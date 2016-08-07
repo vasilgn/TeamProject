@@ -21,17 +21,7 @@
                 @Html.ActionLink("MySocial", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>
-                        <div class="dropdown">
-                            <button class="dropbtn">Posts</button>
-                            <ul class="dropdown-content">
-                                <li>@Html.ActionLink("Creating Posts", "Index", "Posts")</li>
-                                <li>@Html.ActionLink("Show Posts", "Index", "Posts")</li>
-                            </ul>
-                        </div>
-                    </li>
-                </ul>
+                
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
