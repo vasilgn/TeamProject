@@ -162,3 +162,4 @@ C:\Users\Kreatos\Source\Repos\TeamProject\TeamProject\bin\Microsoft.Owin.Securit
 C:\Users\Kreatos\Source\Repos\TeamProject\TeamProject\bin\Microsoft.Owin.Security.Google.xml
 C:\Users\Kreatos\Source\Repos\TeamProject\TeamProject\bin\Microsoft.Owin.Security.Twitter.xml
 C:\Users\Kreatos\Source\Repos\TeamProject\TeamProject\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+C:\Users\Kreatos\Source\Repos\TeamProject\TeamProject\obj\Debug\TeamProject.csprojResolveAssemblyReference.cache

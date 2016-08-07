@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - MySocial</title>
+    <title>@ViewBag.Title  MySocial</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
@@ -40,12 +40,14 @@
 						<ul class="dropdown-menu rightMenu">
 							<li>
 								<div class="btn-group">
-									<a href="Posts/Create" style="text-align:center;" class="btn btn-link operationsButtons">
-										<h5>Create Post</h5>
-									</a>
-									<a href="Posts/Index" style="text-align:center;" class="btn btn-link operationsButtons">
-										<h5>View Posts</h5>
-									</a>
+                                    <button class="btn btn-link" type="button" id="addressSearch"
+                                            onclick="location.href='@Url.Action("Create", "Posts")'">
+                                        <h5>Create Post</h5>
+                                    </button>
+                                    <button class="btn btn-link" type="button" id="addressSearch"
+                                            onclick="location.href='@Url.Action("Index", "Posts")'">
+                                        <h5>View Posts</h5>
+                                    </button>
 
 								</div>
 							</li>

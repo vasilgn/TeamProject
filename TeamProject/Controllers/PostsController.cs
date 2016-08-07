@@ -14,6 +14,7 @@ using TeamProject.Models;
 
 namespace TeamProject.Controllers
 {
+    [Authorize]
     public class PostsController : BaseController
     {
 
@@ -31,7 +32,7 @@ namespace TeamProject.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-			Post post = await db.Posts.FirstOrDefaultAsync(x => x.PostId == id);
+            Post post = await db.Posts.FirstOrDefaultAsync(x => x.PostId == id);
             if (post == null)
             {
                 return HttpNotFound();
@@ -47,11 +48,10 @@ namespace TeamProject.Controllers
         }
 
         // POST: Posts/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
-		public async Task<ActionResult> Create(PostViewModel model)//,PostedOn,Modified,PostLikeCounter,UserId,IsPublic
+        public async Task<ActionResult> Create(PostViewModel model)
         {
 
             if (model != null && ModelState.IsValid)
@@ -62,7 +62,7 @@ namespace TeamProject.Controllers
                     Title = model.Title,
                     PostedOn = DateTime.Now,
                     UserId = this.User.Identity.GetUserId(),
-                    
+
 
                 };
                 db.Posts.Add(post);
@@ -81,7 +81,7 @@ namespace TeamProject.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-			Post post = await db.Posts.FirstOrDefaultAsync(x => x.PostId == id);
+            Post post = await db.Posts.FirstOrDefaultAsync(x => x.PostId == id);
             if (post == null)
             {
                 return HttpNotFound();
@@ -91,8 +91,6 @@ namespace TeamProject.Controllers
         }
 
         // POST: Posts/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit([Bind(Include = "PostId,Title,Body,Description,PostedOn,Modified,PostLikeCounter,UserId,IsPublic")] Post post)
@@ -114,7 +112,7 @@ namespace TeamProject.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-			Post post = await db.Posts.FirstOrDefaultAsync(x => x.PostId == id);
+            Post post = await db.Posts.FirstOrDefaultAsync(x => x.PostId == id);
             if (post == null)
             {
                 return HttpNotFound();
