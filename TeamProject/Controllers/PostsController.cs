@@ -7,7 +7,9 @@ using System.Threading.Tasks;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 using TeamProject.DataModels;
+using TeamProject.Models;
 
 
 namespace TeamProject.Controllers
@@ -49,17 +51,27 @@ namespace TeamProject.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-		public async Task<ActionResult> Create([Bind(Include = "PostId,Title,Body,Description")] Post post)//,PostedOn,Modified,PostLikeCounter,UserId,IsPublic
+		public async Task<ActionResult> Create(PostViewModel model)//,PostedOn,Modified,PostLikeCounter,UserId,IsPublic
         {
-            if (ModelState.IsValid)
+
+            if (model != null && ModelState.IsValid)
             {
+                var post = new Post
+                {
+                    Body = model.Body,
+                    Title = model.Title,
+                    PostedOn = DateTime.Now,
+                    UserId = this.User.Identity.GetUserId(),
+                    
+
+                };
                 db.Posts.Add(post);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.UserId = new SelectList(db.Users, "Id", "FullName", post.UserId);
-            return View(post);
+            ViewBag.UserId = new SelectList(db.Users, "Id", "FullName");
+            return View();
         }
 
         // GET: Posts/Edit/5

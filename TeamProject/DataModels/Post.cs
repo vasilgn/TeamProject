@@ -13,6 +13,7 @@ namespace TeamProject.DataModels
         public Post()
         {
             this.PostedOn = DateTime.Now;
+            this.IsPublic = true;
             this.Comments = new HashSet<Comment>();
         }
 
@@ -36,7 +37,6 @@ namespace TeamProject.DataModels
         public string UserId { get; set; }
         public virtual ApplicationUser User { get; set; }
 
-        [DefaultValue(true)]
         public bool IsPublic { get; set; }
         public virtual ICollection<Comment> Comments { get; set; }
         public virtual ICollection<PostLike> PostLikes { get; set; }

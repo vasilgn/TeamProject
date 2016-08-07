@@ -108,7 +108,6 @@ C:\Users\Lenovo\Desktop\Project github\TeamProject\TeamProject\bin\Microsoft.Owi
 C:\Users\Lenovo\Desktop\Project github\TeamProject\TeamProject\obj\Debug\TeamProject.csprojResolveAssemblyReference.cache
 C:\Users\Lenovo\Desktop\Project github\TeamProject\TeamProject\obj\Debug\TeamProject.dll
 C:\Users\Lenovo\Desktop\Project github\TeamProject\TeamProject\obj\Debug\TeamProject.pdb
-C:\Users\Kreatos\Source\Repos\TeamProject\TeamProject\obj\Debug\TeamProject.csprojResolveAssemblyReference.cache
 C:\Users\Kreatos\Source\Repos\TeamProject\TeamProject\obj\Debug\TeamProject.dll
 C:\Users\Kreatos\Source\Repos\TeamProject\TeamProject\obj\Debug\TeamProject.pdb
 C:\Users\Kreatos\Source\Repos\TeamProject\TeamProject\bin\TeamProject.dll.config
