@@ -11,8 +11,9 @@ namespace TeamProject.Controllers
     public class HomeController : BaseController
     {
         public ActionResult Index()
-        {	
-            return View();
+        {
+		var posts = db.Posts.OrderByDescending(p => p.PostedOn);
+		return View(posts.ToList());
         }
     }
 }
