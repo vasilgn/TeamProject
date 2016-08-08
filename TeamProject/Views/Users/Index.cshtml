@@ -1,4 +1,77 @@
 ﻿
+@model IEnumerable<TeamProject.DataModels.ApplicationUser>
+
 @{
-    ViewBag.Title = "Index";
+	ViewBag.Title = "Users";
 }
+
+<style>
+	body {
+		background-image: url('../../background.jpg');
+	}
+
+	div {
+		color: black;
+	}
+
+	hr {
+		display: block;
+		height: 1px;
+		border-top: 1px solid #000000;
+		margin: 1em 0;
+		padding: 0;
+	}
+
+	footer {
+		text-align: center;
+		font-size: 16px;
+	}
+
+	table tr:nth-child(even) td {
+		border-top: 1px solid #000000;
+	}
+	table tr:nth-child(odd) td {
+		border-top: 1px solid #000000;
+	}
+	
+</style>
+
+
+
+
+
+@using (Html.BeginForm("Index", "Users", FormMethod.Get))
+{
+    <p>
+        Find by name: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+        <input type="submit" value="Search" />
+    </p>
+}
+<table class="table">
+    <tr>
+        <th>
+            @Html.ActionLink("Username", "Index", new { sortOrder = ViewBag.UserSortParm, currentFilter=ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink("Full Name", "Index", new { sortOrder = ViewBag.FullNameSortParm, currentFilter=ViewBag.CurrentFilter })
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FullName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>
