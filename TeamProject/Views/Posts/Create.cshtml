@@ -3,14 +3,66 @@
 @{
     ViewBag.Title = "Create";
 }
+<style>
+	body {
+		background-image: url('../../background.jpg');
+	}
 
+	div {
+		color: black;
+	}
+
+	hr {
+    display: block;
+    height: 1px;
+    border-top: 1px solid #000000;
+    margin: 1em 0;
+    padding: 0; 
+	}
+
+	.row {
+		font-size: 28px;
+		margin:25px 100px -10px 5px;
+	}
+
+	.form-control{
+     background-color: transparent;
+	 border: 1px solid rgba(0, 0, 0, 0.27);
+     -webkit-box-shadow: none;
+     -moz-box-shadow: none;
+     box-shadow: none;
+     color:black;
+	 font-size:16px;
+     cursor:text;
+	}
+
+		.form-control:hover {
+		}
+
+	a.my-class { color: #000000;}
+	/*a.my-class:active { color: #666666 }
+	a.my-class:link { color: #999999 }
+	a.my-class:visited { color: #CCCCCC }*/
+	footer {
+		text-align: center;
+		font-size: 16px;
+	}
+
+	/*.posted {
+		font-size: 16px;
+	}
+
+	.title {
+		font-weight: bold;*/
+	}
+</style>
 
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Post</h4>
+        <h4 class="row">Creat Post</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
@@ -88,7 +140,7 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to List", "Index", null, new { @class = "my-class" })
 </div>
 
 @section Scripts {
