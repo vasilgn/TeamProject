@@ -3,12 +3,85 @@
     ViewBag.Title = "Register";
 }
 
-<h2>@ViewBag.Title.</h2>
+
+<style>
+	body {
+		background-image: url('../../background.jpg');
+	}
+
+	div {
+		color: black;
+	}
+
+	hr {
+		display: block;
+		height: 1px;
+		border-top: 1px solid #000000;
+		margin: 1em 0;
+		padding: 0;
+	}
+
+	.form-control {
+		background-color: transparent;
+		border: 1px solid rgba(0, 0, 0, 0.27);
+		-webkit-box-shadow: none;
+		-moz-box-shadow: none;
+		box-shadow: none;
+		color: black;
+		font-size: 16px;
+	}
+
+	footer {
+		text-align: center;
+		font-size: 16px;
+	}
+
+	.btn-login {
+		color: black;
+		font-size: 16px;
+	}
+
+		.btn-register:hover {
+			color: black;
+		}
+
+	.btn-default {
+		background-color: transparent;
+		border: 1px solid rgba(0, 0, 0, 0.27);
+		color: black;
+		font-size: 16px;
+		border-radius: 5px;
+		padding: 5px 10px 5px 10px;
+	}
+
+		.btn-default:hover {
+			background-color: transparent;
+			color: black;
+		}
+
+	.row-title {
+		font-size: 28px;
+		margin: 25px 5px 38px 5px;
+	}
+
+	select {
+	background-color:transparent;
+	border: 1px solid rgba(0, 0, 0, 0.27);
+	color: black;
+	font-size: 16px;
+	border-radius: 3px;
+	height: 34px;
+	}
+
+</style>
+
+
+<h2 class="row-title">Create a new account</h2>
 
 @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
     @Html.AntiForgeryToken()
-    <h4>Create a new account.</h4>
+    @*<h4>Create a new account.</h4>*@
     <hr />
     @Html.ValidationSummary("", new { @class = "text-danger" })
 	<div class="form-group">
@@ -309,6 +382,9 @@
         </div>
     </div>
 }
+  <p>
+	@Html.ActionLink("I already have an account", "Login", new object { }, new { @class = "btn-login"})
+  </p>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
