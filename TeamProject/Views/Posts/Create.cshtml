@@ -34,19 +34,33 @@
      color:black;
 	 font-size:16px;
      cursor:text;
+
 	}
 
-		.form-control:hover {
-		}
+
+	.form-control:hover {
+	}
 
 	a.my-class { color: #000000;}
-	/*a.my-class:active { color: #666666 }
-	a.my-class:link { color: #999999 }
-	a.my-class:visited { color: #CCCCCC }*/
+	
+	a.my-class:hover {
+	/*border: 1px solid rgba(0, 0, 0, 0.27);*/
+	}
+	
 	footer {
 		text-align: center;
 		font-size: 16px;
 	}
+
+	.btn-create {
+    background-color: transparent;
+    border: 1px solid rgba(0, 0, 0, 0.27);
+    color:black;
+	font-size:16px;
+	border-radius: 5px;
+	padding: 5px 10px 5px 10px; 
+
+}
 
 	/*.posted {
 		font-size: 16px;
@@ -133,7 +147,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Create" class="btn-create" />
             </div>
         </div>
     </div>
