@@ -64,7 +64,7 @@ namespace TeamProject.Models
 
     public class RegisterViewModel
     {
-		[Required]
+        [Required]
         [Display(Name = "Username")]
         public string UserName { get; set; }
 
@@ -72,16 +72,14 @@ namespace TeamProject.Models
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }
-        
-		[Required]
+
+        [Required]
         [Display(Name = "FullName")]
         public string FullName { get; set; }
 
-		[Required]
-		[Display(Name = "Phone Number")]
+        [Display(Name = "Phone Number")]
         public string PhoneNumber { get; set; }
-		
-		[Required]
+
         [Display(Name = "Country")]
         public string Country { get; set; }
 

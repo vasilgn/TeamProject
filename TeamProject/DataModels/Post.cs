@@ -22,10 +22,10 @@ namespace TeamProject.DataModels
 
         [Required]
         [MaxLength(200)]
-        [Display(Name = "Title")]
+        [Display(Name = "Title *")]
         public string Title { get; set; }
         [Required]
-        [Display(Name = "Body")]
+        [Display(Name = "Body *")]
         public string Body { get; set; }
         [Display(Name = "Description")]
         public string Description { get; set; }

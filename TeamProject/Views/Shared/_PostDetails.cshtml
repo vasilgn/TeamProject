@@ -1,12 +1,17 @@
 ﻿@model TeamProject.Models.PostDetailsViewModel
-    
-@if (Model.Comments.Any())
+
+@if (Model.Description != null)
 {
-    @:Comments
-    <ul>
-        @foreach (var comment in Model.Comments)
-        {
-             <li>@comment.Text</li>
-        }
-    </ul>
+    <div class="description">Description: @Model.Description</div>
+}
+else
+{
+    <p>No description</p>
+}
+@if (ViewBag.CanEdit)
+{
+    @Html.ActionLink("Edit", "Edit", "Posts", new { id = Model.Id }, new { @class = "btn btn-default" })
+    <span></span>
+    @Html.ActionLink("Delete", "Delete", "Posts", new { id = Model.Id }, new { @class = "btn btn-default" })
+
 }

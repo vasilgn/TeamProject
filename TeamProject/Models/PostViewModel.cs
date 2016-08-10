@@ -14,6 +14,7 @@ namespace TeamProject.Models
         public int Id { get; set; }
         public string Title { get; set; }
         public string Body { get; set; }
+        public string Description { get; set; }
         public DateTime PostDate { get; set; }
         public DateTime? Modified { get; set; }
         public int LikesCount { get; set; }
@@ -29,6 +30,7 @@ namespace TeamProject.Models
                     Id = p.PostId,
                     Title = p.Title,
                     Body = p.Body,
+                    Description = p.Description,
                     Modified = p.Modified,
                     PostDate = p.PostedOn,
                     LikesCount = p.PostLikeCounter,

@@ -175,6 +175,7 @@
     <Compile Include="DataModels\Post.cs" />
     <Compile Include="DataModels\PostImage.cs" />
     <Compile Include="DataModels\PostLike.cs" />
+    <Compile Include="DataModels\UserProfile.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -273,6 +274,7 @@
     <Folder Include="Content\images\profile\" />
     <Folder Include="Extensions\" />
     <Folder Include="Scripts\api\" />
+    <Folder Include="Views\Shared\Templates\" />
     <Folder Include="Views\Upload\" />
   </ItemGroup>
   <ItemGroup>
