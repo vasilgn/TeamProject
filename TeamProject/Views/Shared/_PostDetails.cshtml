@@ -1,0 +1,12 @@
+﻿@model TeamProject.Models.PostDetailsViewModel
+    
+@if (Model.Comments.Any())
+{
+    @:Comments
+    <ul>
+        @foreach (var comment in Model.Comments)
+        {
+             <li>@comment.Text</li>
+        }
+    </ul>
+}

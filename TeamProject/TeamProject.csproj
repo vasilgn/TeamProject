@@ -181,6 +181,7 @@
     <Compile Include="Migrations\DbConfiguration.cs" />
     <Compile Include="Migrations\DbUserConfiguration.cs" />
     <Compile Include="Models\PostDetailsViewModel.cs" />
+    <Compile Include="Models\PostsViewModel.cs" />
     <Compile Include="Models\UsersModel.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="DataModels\BlogDbContext.cs" />
@@ -265,6 +266,7 @@
     <Content Include="Views\Posts\Details.cshtml" />
     <Content Include="Views\Posts\Edit.cshtml" />
     <Content Include="Views\Posts\Index.cshtml" />
+    <Content Include="Views\Shared\_PostDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\Images\" />

@@ -18,6 +18,7 @@ namespace TeamProject.Models
         public DateTime? Modified { get; set; }
         public int LikesCount { get; set; }
         public string Author { get; set; }
+        public IEnumerable<CommentViewModel> Comments { get; set; }
 
         public static Expression<Func<Post, PostViewModel>> ViewModel
         {
@@ -32,6 +33,7 @@ namespace TeamProject.Models
                     PostDate = p.PostedOn,
                     LikesCount = p.PostLikeCounter,
                     Author = p.User.FullName,
+                    Comments = p.Comments.AsQueryable().Select(CommentViewModel.ViewModel)
 
                 };
             }

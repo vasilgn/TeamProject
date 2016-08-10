@@ -23,9 +23,6 @@ namespace TeamProject.Models
                     Author = c.User.FullName,
                     CommentPostDateDate = c.CommentDate,
                     CommentCountLikes = c.ComentsLikeCounter,
-                    
-                    
-
                 };
             }
         }

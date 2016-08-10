@@ -1,50 +1,65 @@
-﻿@{
-	ViewBag.Title = "Home";
-}
-
-@model List<TeamProject.DataModels.Post>
+﻿
+@model TeamProject.Models.PostsViewModel
 <style>
-	body {
-		background-image: url('../../background.jpg');
-	}
-	div {
-    color: black;
-	}
-	.row {
-	margin: 10px;
-	font-size: 18px;
-	}
-	footer {
-	text-align:center;
-	font-size:16px;
-	}
-	.posted {
-	font-size: 16px;	
-	}
-	.title {
-	font-weight:bold;
-	}
-		hr {
-    display: block;
-    height: 1px;
-    border-top: 1px solid #000000;
-    margin: 1em 0;
-    padding: 0; 
-}
+    div {
+        color: black;
+    }
+
+    .row {
+        margin: 10px;
+        font-size: 18px;
+    }
+
+    footer {
+        text-align: center;
+        font-size: 16px;
+    }
+
+    .posted {
+        font-size: 16px;
+    }
+
+    .title {
+        font-weight: bold;
+    }
+
+    hr {
+        display: block;
+        height: 1px;
+        border-top: 1px solid #000000;
+        margin: 1em 0;
+        padding: 0;
+    }
 </style>
-@foreach (var post in Model)
-	{
-	<div class="row">
-		<div class="post col-md-6">
-			<h2 class="title">@post.Title</h2>
-			<div class="posted">
-				Posted on <i>@post.PostedOn</i>
-				@*@if (post.Author !=null)
-					{
-					@:by <i>@post.Author(@post.Author)</i>
-					}*@
-			</div>
-			<div>@post.Body</div>
-		</div>
-	</div>
-	}
+<div class="jumbotron">
+    <div class="row">
+        <div class="post col-md-6">
+            @foreach (var post in Model.Posts)
+            {
+                <h2 class="title">@post.Title</h2>
+                <br />
+                <div class="posted">
+                    Posted on @post.PostDate
+                    by <i>@post.Author</i>
+                    <br />
+                    <div>
+                        @post.Body
+                    </div>
+                </div>
+                <br />
+                <div class="comments">
+                    @foreach (var comment in post.Comments)
+                {
+                        <ul>
+                            <li style="color: brown">@comment.Author</li>
+                            <li style="color: azure">@comment.Text</li>
+                            <li> @comment.</li>
+                        </ul>
+                    }
+                </div>
+
+            }
+        </div>
+
+    </div>
+</div>

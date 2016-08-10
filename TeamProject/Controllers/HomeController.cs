@@ -5,6 +5,7 @@ using System.Web;
 using TeamProject.DataModels;
 using System.Data.Entity;
 using System.Web.Mvc;
+using TeamProject.Models;
 
 namespace TeamProject.Controllers
 {
@@ -12,8 +13,13 @@ namespace TeamProject.Controllers
     {
         public ActionResult Index()
         {
-		var posts = db.Posts.OrderByDescending(p => p.PostedOn);
-		return View(posts.ToList());
+            var posts = this.db.Posts.OrderByDescending(p => p.PostedOn)
+                    .Select(PostViewModel.ViewModel);
+
+            return this.View(new PostsViewModel()
+            {
+                Posts = posts
+            });
         }
     }
 }
