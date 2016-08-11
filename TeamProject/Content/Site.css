@@ -105,11 +105,26 @@ textarea {
     float:right;
 }
 footer {
-    color: red;
+    color: black;
 	text-align:center;
 	font-size:16px;
-	}
+}
 
 .body-content-post {
 	word-wrap: break-word;
-	}
+}
+
+.btn-search {
+	background-color: transparent;
+	border: 1px solid rgba(0, 0, 0, 0.27);
+	color:black;
+	font-size:16px;
+	border-radius: 5px;
+	padding: 5px 10px 5px 10px; 	
+}
+.search-field {
+	background-color: transparent;
+	border: 1px solid rgba(0, 0, 0, 0.27);
+	color:black;
+	border-radius: 5px;
+}

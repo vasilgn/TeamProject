@@ -33,7 +33,14 @@
 	table tr:nth-child(odd) td {
 		border-top: 1px solid #000000;
 	}
-	
+	.search-user {
+		margin: 20px;
+		font-size: 16px;
+	}
+
+
+
+
 </style>
 
 
@@ -42,9 +49,9 @@
 
 @using (Html.BeginForm("Index", "Users", FormMethod.Get))
 {
-    <p>
-        Find by name: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
-        <input type="submit" value="Search" />
+    <p class="search-user">
+        Find by name: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string,new { @class="search-field"})
+        <input type="submit" value="Search" class="btn-search" />
     </p>
 }
 <table class="table">
