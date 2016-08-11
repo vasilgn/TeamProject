@@ -44,7 +44,7 @@ namespace TeamProject.Controllers
         public ActionResult Create()
         {
             ViewBag.UserId = new SelectList(db.Users, "Id", "FullName");
-            return View();
+			return View();
         }
 
         // POST: Posts/Create
