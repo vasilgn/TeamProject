@@ -109,3 +109,7 @@ footer {
 	text-align:center;
 	font-size:16px;
 	}
+
+.body-content-post {
+	word-wrap: break-word;
+	}
