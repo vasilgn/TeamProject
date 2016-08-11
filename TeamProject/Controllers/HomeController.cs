@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using TeamProject.DataModels;
 using System.Data.Entity;
+using System.Net;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using TeamProject.Models;
@@ -12,6 +13,7 @@ namespace TeamProject.Controllers
 {
     public class HomeController : BaseController
     {
+
         public ActionResult Index()
         {
             var posts = this.db.Posts.OrderByDescending(p => p.PostedOn)
@@ -50,6 +52,44 @@ namespace TeamProject.Controllers
             ViewBag.CanEdit = items;
 
             return PartialView("_PostOptionsMenu");
+
+        }
+
+        [HttpPost]
+        public ActionResult AddLike(int id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            if (ModelState.IsValid)
+            {
+
+                var userName = this.User.Identity.Name;
+                var postId = id;
+                var postLikesCounter = db.Posts.Find(id).PostLikeCounter;
+                var isLike =
+                    db.PostLikes.Where(l => l.PostId == postId).Where(l => l.UserName == userName).Select(l => l.Like).FirstOrDefault();
+                if (!isLike)
+                {
+                    var postToUpdate = new Post() { PostId = postId, PostLikeCounter = postLikesCounter + 1 };
+                    using (db)
+                    {
+                        db.Posts.Attach(postToUpdate);
+                        db.SaveChangesAsync();
+                    }
+                    var postLike = new PostLike
+                    {
+                        Like = true,
+                        PostId = postId,
+                        UserName = userName
+                    };
+                    db.PostLikes.Add(postLike);
+                    db.SaveChangesAsync();
+                }
+            }
+            return View();
+
 
         }
     }

@@ -80,7 +80,9 @@
                             <hr />
                             <div class="post-footer-option container">
                                 <ul class="list-unstyled">
-                                    <li><a href="#"> <i class="glyphicon glyphicon-thumbs-up"></i> Like</a></li>
+                                    <li><span>
+    @Html.ActionLink("Like", "AddLike", "Home", new { id = post.Id },new { @class = "glyphicon glyphicon-thumbs-up" })
+</span></li>
                                     <li><a href="#"><i class="glyphicon glyphicon-comment"></i> Comment</a></li>
                                     <li><a href="#"><i class="glyphicon glyphicon-share-alt"></i> Share</a></li>
                                 </ul>

@@ -160,6 +160,7 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Controllers\LikeController.cs" />
     <Compile Include="Controllers\PostsController.cs" />
     <Compile Include="Controllers\UploadController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
@@ -273,11 +274,11 @@
     <Content Include="Views\Home\_PostDetailsView.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\Images\" />
+    <Folder Include="App_Data\" />
     <Folder Include="Content\images\posts\" />
     <Folder Include="Extensions\" />
     <Folder Include="Scripts\api\" />
-    <Folder Include="Views\Shared\Templates\" />
+    <Folder Include="Views\Like\" />
     <Folder Include="Views\Upload\" />
   </ItemGroup>
   <ItemGroup>
