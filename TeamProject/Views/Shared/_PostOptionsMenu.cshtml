@@ -1,0 +1,8 @@
+﻿@model TeamProject.Models.PostDetailsViewModel
+@if (ViewBag.CanEdit)
+{
+    @Html.ActionLink("Edit", "Edit", "Posts", new { id = Model.Id }, new { @class = "btn btn-default" })
+    <span></span>
+    @Html.ActionLink("Delete", "Delete", "Posts", new { id = Model.Id }, new { @class = "btn btn-default" })
+
+}

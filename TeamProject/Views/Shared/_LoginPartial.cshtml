@@ -13,7 +13,7 @@
                     var imageUrl = Url.Content("~/Content/images/profile/") + User.Identity.GetUserName() + ".png" + "?time=" + DateTime.Now.ToString();
                     <div class="upimage">
                         <div class="accimg">
-                            <img src="@imageUrl" height="50" width="50" class="avatar" onerror='this.style.display = "none"'/>
+                            <img src="@imageUrl" height="50" width="50" class="avatar" onerror="this.src = '../Content/images/profile/default.png';" />
                         </div>
 
                     </div>

@@ -18,6 +18,8 @@ namespace TeamProject.Models
         public DateTime PostDate { get; set; }
         public DateTime? Modified { get; set; }
         public int LikesCount { get; set; }
+        public string UserId { get; set; }
+        public string Username { get; set; }
         public string Author { get; set; }
         public IEnumerable<CommentViewModel> Comments { get; set; }
 
@@ -34,6 +36,8 @@ namespace TeamProject.Models
                     Modified = p.Modified,
                     PostDate = p.PostedOn,
                     LikesCount = p.PostLikeCounter,
+                    UserId = p.UserId,
+                    Username =p.User.UserName,
                     Author = p.User.FullName,
                     Comments = p.Comments.AsQueryable().Select(CommentViewModel.ViewModel)
 
