@@ -182,6 +182,7 @@
     </Compile>
     <Compile Include="Migrations\DbConfiguration.cs" />
     <Compile Include="Migrations\DbUserConfiguration.cs" />
+    <Compile Include="Models\ViewModel.cs" />
     <Compile Include="Models\PostDetailsViewModel.cs" />
     <Compile Include="Models\PostsViewModel.cs" />
     <Compile Include="Models\UsersModel.cs" />

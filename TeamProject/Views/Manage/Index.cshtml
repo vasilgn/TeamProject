@@ -1,7 +1,7 @@
 ﻿@using Microsoft.AspNet.Identity
 @model TeamProject.Models.IndexViewModel
 @{
-    ViewBag.Title = "Manage";
+	ViewBag.Title = "Manage";
 }
 
 <h2>@ViewBag.Title.</h2>
@@ -103,4 +103,36 @@
             }
         </dd>
     </dl>
+</div>
+@* sadasdasd *@
+
+
+<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
+<div class="container-profile" style="margin-top: 20px; margin-bottom: 20px;">
+		<div class="row-panel">
+			<div class="col-md-4 bg_blur ">
+				@*<a href="#" class="follow_btn hidden-xs">Follow</a>*@
+			</div>
+			@{var imageUrlProf = Url.Content("~/Content/images/profile/") + User.Identity.GetUserName() + ".png" + "?time=" + DateTime.Now.ToString();}
+
+			<div class="col-md-8  col-xs-12">
+				<img src="@imageUrlProf" class="img-thumbnail picture hidden-xs" />
+				<div class="header">
+					<h1>@User.Identity.Name</h1>
+					<h4>
+					</h4>
+				</div>
+			</div>
+		</div>
+	
+	<div class="row nav">
+		<div class="col-md-4"></div>
+		<div class="col-md-8 col-xs-12" style="margin: 0px;padding: 0px;">
+			<div class="col-md-4 col-xs-4 well"><i class="fa fa-heart-o fa-lg"></i>POSTS </div>
+			<div class="col-md-4 col-xs-4 well"><i class="fa fa-weixin fa-lg"></i>COMMENTS</div>
+			<div class="col-md-4 col-xs-4 well"><i class="fa fa-thumbs-o-up fa-lg"></i> LIKES</div>
+		</div>
+	</div>
 </div>
