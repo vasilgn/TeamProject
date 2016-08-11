@@ -30,6 +30,10 @@
         margin: 1em 0;
         padding: 0;
     }
+	.body-content-post {
+		word-wrap: break-word;
+	}
+
 </style>
 <div class="container">
         <div class="col-xs-5">
@@ -67,9 +71,9 @@
                         </section>
 
                         <section class="post-body">
-                            <p>
+                            <div class="body-content-post">
                                 @post.Body
-                            </p>
+                            </div>
                             
                         </section>
                         <section class="post-footer">

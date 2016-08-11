@@ -67,7 +67,7 @@ namespace TeamProject.Controllers
                 };
                 db.Posts.Add(post);
                 await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Home");
             }
 
             ViewBag.UserId = new SelectList(db.Users, "Id", "FullName");
