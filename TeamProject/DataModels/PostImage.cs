@@ -13,7 +13,6 @@ namespace TeamProject.DataModels
         [Key]
         public int PostImageId { get; set; }
         [Required]
-        [DataType(DataType.ImageUrl)]
         public string ImageUrl { get; set; }
 
         public int PostId { get; set; }
