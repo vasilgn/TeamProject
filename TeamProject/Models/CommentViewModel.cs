@@ -11,6 +11,7 @@ namespace TeamProject.Models
     {
         public string Text { get; set; }
         public string Author { get; set; }
+        public string Username { get; set; }
         public DateTime CommentPostDateDate { get; set; }
         public int CommentCountLikes { get; set; }
         public static Expression<Func<Comment, CommentViewModel>> ViewModel
@@ -21,6 +22,7 @@ namespace TeamProject.Models
                 {
                     Text = c.Text,
                     Author = c.User.FullName,
+                    Username = c.User.UserName,
                     CommentPostDateDate = c.CommentDate,
                     CommentCountLikes = c.ComentsLikeCounter,
                 };
