@@ -105,7 +105,6 @@ C:\Users\Lenovo\Desktop\Project github\TeamProject\TeamProject\bin\Microsoft.Owi
 C:\Users\Lenovo\Desktop\Project github\TeamProject\TeamProject\bin\Microsoft.Owin.Security.Google.xml
 C:\Users\Lenovo\Desktop\Project github\TeamProject\TeamProject\bin\Microsoft.Owin.Security.Twitter.xml
 C:\Users\Lenovo\Desktop\Project github\TeamProject\TeamProject\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
-C:\Users\Lenovo\Desktop\Project github\TeamProject\TeamProject\obj\Debug\TeamProject.csprojResolveAssemblyReference.cache
 C:\Users\Lenovo\Desktop\Project github\TeamProject\TeamProject\obj\Debug\TeamProject.dll
 C:\Users\Lenovo\Desktop\Project github\TeamProject\TeamProject\obj\Debug\TeamProject.pdb
 C:\Users\Kreatos\Source\Repos\TeamProject\TeamProject\obj\Debug\TeamProject.dll
@@ -218,3 +217,4 @@ C:\Users\Kreatos\Source\Repos\TeamProject2\TeamProject\bin\Microsoft.Owin.Securi
 C:\Users\Kreatos\Source\Repos\TeamProject2\TeamProject\obj\Debug\TeamProject.csprojResolveAssemblyReference.cache
 C:\Users\Kreatos\Source\Repos\TeamProject2\TeamProject\obj\Debug\TeamProject.dll
 C:\Users\Kreatos\Source\Repos\TeamProject2\TeamProject\obj\Debug\TeamProject.pdb
+C:\Users\Lenovo\Desktop\Project github\TeamProject\TeamProject\obj\Debug\TeamProject.csprojResolveAssemblyReference.cache
