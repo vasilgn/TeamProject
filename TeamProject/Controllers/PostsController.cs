@@ -16,20 +16,7 @@ namespace TeamProject.Controllers
 {
     public class PostsController : BaseController
     {
-        public ActionResult PostById(int Id)
-        {
-            var currentUserId = this.User.Identity.GetUserId();
-            var isAdmin = IsAdmin();
-            var postDetails = this.db.Posts
-                .Where(p => p.PostId == Id)
-                .Where(p => p.IsPublic || isAdmin || (p.UserId != null && p.UserId == currentUserId))
-                .Select(PostDetailsViewModel.ViewModel).
-                FirstOrDefault();
-
-            var isOwner = (postDetails != null && postDetails.AuthorId != null && postDetails.AuthorId == currentUserId);
-            this.ViewBag.CanEdit = isOwner || isAdmin;
-            return this.PartialView("_PostDetails", postDetails);
-        }
+        
 
         // GET: Posts
         public async Task<ActionResult> Index()

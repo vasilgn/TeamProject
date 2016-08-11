@@ -5,6 +5,7 @@ using System.Web;
 using TeamProject.DataModels;
 using System.Data.Entity;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 using TeamProject.Models;
 
 namespace TeamProject.Controllers
@@ -20,6 +21,20 @@ namespace TeamProject.Controllers
             {
                 Posts = posts
             });
+        }
+        public ActionResult PostById(int Id)
+        {
+            var currentUserId = this.User.Identity.GetUserId();
+            var isAdmin = IsAdmin();
+            var postDetails = this.db.Posts
+                .Where(p => p.PostId == Id)
+                .Where(p => p.IsPublic || isAdmin || (p.UserId != null && p.UserId == currentUserId))
+                .Select(PostDetailsViewModel.ViewModel).
+                FirstOrDefault();
+
+            var isOwner = (postDetails != null && postDetails.AuthorId != null && postDetails.AuthorId == currentUserId);
+            this.ViewBag.CanEdit = isOwner || isAdmin;
+            return this.PartialView("_PostDetails", postDetails);
         }
     }
 }

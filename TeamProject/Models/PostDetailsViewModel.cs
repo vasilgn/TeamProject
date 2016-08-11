@@ -13,7 +13,6 @@ namespace TeamProject.Models
         public string Description { get; set; }
         public DateTime? ModifiedDate { get; set; }
         public string AuthorId { get; set; }
-        public IEnumerable<CommentViewModel> Comments { get; set; }
 
         public static Expression<Func<Post, PostDetailsViewModel>> ViewModel
         {
@@ -25,7 +24,6 @@ namespace TeamProject.Models
                     Description = e.Description,
                     ModifiedDate = e.Modified,
                     AuthorId = e.User.Id,
-                    Comments = e.Comments.AsQueryable().Select(CommentViewModel.ViewModel)
 
                 };
             }

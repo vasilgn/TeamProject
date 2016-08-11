@@ -32,80 +32,80 @@
     }
 </style>
 @*<div class="container">
-    <div class="col-xs-5">
-        @foreach (var post in Model.Posts)
-            {
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <section class="post-heading">
-                        <div class="row">
-                            <div class="col-md-11">
-                                <div class="media">
-                                    <div class="media-left">
-                                        <a href="#">
-                                            <img class="media-object photo-profile" src="http://0.gravatar.com/avatar/38d618563e55e6082adf4c8f8c13f3e4?s=40&d=mm&r=g" width="40" height="40" alt="...">
-                                        </a>
-                                    </div>
-                                    <div class="media-body">
-                                        <a href="#" class="anchor-username"><h4 class="media-heading">@post.Author</h4></a>
-                                        <a href="#" class="anchor-time">@post.PostDate</a>
-                                        <a href="#" class="anchor-title"><h3 class="media-title">@post.Title</h3></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-1">
-                                <a href="#"><i class="glyphicon glyphicon-chevron-down"></i></a>
-                            </div>
-                        </div>
-                    </section>
-                    <section class="post-body">
-                        <p>
-                            @post.Body
-                        </p>
-                    </section>
-                    <section class="post-footer">
-                        <hr>
-                        <div class="post-footer-option container">
-                            <ul class="list-unstyled">
-                                <li></li>
-                                <li><a href="#">@post.LikesCount <i class="glyphicon glyphicon-thumbs-up"></i> Like</a></li>
-                                <li><a href="#"><i class="glyphicon glyphicon-comment"></i> Comment</a></li>
-                                <li><a href="#"><i class="glyphicon glyphicon-share-alt"></i> Share</a></li>
-                            </ul>
-                        </div>
-                        <cache>
-                        <div class="post-footer-comment-wrapper">
-                            @foreach (var comment in post.Comments)
-                            {
-
-                                <div class="comment-form">
-                                    @comment.Text
-                                </div>
-                                <div class="comment">
-
+        <div class="col-xs-5">
+            @foreach (var post in Model.Posts)
+                {
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <section class="post-heading">
+                            <div class="row">
+                                <div class="col-md-11">
                                     <div class="media">
                                         <div class="media-left">
                                             <a href="#">
-                                                <img class="media-object photo-profile" src="http://0.gravatar.com/avatar/38d618563e55e6082adf4c8f8c13f3e4?s=40&d=mm&r=g" width="32" height="32" alt="...">
+                                                <img class="media-object photo-profile" src="http://0.gravatar.com/avatar/38d618563e55e6082adf4c8f8c13f3e4?s=40&d=mm&r=g" width="40" height="40" alt="...">
                                             </a>
                                         </div>
                                         <div class="media-body">
-                                            <a href="#" class="anchor-username"><h4 class="media-heading">@comment.Author</h4></a>
-
-                                            <a href="#" class="anchor-time">@comment.CommentPostDateDate mins</a>
+                                            <a href="#" class="anchor-username"><h4 class="media-heading">@post.Author</h4></a>
+                                            <a href="#" class="anchor-time">@post.PostDate</a>
+                                            <a href="#" class="anchor-title"><h3 class="media-title">@post.Title</h3></a>
                                         </div>
                                     </div>
                                 </div>
-                            }
+                                <div class="col-md-1">
+                                    <a href="#"><i class="glyphicon glyphicon-chevron-down"></i></a>
+                                </div>
+                            </div>
+                        </section>
+                        <section class="post-body">
+                            <p>
+                                @post.Body
+                            </p>
+                        </section>
+                        <section class="post-footer">
+                            <hr>
+                            <div class="post-footer-option container">
+                                <ul class="list-unstyled">
+                                    <li></li>
+                                    <li><a href="#">@post.LikesCount <i class="glyphicon glyphicon-thumbs-up"></i> Like</a></li>
+                                    <li><a href="#"><i class="glyphicon glyphicon-comment"></i> Comment</a></li>
+                                    <li><a href="#"><i class="glyphicon glyphicon-share-alt"></i> Share</a></li>
+                                </ul>
+                            </div>
+                            <cache>
+                            <div class="post-footer-comment-wrapper">
+                                @foreach (var comment in post.Comments)
+                                {
 
-                        </div>
-                            </cache>
-                    </section>
+                                    <div class="comment-form">
+                                        @comment.Text
+                                    </div>
+                                    <div class="comment">
+
+                                        <div class="media">
+                                            <div class="media-left">
+                                                <a href="#">
+                                                    <img class="media-object photo-profile" src="http://0.gravatar.com/avatar/38d618563e55e6082adf4c8f8c13f3e4?s=40&d=mm&r=g" width="32" height="32" alt="...">
+                                                </a>
+                                            </div>
+                                            <div class="media-body">
+                                                <a href="#" class="anchor-username"><h4 class="media-heading">@comment.Author</h4></a>
+
+                                                <a href="#" class="anchor-time">@comment.CommentPostDateDate mins</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+
+                            </div>
+                                </cache>
+                        </section>
+                    </div>
                 </div>
-            </div>
-        }
-    </div>
-</div>*@
+            }
+        </div>
+    </div>*@
 @*<div class="jumbotron vertical-center">
         <div class="col-lg-12 small">
             @foreach (var post in Model.Posts)
@@ -130,44 +130,43 @@
         </div>
     </div>*@
 
- @foreach (var post in Model.Posts)
+@foreach (var post in Model.Posts)
+{
+    <div class="post-box text-center center-block">
+
+        <h2>@post.Title</h2>
+        <div class="post-body">
+            @post.Body
+        </div>
+        <hr />
+        <p class="posted">
+            Posted on @post.PostDate
+        </p>
+
+        @if (post.Modified != null)
         {
-            <div class="post-box text-center center-block">
-
-                <h2>@post.Title</h2>
-                <div class="post-body">
-                    @post.Body
-                </div>
-                <hr />
-                <p class="posted">
-                    Posted on @post.PostDate
-                </p>
-
-                @if (post.Modified != null)
-                    {
-                    <p>Modified @post.Modified</p>
-                }
-                <hr />
-                <div class="author">Author: @post.Author</div>
-                @if (post.Comments != null)
-                    {
-                    <div class="comment">
-                        <h3>Comments: </h3>
-                        @foreach (var comment in post.Comments)
-                        {
-                            <div class="comment-text" style="color: blueviolet">
-                                @comment.Text
+            <p>Modified @post.Modified</p>
+        }
+        <hr />
+        <div class="author">Author: @post.Author</div>
+        @if (post.Comments != null)
+        {
+            <div class="comment">
+                <h3>Comments: </h3>
+                @foreach (var comment in post.Comments)
+                {
+                    <div class="comment-text" style="color: blueviolet">
+                        @comment.Text
+                    </div>
+                            <div class="comment-author">
+                                @comment.Author
                             </div>
-                                <div class="comment-author">
-                                    @comment.Author
-                                </div>
                                 <div class="comment-postData" style="color: brown">
                                     @comment.CommentPostDateDate
                                 </div>
-                        }
-                    </div>
                 }
             </div>
-
         }
     </div>
+
+}
