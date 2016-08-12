@@ -22,7 +22,8 @@ namespace TeamProject.DataModels
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
             var userIdentity = await manager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);
-            // Add custom user claims here
+            // Add custom user claims here Done!
+            userIdentity.AddClaim(new Claim("FullName", this.FullName));
             return userIdentity;
         }
     }

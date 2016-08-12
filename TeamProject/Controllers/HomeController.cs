@@ -73,6 +73,7 @@ namespace TeamProject.Controllers
 
                 var userName = this.User.Identity.Name;
                 var postId = id;
+                
                 var isLike =
                     db.PostLikes.Where(l => l.PostId == postId).Where(l => l.UserName == userName).Select(l => l.Like).FirstOrDefault();
                 if (!isLike)
@@ -105,7 +106,13 @@ namespace TeamProject.Controllers
                     db.PostLikes.Add(postLike);
                     db.SaveChanges();
                 }
-                return RedirectToAction("Index");
+                var postLikeCount = db.Posts.Find(id).PostLikeCounter;
+                return Json(new
+                {
+                    postId = postId,
+                    postLikes = postLikeCount
+                });
+                //return RedirectToAction("Index");
             }
             return View(model);
         }

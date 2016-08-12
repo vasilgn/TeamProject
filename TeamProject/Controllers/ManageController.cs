@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Net;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -74,6 +75,7 @@ namespace TeamProject.Controllers
                 : message == ManageMessageId.PhotoUploadSuccess ? "Your photo has been uploaded."
                 : message == ManageMessageId.FileExtensionError ? "Only .jpg, .png or .gif allowed."
                 : "";
+            var claim = ((ClaimsIdentity)User.Identity).FindFirst("FullName");
 
             var userId = User.Identity.GetUserId();
             var model = new IndexViewModel
@@ -82,8 +84,9 @@ namespace TeamProject.Controllers
                 PhoneNumber = await UserManager.GetPhoneNumberAsync(userId),
                 TwoFactor = await UserManager.GetTwoFactorEnabledAsync(userId),
                 Logins = await UserManager.GetLoginsAsync(userId),
-                BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId)
-			};
+                BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId),
+                FullName = (claim != null) ? claim.Value : string.Empty
+        };
             return View(model);
         }
 
