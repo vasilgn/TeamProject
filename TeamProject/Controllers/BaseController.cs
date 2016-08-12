@@ -6,10 +6,10 @@ using TeamProject.DataModels;
 namespace TeamProject.Controllers
 {
     using System.Web.Mvc;
-
+    [ValidateInput(false)]
     public class BaseController : Controller
     {
-        protected BlogDbContext db = new BlogDbContext();
+        protected BlogDbContextEntities db = new BlogDbContextEntities();
 
         public bool IsAdmin()
         {
@@ -17,8 +17,6 @@ namespace TeamProject.Controllers
             var isAdmin = (currentUserId != null && this.User.IsInRole("Administrator"));
             return isAdmin;
         }
-
-        
 
     }
 }

@@ -53,12 +53,12 @@ namespace TeamProject.Controllers
         
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create(PostViewModel model,HttpPostedFileBase file)
+        public async Task<ActionResult> Create(PostViewModel model)
         {
 
             if (model != null && ModelState.IsValid)
             {
-                
+
 
                 var post = new Post
                 {
@@ -72,34 +72,6 @@ namespace TeamProject.Controllers
                 db.Posts.Add(post);
                 await db.SaveChangesAsync();
 
-                if (file != null && file.ContentLength > 0)
-                {
-
-                    var fileExtension = Path.GetExtension(file.FileName);
-                    var fnm = Guid.NewGuid() + ".png";
-
-
-                    if (fileExtension.ToLower().EndsWith(".png") || fileExtension.ToLower().EndsWith(".jpg") || fileExtension.ToLower().EndsWith(".gif"))
-                    {
-                        var filePath = HostingEnvironment.MapPath("~/Content/images/posts/") + fnm;
-                        var directory = new DirectoryInfo(HostingEnvironment.MapPath("~/Content/images/posts/"));
-                        if (directory.Exists == false)
-                        {
-                            directory.Create();
-                        }
-                        ViewBag.FilePath = filePath.ToString();
-                        file.SaveAs(filePath);
-                        var postImage = new PostImage
-                        {
-                            ImageUrl = filePath.ToString(),
-                            PostId = db.Posts.Last().PostId
-                        };
-                        db.PostImages.Add(postImage);
-                        await db.SaveChangesAsync();
-                    }
-
-                }
-                return RedirectToAction("Index");
             }
 
             ViewBag.UserId = new SelectList(db.Users, "Id", "FullName");

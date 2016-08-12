@@ -17,5 +17,10 @@ namespace TeamProject.DataModels
         public bool Like { get; set; }
         public int PostId { get; set; }
         public virtual Post Post { get; set; }
+
+        public PostLike()
+        {
+            this.Like = false;
+        }
     }
 }

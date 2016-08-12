@@ -5,15 +5,17 @@ using System.Web;
 using TeamProject.DataModels;
 using System.Data.Entity;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
+using TeamProject.Extensions;
 using TeamProject.Models;
 
 namespace TeamProject.Controllers
 {
     public class HomeController : BaseController
     {
-
+        [Authorize]
         public ActionResult Index()
         {
             var posts = this.db.Posts.OrderByDescending(p => p.PostedOn)
@@ -55,29 +57,45 @@ namespace TeamProject.Controllers
 
         }
 
-        [HttpPost]
-        public ActionResult AddLike(int id)
+       /* [HttpGet]
+        public ActionResult AddLike(int? id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            if (ModelState.IsValid)
+
+            return RedirectToAction("AddLike",id);
+        }*/
+
+        [HttpPost]
+        public ActionResult AddLike(PostsViewModel model,int id)
+        {
+            
+            if (ModelState.IsValid && model != null)
             {
 
                 var userName = this.User.Identity.Name;
                 var postId = id;
-                var postLikesCounter = db.Posts.Find(id).PostLikeCounter;
                 var isLike =
                     db.PostLikes.Where(l => l.PostId == postId).Where(l => l.UserName == userName).Select(l => l.Like).FirstOrDefault();
                 if (!isLike)
                 {
-                    var postToUpdate = new Post() { PostId = postId, PostLikeCounter = postLikesCounter + 1 };
-                    using (db)
+                    Post post;
+                    using (var ctx = new BlogDbContextEntities())
                     {
-                        db.Posts.Attach(postToUpdate);
-                        db.SaveChangesAsync();
+                        post = ctx.Posts.FirstOrDefault(s => s.PostId == postId);
                     }
+                    if (post != null)
+                    {
+                        post.PostLikeCounter += 1;
+                    }
+                    using (var dbCtx = new BlogDbContextEntities())
+                    {
+                        //3. Mark entity as modified
+                        dbCtx.Entry(post).State = System.Data.Entity.EntityState.Modified;
+
+                        //4. call SaveChanges
+                        dbCtx.SaveChanges();
+                    }
+
+                    
                     var postLike = new PostLike
                     {
                         Like = true,
@@ -85,12 +103,11 @@ namespace TeamProject.Controllers
                         UserName = userName
                     };
                     db.PostLikes.Add(postLike);
-                    db.SaveChangesAsync();
+                    db.SaveChanges();
                 }
+                return RedirectToAction("Index");
             }
-            return View();
-
-
+            return View(model);
         }
     }
 

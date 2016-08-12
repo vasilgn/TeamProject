@@ -161,6 +161,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\LikeController.cs" />
+    <Compile Include="Controllers\PostController.cs" />
     <Compile Include="Controllers\PostsController.cs" />
     <Compile Include="Controllers\UploadController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
@@ -177,6 +178,8 @@
     <Compile Include="DataModels\PostImage.cs" />
     <Compile Include="DataModels\PostLike.cs" />
     <Compile Include="DataModels\UserProfile.cs" />
+    <Compile Include="DataModels\BlogDbContextEntities.cs" />
+    <Compile Include="Extensions\HtmlHelperExtensions.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -217,6 +220,8 @@
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -277,9 +282,9 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\images\posts\" />
-    <Folder Include="Extensions\" />
     <Folder Include="Scripts\api\" />
     <Folder Include="Views\Like\" />
+    <Folder Include="Views\Post\" />
     <Folder Include="Views\Upload\" />
   </ItemGroup>
   <ItemGroup>

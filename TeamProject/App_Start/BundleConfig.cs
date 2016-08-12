@@ -11,7 +11,10 @@ namespace TeamProject
 			bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
 						"~/Scripts/jquery-{version}.js"));
 
+		    bundles.Add(new ScriptBundle("~/bundles/ajax").Include("~/Scripts/jquery.unobtrusive-ajax.min.js"));
+
 			bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
+
 						"~/Scripts/jquery.validate*"));
 
 			// Use the development version of Modernizr to develop with and learn from. Then, when you're

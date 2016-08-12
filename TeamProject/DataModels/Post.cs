@@ -14,6 +14,7 @@ namespace TeamProject.DataModels
         {
             this.PostedOn = DateTime.Now;
             this.IsPublic = true;
+            this.Comments = new HashSet<Comment>();
         }
 
         [Key]
