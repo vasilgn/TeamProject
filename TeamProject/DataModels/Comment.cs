@@ -21,7 +21,7 @@ namespace TeamProject.DataModels
         [Required]
         public DateTime CommentDate { get; set; }
         [DefaultValue(0)]
-        public int ComentsLikeCounter { get; set; }
+        public int CommentLikeCounter { get; set; }
 
         public string UserId { get; set; }
         public virtual ApplicationUser User { get; set; }

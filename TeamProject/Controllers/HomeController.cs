@@ -13,9 +13,9 @@ using TeamProject.Models;
 
 namespace TeamProject.Controllers
 {
+    [Authorize]
     public class HomeController : BaseController
     {
-        [Authorize]
         public ActionResult Index()
         {
             var posts = this.db.Posts.OrderByDescending(p => p.PostedOn)
@@ -65,12 +65,12 @@ namespace TeamProject.Controllers
         }*/
 
         [HttpPost]
-        public ActionResult AddLike(PostsViewModel model,int id)
+        public ActionResult AddLike(PostViewModel model,int id)
         {
             
             if (ModelState.IsValid && model != null)
             {
-
+                
                 var userName = this.User.Identity.Name;
                 var postId = id;
                 
@@ -89,14 +89,9 @@ namespace TeamProject.Controllers
                     }
                     using (var dbCtx = new BlogDbContextEntities())
                     {
-                        //3. Mark entity as modified
                         dbCtx.Entry(post).State = System.Data.Entity.EntityState.Modified;
-
-                        //4. call SaveChanges
                         dbCtx.SaveChanges();
                     }
-
-                    
                     var postLike = new PostLike
                     {
                         Like = true,
@@ -111,6 +106,56 @@ namespace TeamProject.Controllers
                 {
                     postId = postId,
                     postLikes = postLikeCount
+                });
+                //return RedirectToAction("Index");
+            }
+            return View(model);
+        }
+
+        
+
+        [HttpPost]
+        public ActionResult CommentLike(CommentViewModel model, int id)
+        {
+
+            if (ModelState.IsValid && model != null)
+            {
+
+                var userName = this.User.Identity.Name;
+                var commentId = id;
+
+                var isLike =
+                    db.CommentsLikes.Where(l => l.CommentId == commentId).Where(l => l.UserName == userName).Select(l => l.Like).FirstOrDefault();
+                if (!isLike)
+                {
+                    Comment comment;
+                    using (var ctx = new BlogDbContextEntities())
+                    {
+                        comment = ctx.Comments.FirstOrDefault(s => s.CommentId == commentId);
+                    }
+                    if (comment != null)
+                    {
+                        comment.CommentLikeCounter += 1;
+                    }
+                    using (var dbCtx = new BlogDbContextEntities())
+                    {
+                        dbCtx.Entry(comment).State = System.Data.Entity.EntityState.Modified;
+                        dbCtx.SaveChanges();
+                    }
+                    var commentLike = new CommentLike
+                    {
+                        Like = true,
+                        CommentId = commentId,
+                        UserName = userName
+                    };
+                    db.CommentsLikes.Add(commentLike);
+                    db.SaveChanges();
+                }
+                var commentLikeCount = db.Comments.Find(commentId).CommentLikeCounter;
+                return Json(new
+                {
+                    commentId = commentId,
+                    commentLikes = commentLikeCount
                 });
                 //return RedirectToAction("Index");
             }

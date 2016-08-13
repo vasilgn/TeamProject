@@ -4,76 +4,75 @@
     ViewBag.Title = "Create";
 }
 <style>
-	body {
-		background-image: url('../../background.jpg');
-	}
+    body {
+        background-image: url('../../background.jpg');
+    }
 
-	div {
-		color: black;
-	}
+    div {
+        color: black;
+    }
 
-	hr {
-    display: block;
-    height: 1px;
-    border-top: 1px solid #000000;
-    margin: 1em 0;
-    padding: 0; 
-	}
+    hr {
+        display: block;
+        height: 1px;
+        border-top: 1px solid #000000;
+        margin: 1em 0;
+        padding: 0;
+    }
 
-	.row {
-		font-size: 28px;
-		margin:25px 5px -30px 5px;
-	}
+    .row {
+        font-size: 28px;
+        margin: 25px 5px -30px 5px;
+    }
 
-	.form-control{
-     background-color: transparent;
-	 border: 1px solid rgba(0, 0, 0, 0.27);
-     -webkit-box-shadow: none;
-     -moz-box-shadow: none;
-     box-shadow: none;
-     color:black;
-	 font-size:16px;
-     cursor:text;
-
-	}
-
+    .form-control {
+        background-color: transparent;
+        border: 1px solid rgba(0, 0, 0, 0.27);
+        -webkit-box-shadow: none;
+        -moz-box-shadow: none;
+        box-shadow: none;
+        color: black;
+        font-size: 16px;
+        cursor: text;
+    }
 
 
 
-	a.my-class { color: #000000;}
-	
-	a.my-class:hover {
-	/*border: 1px solid rgba(0, 0, 0, 0.27);*/
-	}
-	
-	footer {
-		text-align: center;
-		font-size: 16px;
-	}
 
-	.btn-create {
-    background-color: transparent;
-    border: 1px solid rgba(0, 0, 0, 0.27);
-    color:black;
-	font-size:16px;
-	border-radius: 5px;
-	padding: 5px 10px 5px 10px; 
+    a.my-class {
+        color: #000000;
+    }
 
-}
+        a.my-class:hover {
+            /*border: 1px solid rgba(0, 0, 0, 0.27);*/
+        }
 
-	/*.posted {
-		font-size: 16px;
-	}
+    footer {
+        text-align: center;
+        font-size: 16px;
+    }
 
-	.title {
-		font-weight: bold;*/
-	
+    .btn-create {
+        background-color: transparent;
+        border: 1px solid rgba(0, 0, 0, 0.27);
+        color: black;
+        font-size: 16px;
+        border-radius: 5px;
+        padding: 5px 10px 5px 10px;
+    }
+
+    /*.posted {
+            font-size: 16px;
+        }
+
+        .title {
+            font-weight: bold;*/
 </style>
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4 class="row">Create Post</h4>
         <hr />
@@ -87,12 +86,12 @@
         </div>
 
         <div class="form-group">
-			
+
             @Html.LabelFor(model => model.Body, htmlAttributes: new { @class = "control-label col-md-2" })
-			<div class="col-md-10">
-				@Html.TextAreaFor(model => model.Body,  new { @class = "form-control", @cols = 45, @rows = 10 })
-				@Html.ValidationMessageFor(model => model.Body, "", new { @class = "text-danger" })
-			</div>		
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.Body, new { @class = "form-control", @cols = 45, @rows = 10 })
+                @Html.ValidationMessageFor(model => model.Body, "", new { @class = "text-danger" })
+            </div>
         </div>
 
         <div class="form-group">
@@ -103,7 +102,21 @@
             </div>
         </div>
 
-        @*<div class="form-group">
+        <div class="form-group upload-post-image">
+            <div class="col-md-10">
+                @using (Html.BeginForm("Index", "Upload", FormMethod.Post, new {enctype = "multipart/form-data"}))
+                {
+                    <label for="file">Upload Image:</label>
+                    <input type="file" name="file" id="file"/><br><br>
+                    <input type="submit" value="Upload Image"/>
+                    <br><br>
+                    @ViewBag.Message
+                }
+            </div>
+        </div>
+    </div>
+
+    @*<div class="form-group">
             @Html.LabelFor(model => model.PostedOn, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.PostedOn, new { htmlAttributes = new { @class = "form-control" } })
@@ -145,17 +158,14 @@
             </div>
         </div>*@
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn-create" />
-            </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn-create" />
         </div>
     </div>
+
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index", null, new { @class = "my-class" })
-</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

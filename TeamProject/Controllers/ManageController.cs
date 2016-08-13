@@ -15,7 +15,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using TeamProject.DataModels;
 using TeamProject.Models;
-using Image = TeamProject.DataModels.PostImage;
+
 
 namespace TeamProject.Controllers
 {

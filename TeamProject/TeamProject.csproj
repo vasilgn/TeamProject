@@ -162,8 +162,6 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
-    <Compile Include="Controllers\LikeController.cs" />
-    <Compile Include="Controllers\PostController.cs" />
     <Compile Include="Controllers\PostsController.cs" />
     <Compile Include="Controllers\UploadController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
@@ -187,6 +185,7 @@
     </Compile>
     <Compile Include="Migrations\DbConfiguration.cs" />
     <Compile Include="Migrations\DbUserConfiguration.cs" />
+    <Compile Include="Models\PostCreateModel.cs" />
     <Compile Include="Models\ViewModel.cs" />
     <Compile Include="Models\PostDetailsViewModel.cs" />
     <Compile Include="Models\PostsViewModel.cs" />
@@ -280,19 +279,19 @@
     <Content Include="Views\Shared\_PostDetails.cshtml" />
     <Content Include="Views\Shared\_PostOptionsMenu.cshtml" />
     <Content Include="Views\Home\_PostDetailsView.cshtml" />
+    <Content Include="Views\Home\_AddComment.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\images\posts\" />
     <Folder Include="Views\Like\" />
     <Folder Include="Views\Post\" />
-    <Folder Include="Views\Upload\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Scripts\jsHandlers\likeSuccessHandler.js" />
+    <Content Include="Scripts\Handlers\likeSuccessHandler.js" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />

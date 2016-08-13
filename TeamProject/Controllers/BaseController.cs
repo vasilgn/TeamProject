@@ -6,7 +6,6 @@ using TeamProject.DataModels;
 namespace TeamProject.Controllers
 {
     using System.Web.Mvc;
-    [ValidateInput(false)]
     public class BaseController : Controller
     {
         protected BlogDbContextEntities db = new BlogDbContextEntities();

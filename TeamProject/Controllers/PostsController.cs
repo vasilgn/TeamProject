@@ -66,8 +66,6 @@ namespace TeamProject.Controllers
                     Title = model.Title,
                     PostedOn = DateTime.Now,
                     UserId = this.User.Identity.GetUserId(),
-
-
                 };
                 db.Posts.Add(post);
                 await db.SaveChangesAsync();
@@ -132,7 +130,7 @@ namespace TeamProject.Controllers
             Post post = await db.Posts.FirstOrDefaultAsync(x => x.PostId == id);
             db.Posts.Remove(post);
             await db.SaveChangesAsync();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index","Home");
         }
 
         protected override void Dispose(bool disposing)
