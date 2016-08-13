@@ -31,6 +31,14 @@ namespace TeamProject.Migrations
                     Fullname = "System Administrator",
                     UserRole = "Administrator"
                 };
+                var pesho = new DbUserConfiguration()
+                {
+                    User = "pesho@admin.com",
+                    Email = "pesho@admin.com",
+                    Password = "1234",
+                    Fullname = "Pesho Pesev",
+                    UserRole = "Members"
+                };
                 var commonUser = new DbUserConfiguration()
                 {
                     User = "test@test.com",
@@ -42,6 +50,7 @@ namespace TeamProject.Migrations
 
 
                 CreateUsers(context, adminUser);
+                CreateUsers(context, pesho);
                 CreateUsers(context, commonUser);
                 CreateSeverealTestEvents(context);
             }
