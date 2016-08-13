@@ -37,7 +37,7 @@ namespace TeamProject.Migrations
                     Email = "pesho@admin.com",
                     Password = "1234",
                     Fullname = "Pesho Pesev",
-                    UserRole = "Members"
+                    UserRole = "Guest"
                 };
                 var commonUser = new DbUserConfiguration()
                 {
@@ -45,7 +45,7 @@ namespace TeamProject.Migrations
                     Email = "test@email.com",
                     Password = "test@test.com",
                     Fullname = "Common user",
-                    UserRole = "Members"
+                    UserRole = "Member"
                 };
 
 
@@ -74,21 +74,22 @@ namespace TeamProject.Migrations
                     new Comment() { Text ="First User comment", User = context.Users.OrderByDescending(u => u.Id).First()}
                 }
             });
-
             context.Posts.Add(new Post()
             {
-                Title = "Testing Title",
-                Body = "Test Brum",
-                Description = "Some Description",
-                PostLikeCounter = 5,
-                PostedOn = DateTime.Now.AddDays(-2),
-                User = context.Users.First(),
+                Title = "Tallest",
+                Body = "The heights of the tallest trees in the world have been the subject of considerable dispute and much exaggeration. Modern verified measurements with laser rangefinders, or with tape drop measurements made by tree climbers (such as those carried out by canopy researchers), have shown that some older measuring methods and measurements are often unreliable, sometimes producing exaggerations of 5% to 15% or more above the real height.[1] Historical claims of trees growing to 130 m (430 ft), and even 150 m (490 ft), are now largely disregarded as unreliable, and attributed to human error. https://en.wikipedia.org/wiki/List_of_superlative_trees",
+                Description = "Some Description", 
+                PostedOn = DateTime.Now.AddDays(5),
+                Modified = DateTime.Now.AddDays(4),
+                User = context.Users.OrderByDescending(e => e.Email).First(),
                 Comments = new HashSet<Comment>()
                 {
-                    new Comment() { Text ="<Anonymus> comment", User = context.Users.First()},
-                    new Comment() { Text ="User comment", }
+                    new Comment() { Text ="Last User comment", User = context.Users.First()} ,
+                    new Comment() { Text ="First User comment", User = context.Users.OrderByDescending(u => u.Id).First()}
                 }
-            });
+            }); 
+            
+            
 
 
         }
