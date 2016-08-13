@@ -83,7 +83,7 @@
                         </div>
 
                     </section>
-                    <section class="post-footer">
+                    <section class="post-footer post-footer-@post.Id">
                         <hr />
                         <div class="post-footer-option container">
                             <ul class="list-inline">
@@ -100,18 +100,22 @@
                                     }
                                 </li>
                                 <li class="new-comment">
-                                    <a href="#"><i class="glyphicon glyphicon-comment"></i> Comment</a>
+                                    @*<a href="#"><i class="glyphicon glyphicon-comment"></i> Comment</a>*@
+
                                 </li>
                                 <li><a href="#"><i class="glyphicon glyphicon-share-alt"></i> Share</a></li>
                             </ul>
                         </div>
                         <section>
                             <div class="post-footer-comment-wrapper">
+                                <ul>
+                                    
+                                </ul>
                                 @foreach (var comment in post.Comments)
                                 {
                                     <div class="comment-form">
                                         @comment.Text
-                                        <br />
+                                        <br/>
 
 
                                     </div>
@@ -119,12 +123,12 @@
                                     <ul class="list-inline">
 
                                         <li class="comment-like-@comment.CommentId">
-                                            @using (Ajax.BeginForm("CommentLike", "Home", new { id = comment.CommentId }, new AjaxOptions
+                                            @using (Ajax.BeginForm("CommentLike", "Home", new {id = comment.CommentId}, new AjaxOptions
                                             {
                                                 InsertionMode = InsertionMode.Replace,
                                                 UpdateTargetId = "comment-like-" + comment.CommentId,
                                                 OnSuccess = "commentLikeSuccessHandler(data)",
-                                            }, new { @class = "" }))
+                                            }, new {@class = ""}))
                                             {
                                                 <button type="submit" class="glyphicon glyphicon-thumbs-up"><span id="comment-@comment.CommentId">@comment.CommentCountLikes</span></button>
                                             }
@@ -136,7 +140,7 @@
                                                 @{
                                                     var imageUrl = Url.Content("~/Content/images/profile/") + comment.Username + ".png" + "?time=" + DateTime.Now;
                                                     <a href="#">
-                                                        <img class="media-object photo-profile" src="@imageUrl" width="32" height="32" onerror="this.src = '../Content/images/profile/default.png';" />
+                                                        <img class="media-object photo-profile" src="@imageUrl" width="32" height="32" onerror="this.src = '../Content/images/profile/default.png';"/>
                                                     </a>
                                                 }
                                             </div>
@@ -150,8 +154,8 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <hr />
-                                                    }
+                                    <hr/>
+                                }
                             </div>
                         </section>
                     </section>
