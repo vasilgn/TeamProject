@@ -272,3 +272,4 @@ C:\Users\Petar\Source\Repos\TeamProject\TeamProject\bin\Microsoft.Owin.Security.
 C:\Users\Petar\Source\Repos\TeamProject\TeamProject\obj\Debug\TeamProject.csprojResolveAssemblyReference.cache
 C:\Users\Petar\Source\Repos\TeamProject\TeamProject\obj\Debug\TeamProject.dll
 C:\Users\Petar\Source\Repos\TeamProject\TeamProject\obj\Debug\TeamProject.pdb
+C:\Users\Kreatos\Source\Repos\TeamProject2\TeamProject\obj\Debug\TeamProject.csprojResolveAssemblyReference.cache

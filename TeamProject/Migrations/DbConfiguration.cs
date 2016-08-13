@@ -37,7 +37,7 @@ namespace TeamProject.Migrations
                     Email = "pesho@admin.com",
                     Password = "1234",
                     Fullname = "Pesho Pesev",
-                    UserRole = "Members"
+                    UserRole = "Guest"
                 };
                 var commonUser = new DbUserConfiguration()
                 {
@@ -45,7 +45,7 @@ namespace TeamProject.Migrations
                     Email = "test@email.com",
                     Password = "test@test.com",
                     Fullname = "Common user",
-                    UserRole = "Members"
+                    UserRole = "Member"
                 };
 
 

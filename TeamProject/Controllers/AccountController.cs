@@ -157,7 +157,7 @@ namespace TeamProject.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await this.UserManager.AddToRoleAsync(user.Id, "Members");
+                    await this.UserManager.AddToRoleAsync(user.Id, "Member");
 
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
 

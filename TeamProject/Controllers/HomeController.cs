@@ -57,23 +57,34 @@ namespace TeamProject.Controllers
 
         }
 
-       /* [HttpGet]
-        public ActionResult AddLike(int? id)
-        {
+        /* [HttpGet]
+         public ActionResult AddLike(int? id)
+         {
 
-            return RedirectToAction("AddLike",id);
-        }*/
+             return RedirectToAction("AddLike",id);
+         }*/
+
 
         [HttpPost]
-        public ActionResult AddLike(PostViewModel model,int id)
+        public ActionResult AddComment(CommentViewModel model, int id)
         {
-            
             if (ModelState.IsValid && model != null)
             {
+                var userName = this.User.Identity.GetUserId();
                 
+            }
+            return View();
+        }
+        [HttpPost]
+        public ActionResult AddLike(PostViewModel model, int id)
+        {
+
+            if (ModelState.IsValid && model != null)
+            {
+
                 var userName = this.User.Identity.Name;
                 var postId = id;
-                
+
                 var isLike =
                     db.PostLikes.Where(l => l.PostId == postId).Where(l => l.UserName == userName).Select(l => l.Like).FirstOrDefault();
                 if (!isLike)
@@ -112,7 +123,7 @@ namespace TeamProject.Controllers
             return View(model);
         }
 
-        
+
 
         [HttpPost]
         public ActionResult CommentLike(CommentViewModel model, int id)
