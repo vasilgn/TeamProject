@@ -73,7 +73,7 @@ namespace TeamProject.Controllers
             }
 
             ViewBag.UserId = new SelectList(db.Users, "Id", "FullName");
-            return View();
+            return RedirectToAction("Index","Home");
         }
 
         // GET: Posts/Edit/5
