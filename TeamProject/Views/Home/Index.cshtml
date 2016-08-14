@@ -93,10 +93,13 @@
                                     {
                                         InsertionMode = InsertionMode.Replace,
                                         UpdateTargetId = "post-like-" + post.Id,
+
                                         OnSuccess = "likeSuccessHandler(data)",
                                     }, new { @class = "" }))
                                     {
-                                        <button type="submit" class="glyphicon glyphicon-thumbs-up"><span id="post-@post.Id">@post.LikesCount</span></button>
+                                        <button type="submit" name="command" class="glyphicon glyphicon-thumbs-up" value="Like"><span id="post-likes-@post.Id">@post.PostDislikes</span></button>
+                                        <span id="post-@post.Id">@post.LikesCount</span>
+                                        <button type="submit" name="command" class="glyphicon glyphicon-thumbs-down" value="Dislike"><span id="post-dislikes-@post.Id">@post.PostDislikes</span></button>
                                     }
                                 </li>
                                 <li class="new-comment">
@@ -108,14 +111,12 @@
                         </div>
                         <section>
                             <div class="post-footer-comment-wrapper">
-                                <ul>
-                                    
-                                </ul>
+                                <ul></ul>
                                 @foreach (var comment in post.Comments)
                                 {
                                     <div class="comment-form">
                                         @comment.Text
-                                        <br/>
+                                        <br />
 
 
                                     </div>
@@ -123,14 +124,16 @@
                                     <ul class="list-inline">
 
                                         <li class="comment-like-@comment.CommentId">
-                                            @using (Ajax.BeginForm("CommentLike", "Home", new {id = comment.CommentId}, new AjaxOptions
+                                            @using (Ajax.BeginForm("CommentLike", "Home", new { id = comment.CommentId }, new AjaxOptions
                                             {
                                                 InsertionMode = InsertionMode.Replace,
                                                 UpdateTargetId = "comment-like-" + comment.CommentId,
                                                 OnSuccess = "commentLikeSuccessHandler(data)",
-                                            }, new {@class = ""}))
+                                            }, new { @class = "" }))
                                             {
-                                                <button type="submit" class="glyphicon glyphicon-thumbs-up"><span id="comment-@comment.CommentId">@comment.CommentCountLikes</span></button>
+                                                <button type="submit" name="command" class="glyphicon glyphicon-thumbs-up" value="Like"><span id="comment-likes-@comment.CommentId">@comment.CommentLikes</span></button>
+                                                <span id="comment-@comment.CommentId">@comment.CommentCountLikes</span>
+                                                <button type="submit" name="command" class="glyphicon glyphicon-thumbs-down" value="Dislike"><span id="comment-dislikes-@comment.CommentId">@comment.CommentDislikes</span></button>
                                             }
                                         </li>
                                     </ul>
@@ -140,7 +143,7 @@
                                                 @{
                                                     var imageUrl = Url.Content("~/Content/images/profile/") + comment.Username + ".png" + "?time=" + DateTime.Now;
                                                     <a href="#">
-                                                        <img class="media-object photo-profile" src="@imageUrl" width="32" height="32" onerror="this.src = '../Content/images/profile/default.png';"/>
+                                                        <img class="media-object photo-profile" src="@imageUrl" width="32" height="32" onerror="this.src = '../Content/images/profile/default.png';" />
                                                     </a>
                                                 }
                                             </div>
@@ -154,8 +157,8 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <hr/>
-                                }
+                                    <hr />
+                                                    }
                             </div>
                         </section>
                     </section>
@@ -168,5 +171,5 @@
 @section scripts {
     @Scripts.Render("~/bundles/ajax")
     @Scripts.Render("~/Scripts/Handlers/likeSuccessHandler.js")
-    
+
 }

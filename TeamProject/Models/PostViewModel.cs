@@ -19,6 +19,8 @@ namespace TeamProject.Models
         public DateTime PostDate { get; set; }
         public DateTime? Modified { get; set; }
         public int LikesCount { get; set; }
+        public int PostLikes { get; set; }
+        public int PostDislikes { get; set; }
         public List<string> ImageUrl { get; set; }
         public string UserId { get; set; }
         public string Username { get; set; }
@@ -38,6 +40,8 @@ namespace TeamProject.Models
                     Modified = p.Modified,
                     PostDate = p.PostedOn,
                     LikesCount = p.PostLikeCounter,
+                    PostLikes = p.PostLikes.Count(l => l.Like),
+                    PostDislikes = p.PostLikes.Count(l=>l.Like == false),
                     ImageUrl = p.PostImages.Where(i=>i.PostId == p.PostId).Select(i=>i.ImageUrl).ToList(),
                     UserId = p.UserId,
                     Username =p.User.UserName,
