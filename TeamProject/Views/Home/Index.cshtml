@@ -97,7 +97,7 @@
                                         OnSuccess = "likeSuccessHandler(data)",
                                     }, new { @class = "" }))
                                     {
-                                        <button type="submit" name="command" class="glyphicon glyphicon-thumbs-up" value="Like"><span id="post-likes-@post.Id">@post.PostDislikes</span></button>
+                                        <button type="submit" name="command" class="glyphicon glyphicon-thumbs-up" value="Like"><span id="post-likes-@post.Id">@post.PostLikes</span></button>
                                         <span id="post-@post.Id">@post.LikesCount</span>
                                         <button type="submit" name="command" class="glyphicon glyphicon-thumbs-down" value="Dislike"><span id="post-dislikes-@post.Id">@post.PostDislikes</span></button>
                                     }
