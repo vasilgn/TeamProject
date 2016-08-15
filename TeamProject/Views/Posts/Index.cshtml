@@ -3,10 +3,12 @@
 @{
     ViewBag.Title = "Index";
 }
+<style>
+	td.post-body-view {
+			word-break: break-word;
+	}
 
-
-
-
+</style>
 
 
 <table class="table">
@@ -44,9 +46,9 @@
         <td>
             @Html.DisplayFor(modelItem => item.Title)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Body)
-        </td>
+		<td class ='post-body-view'>
+			@Html.DisplayFor(modelItem => item.Body)
+		</td>
         <td>
             @Html.DisplayFor(modelItem => item.Description)
         </td>
