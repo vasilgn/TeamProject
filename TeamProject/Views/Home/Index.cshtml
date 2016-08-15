@@ -36,6 +36,24 @@
     .body-content-post {
         word-wrap: break-word;
     }
+/**//**/
+	.anchor{
+	display:inline-block
+	}
+
+	.anchor-time {
+	font-size:13px;
+	}
+
+	.panel-default {
+    background: rgba(52, 61, 83, .3);
+	}
+	.row {
+	margin-left:-15px;
+	}
+	.media-title{
+	margin-top:0px;
+	 }
 </style>
 <div class="container">
     <div class="col-md-6 col-xs-12">
@@ -51,13 +69,13 @@
                                         @{
                                             var imagePostUrl = Url.Content("~/Content/images/profile/") + post.Username + ".png" + "?time=" + DateTime.Now;
 
-                                            <img class="media-object photo-profile" src="@imagePostUrl" width="40" height="40" onerror="this.src = '../Content/images/profile/default.png';" />
+                                            <img class="media-object photo-profile" src="@imagePostUrl" width="60" height="60" onerror="this.src = '../Content/images/profile/default.png';" />
                                         }
 
                                     </div>
                                     <div class="media-body">
-                                        <a href="#" class="anchor-username"><h4 class="media-heading">@post.Author</h4></a>
-                                        <span class="anchor-time">@post.PostDate</span>
+                                        <a href="#" class="anchor-username anchor"><h4 class="media-heading">@post.Author</h4></a>
+                                        <span class="anchor-time anchor">@post.PostDate</span>
                                         <span class="anchor-title"><h3 class="media-title">@post.Title</h3></span>
                                     </div>
                                 </div>
@@ -84,22 +102,27 @@
 
                     </section>
                     <section class="post-footer post-footer-@post.Id">
-                        <hr />
                         <div class="post-footer-option container">
                             <ul class="list-inline">
 
                                 <li class="post-like-@post.Id">
-                                    @using (Ajax.BeginForm("AddLike", "Home", new { id = post.Id }, new AjaxOptions
-                                    {
-                                        InsertionMode = InsertionMode.Replace,
-                                        UpdateTargetId = "post-like-" + post.Id,
+                                    @using (Ajax.BeginForm("AddLike", "Home", new
+									{
+										id = post.Id
+									}, new AjaxOptions
+									{
+										InsertionMode = InsertionMode.Replace,
+										UpdateTargetId = "post-like-" + post.Id,
 
-                                        OnSuccess = "likeSuccessHandler(data)",
-                                    }, new { @class = "" }))
-                                    {
-                                        <button type="submit" name="command" class="glyphicon glyphicon-thumbs-up" value="Like"><span id="post-likes-@post.Id">@post.PostLikes</span></button>
-                                        <span id="post-@post.Id">@post.LikesCount</span>
-                                        <button type="submit" name="command" class="glyphicon glyphicon-thumbs-down" value="Dislike"><span id="post-dislikes-@post.Id">@post.PostDislikes</span></button>
+										OnSuccess = "likeSuccessHandler(data)",
+									}, new
+									{
+										@class = ""
+									}))
+										{
+                                        <button type="submit" name="command" class="btn btn-success" value="Like"><span class="glyphicon glyphicon-thumbs-up" id="post-likes-@post.Id">@post.PostLikes</span></button>
+                                        @*<span id="post-@post.Id">@post.LikesCount</span>*@
+                                        <button type="submit" name="command" class="btn btn-danger" value="Dislike"><span class="glyphicon glyphicon-thumbs-down" id="post-dislikes-@post.Id">@post.PostDislikes</span></button>
                                     }
                                 </li>
                                 <li class="new-comment">
@@ -109,54 +132,63 @@
                                 <li><a href="#"><i class="glyphicon glyphicon-share-alt"></i> Share</a></li>
                             </ul>
                         </div>
+						<hr />
+
                         <section>
                             <div class="post-footer-comment-wrapper">
                                 <ul></ul>
                                 @foreach (var comment in post.Comments)
-                                {
+									{
+									<div class="comment">
+										<div class="media">
+											<div class="media-left">
+												@{
+									var imageUrl = Url.Content("~/Content/images/profile/") + comment.Username + ".png" + "?time=" + DateTime.Now;
+									<a href="#">
+										<img class="media-object photo-profile" src="@imageUrl" width="32" height="32" onerror="this.src = '../Content/images/profile/default.png';" />
+									</a>
+												}
+											</div>
+											<div class="media-right">
+
+											</div>
+											<div class="media-body">
+												<a href="#" class="anchor-username anchor"><h4 class="media-heading">@comment.Author</h4></a>
+												<div class="anchor-time anchor">@comment.CommentPostDate</div>
+
+											</div>
+										</div>
+									</div>
+									
                                     <div class="comment-form">
                                         @comment.Text
                                         <br />
-
-
                                     </div>
-
+									   
+									
                                     <ul class="list-inline">
 
                                         <li class="comment-like-@comment.CommentId">
-                                            @using (Ajax.BeginForm("CommentLike", "Home", new { id = comment.CommentId }, new AjaxOptions
-                                            {
-                                                InsertionMode = InsertionMode.Replace,
-                                                UpdateTargetId = "comment-like-" + comment.CommentId,
-                                                OnSuccess = "commentLikeSuccessHandler(data)",
-                                            }, new { @class = "" }))
-                                            {
-                                                <button type="submit" name="command" class="glyphicon glyphicon-thumbs-up" value="Like"><span id="comment-likes-@comment.CommentId">@comment.CommentLikes</span></button>
+                                            @using (Ajax.BeginForm("CommentLike", "Home", new
+											{
+												id = comment.CommentId
+											}, new AjaxOptions
+											{
+												InsertionMode = InsertionMode.Replace,
+												UpdateTargetId = "comment-like-" + comment.CommentId,
+												OnSuccess = "commentLikeSuccessHandler(data)",
+											}, new
+											{
+												@class = ""
+											}))
+												{
+												<button type="submit" name="command" class="btn btn-success" value="Like"><span class="glyphicon glyphicon-thumbs-up" id="comment-likes-@comment.CommentId">@comment.CommentLikes</span></button>
                                                 <span id="comment-@comment.CommentId">@comment.CommentCountLikes</span>
-                                                <button type="submit" name="command" class="glyphicon glyphicon-thumbs-down" value="Dislike"><span id="comment-dislikes-@comment.CommentId">@comment.CommentDislikes</span></button>
+                                                <button type="submit" name="command" class="btn btn-danger" value="Dislike"><span class="glyphicon glyphicon-thumbs-down" id="comment-dislikes-@comment.CommentId">@comment.CommentDislikes</span></button>
                                             }
                                         </li>
                                     </ul>
-                                    <div class="comment">
-                                        <div class="media">
-                                            <div class="media-left">
-                                                @{
-                                                    var imageUrl = Url.Content("~/Content/images/profile/") + comment.Username + ".png" + "?time=" + DateTime.Now;
-                                                    <a href="#">
-                                                        <img class="media-object photo-profile" src="@imageUrl" width="32" height="32" onerror="this.src = '../Content/images/profile/default.png';" />
-                                                    </a>
-                                                }
-                                            </div>
-                                            <div class="media-right">
-
-                                            </div>
-                                            <div class="media-body">
-                                                <a href="#" class="anchor-username"><h4 class="media-heading">@comment.Author</h4></a>
-                                                <a href="#" class="anchor-time">@comment.CommentPostDate</a>
-
-                                            </div>
-                                        </div>
-                                    </div>
+                              
                                     <hr />
                                                     }
                             </div>
