@@ -268,3 +268,21 @@ background-color: #F1F1F1;
 	border-radius: 5px;
 	padding: 5px 10px 5px 10px; 
 }
+
+.anchor{
+	display:inline-block
+	}
+
+	.anchor-time {
+	font-size:13px;
+	}
+
+	.panel-default {
+    background: rgba(52, 61, 83, .3);
+	}
+	.row {
+	margin-left:-15px;
+	}
+	.media-title{
+	margin-top:0px;
+	 }
