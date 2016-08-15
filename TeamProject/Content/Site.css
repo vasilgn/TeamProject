@@ -269,6 +269,9 @@ background-color: #F1F1F1;
 	padding: 5px 10px 5px 10px; 
 }
 
+.panel-default {
+	margin-top:10px;
+	}
 .anchor{
 	display:inline-block
 	}
@@ -280,8 +283,8 @@ background-color: #F1F1F1;
 	.panel-default {
     background: rgba(52, 61, 83, .3);
 	}
-	.row {
-	margin-left:-15px;
+	.row-home {
+	margin-left:-25px;
 	}
 	.media-title{
 	margin-top:0px;
