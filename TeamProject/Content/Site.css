@@ -1,4 +1,5 @@
-﻿body {
+﻿@import url('../css/hover.css');
+body {
 	padding-top: 50px;
 	padding-bottom: 20px;
 	background-image: url('../034.jpg');
@@ -286,6 +287,69 @@ background-color: #F1F1F1;
 	.row-home {
 	margin-left:-25px;
 	}
+
 	.media-title{
 	margin-top:0px;
 	 }
+
+	.text-danger {
+	margin-left:20px;
+	font-size: 18px;
+	color:lightblue;
+	}
+
+	.btn-create:hover{
+   border-color: lightblue;
+	}
+
+	.btn-link:hover{
+		text-decoration: none;
+		color:lightblue;
+	}
+	
+	
+.btn-user{
+	font-size:18px;
+	margin-left:-2px;
+}
+
+.btn-user:hover {
+	background-color:#222222 !important;
+	font-size:18px;
+	color:lightblue;
+}
+
+.navbar-brand {
+	color:#337ab7 !important;
+}
+
+.navbar-brand:hover {
+	color:lightblue !important;
+}
+
+.side-bar-nav {
+border-radius:4px;
+margin-left:10px;
+margin-top:10px;
+}
+
+.rightMenu {
+margin-left:10px;
+border-radius:4px;
+background-color:#222222;
+margin-top:-10px;
+height: 107px;
+}
+
+.h5-dropdownmenu {
+margin-left:10px;
+}
+
+.anchor-username {
+	color:#4e8abd;
+}
+
+.anchor-username:hover {
+	color:lightblue;
+	text-decoration:none;
+}

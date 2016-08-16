@@ -4,9 +4,7 @@
     ViewBag.Title = "Create";
 }
 <style>
-    body {
-        background-image: url('../../background.jpg');
-    }
+ 
 
     div {
         color: black;
@@ -60,7 +58,7 @@
         border-radius: 5px;
         padding: 5px 10px 5px 10px;
     }
-
+	
     /*.posted {
             font-size: 16px;
         }
@@ -80,7 +78,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control hvr-grow" } })
                 @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -89,7 +87,7 @@
 
             @Html.LabelFor(model => model.Body, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextAreaFor(model => model.Body, new { @class = "form-control", @cols = 45, @rows = 10 })
+                @Html.TextAreaFor(model => model.Body, new { @class = "form-control hvr-grow", @cols = 45, @rows = 10 })
                 @Html.ValidationMessageFor(model => model.Body, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -97,7 +95,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control hvr-grow" } })
                 @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -160,11 +158,10 @@
 
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Create" class="btn-create" />
+            <input type="submit" value="Create" class="btn-create hvr-pulse" />
         </div>
     </div>
-
-}
+	}
 
 
 @section Scripts {
