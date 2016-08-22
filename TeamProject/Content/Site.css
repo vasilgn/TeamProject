@@ -258,11 +258,19 @@ background-color: #F1F1F1;
         margin-top : 30px;
     }
 }
+ .panel-body{
+      
+     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.6), 0 6px 20px 0 rgba(0, 0, 0, 0.50);
+    
+ }
 
 .row-panel {
 	background-color:transparent;
 }
-
+img:hover {
+    opacity: 0.8;
+    filter: alpha(opacity=50); /* For IE8 and earlier */
+}
 .container-profile{
 	  border: 1px solid rgba(0, 0, 0, 0.27);
     color:black;
