@@ -16,8 +16,14 @@ namespace TeamProject.Controllers
     [Authorize]
     public class HomeController : BaseController
     {
-        public ActionResult Index()
+        public ActionResult Index(DbChangeMessageId? message)
         {
+            ViewBag.StatusMessage =
+                message == DbChangeMessageId.AddCommentSuccessfully ? "Add comment successfully."
+                    : message == DbChangeMessageId.DislikeSuccessfully ? "Disliked."
+                    : message == DbChangeMessageId.LikeSuccessfully ? "Liked."
+                    : message == DbChangeMessageId.Error ? "Error."
+                    : ""; 
             var posts = this.db.Posts.OrderByDescending(p => p.PostedOn)
                     .Select(PostViewModel.ViewModel);
 
@@ -64,20 +70,36 @@ namespace TeamProject.Controllers
              return RedirectToAction("AddLike",id);
          }*/
 
-
+        /*[HttpGet]
+        public ActionResult Comment(string comment)
+        {
+            return PartialView();
+        }*/
         [HttpPost]
-        public ActionResult AddComment(CommentViewModel model, int id)
+        public ActionResult AddComment(CommentViewModel model , int id)
         {
             if (ModelState.IsValid && model != null)
             {
-                var userName = this.User.Identity.GetUserId();
-
+                
+                var newComment = new Comment()
+                {
+                    PostId = id,
+                    CommentDate = DateTime.Now,
+                    Text = model.Text,
+                    UserId = this.User.Identity.GetUserId(),
+                    
+                };
+                db.Comments.Add(newComment);
+                db.SaveChanges();
             }
+
             return View();
         }
+        //POST Like
         [HttpPost]
         public ActionResult AddLike(PostViewModel model, int id, string command)
         {
+            DbChangeMessageId? message;
 
             if (ModelState.IsValid && model != null)
             {
@@ -110,7 +132,7 @@ namespace TeamProject.Controllers
 
                         db.Entry(postLike).State = EntityState.Modified;
                         db.SaveChanges();
-
+                        message = DbChangeMessageId.LikeSuccessfully;
                     }
                     else
                     {
@@ -154,7 +176,8 @@ namespace TeamProject.Controllers
                 });
                 //return RedirectToAction("Index");
             }
-            return View(model);
+            message = DbChangeMessageId.Error;
+            return View(model );
         }
 
 
@@ -243,4 +266,17 @@ namespace TeamProject.Controllers
         }
     }
 
+
+    #region HelpMessages
+
+
+
+    public enum DbChangeMessageId
+    {
+        AddCommentSuccessfully,
+        LikeSuccessfully,
+        DislikeSuccessfully,
+        Error
+    }
+    #endregion
 }

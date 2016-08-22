@@ -9,9 +9,9 @@ namespace TeamProject.Models
 {
     public class CommentViewModel
     {
+        public int CommentId { get; set; }
         public string Text { get; set; }
         public string Author { get; set; }
-        public int CommentId { get; set; }
         public string Username { get; set; }
         public DateTime CommentPostDate { get; set; }
         public int CommentCountLikes { get; set; }

@@ -12,3 +12,8 @@ function commentLikeSuccessHandler(data) {
     $('#comment-dislikes-' + data.commentId).text(data.commentDislikeCount);
     $('#comment-likes-' + data.commentId).text(data.commentLikeCount);
 }
+
+function function1() {
+    let a = $('#textarea-1').val();
+    console.log(a);
+}

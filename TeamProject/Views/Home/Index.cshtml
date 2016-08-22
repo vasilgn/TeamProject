@@ -1,6 +1,7 @@
 ﻿@{
     ViewBag.Titele = "Index";
 }
+@using TeamProject.DataModels
 @model TeamProject.Models.PostsViewModel
 <style>
     div {
@@ -36,9 +37,7 @@
     .body-content-post {
         word-wrap: break-word;
     }
-/**//**/
-	
-	
+    /**/ /**/
 </style>
 <div class="container">
     <div class="col-md-6 col-xs-12">
@@ -48,23 +47,23 @@
                 <div class="panel-body">
                     <section class="post-heading">
                         <div class="row">
-							<div class="row-home">
-                            <div class="col-md-10">
-                                <div class="media">
-                                    <div class="media-left">
-                                        @{
-                                            var imagePostUrl = Url.Content("~/Content/images/profile/") + post.Username + ".png" + "?time=" + DateTime.Now;
+                            <div class="row-home">
+                                <div class="col-md-10">
+                                    <div class="media">
+                                        <div class="media-left">
+                                            @{
+                                                var imagePostUrl = Url.Content("~/Content/images/profile/") + post.Username + ".png" + "?time=" + DateTime.Now;
 
-                                            <img class="media-object photo-profile" src="@imagePostUrl" width="60" height="60" onerror="this.src = '../Content/images/profile/default.png';" />
-                                        }
+                                                <img class="media-object photo-profile" src="@imagePostUrl" width="60" height="60" onerror="this.src = '../Content/images/profile/default.png';" />
+                                            }
 
+                                        </div>
+                                        <div class="media-body">
+                                            <a href="#" class="anchor-username anchor"><h4 class="media-heading">@post.Author</h4></a>
+                                            <span class="anchor-time anchor">@post.PostDate</span>
+                                            <span class="anchor-title"><h3 class="media-title">@post.Title</h3></span>
+                                        </div>
                                     </div>
-                                    <div class="media-body">
-                                        <a href="#" class="anchor-username anchor"><h4 class="media-heading">@post.Author</h4></a>
-                                        <span class="anchor-time anchor">@post.PostDate</span>
-                                        <span class="anchor-title"><h3 class="media-title">@post.Title</h3></span>
-                                    </div>
-								</div>
                                 </div>
                             </div>
 
@@ -94,88 +93,104 @@
 
                                 <li class="post-like-@post.Id">
                                     @using (Ajax.BeginForm("AddLike", "Home", new
-									{
-										id = post.Id
-									}, new AjaxOptions
-									{
-										InsertionMode = InsertionMode.Replace,
-										UpdateTargetId = "post-like-" + post.Id,
+                                    {
+                                        id = post.Id
+                                    }, new AjaxOptions
+                                    {
+                                        InsertionMode = InsertionMode.Replace,
+                                        UpdateTargetId = "post-like-" + post.Id,
 
-										OnSuccess = "likeSuccessHandler(data)",
-									}, new
-									{
-										@class = ""
-									}))
-										{
+                                        OnSuccess = "likeSuccessHandler(data)",
+                                    }, new
+                                    {
+                                        @class = ""
+                                    }))
+                                    {
                                         <button type="submit" name="command" class="btn btn-success" value="Like"><span class="glyphicon glyphicon-thumbs-up" id="post-likes-@post.Id">@post.PostLikes</span></button>
-                                        @*<span id="post-@post.Id">@post.LikesCount</span>*@
+                                        <span id="post-@post.Id">@post.LikesCount</span>
                                         <button type="submit" name="command" class="btn btn-danger" value="Dislike"><span class="glyphicon glyphicon-thumbs-down" id="post-dislikes-@post.Id">@post.PostDislikes</span></button>
                                     }
                                 </li>
+
                                 <li class="new-comment">
-                                    @*<a href="#"><i class="glyphicon glyphicon-comment"></i> Comment</a>*@
+
+                                    @using (Ajax.BeginForm("AddComment", "Home", new { id = post.Id }, new AjaxOptions
+                                    {
+                                        InsertionMode = InsertionMode.Replace,
+                                        UpdateTargetId = "post-footer-" + post.Id,
+                                        OnSuccess = "addCommentSuccessHandelr(data)"
+                                    }, new { @class = "" }))
+                                    {
+                                        
+                                        <form class="new-comment-form">
+                                            <textarea class="form-group-sm" name="comment-area" rows="2" cols="20" style="resize: none" placeholder="Comment here..."></textarea>
+
+                                            <button type="submit" name="comment-area" class="btn btn-info" > Comment</button>
+                                        </form>
+
+                                    }
 
                                 </li>
-                                <li><a href="#"><i class="glyphicon glyphicon-share-alt"></i> Share</a></li>
+                                @*<li><a href="#"><i class="glyphicon glyphicon-share-alt"></i> Share</a></li>*@
                             </ul>
                         </div>
-						<hr />
+                        <hr />
 
                         <section>
                             <div class="post-footer-comment-wrapper">
                                 <ul></ul>
                                 @foreach (var comment in post.Comments)
-									{
-									<div class="comment">
-										<div class="media">
-											<div class="media-left">
-												@{
-									var imageUrl = Url.Content("~/Content/images/profile/") + comment.Username + ".png" + "?time=" + DateTime.Now;
-									<a href="#">
-										<img class="media-object photo-profile" src="@imageUrl" width="32" height="32" onerror="this.src = '../Content/images/profile/default.png';" />
-									</a>
-												}
-											</div>
-											<div class="media-right">
+                                {
+                                    <div class="comment">
+                                        <div class="media">
+                                            <div class="media-left">
+                                                @{
+                                                    var imageUrl = Url.Content("~/Content/images/profile/") + comment.Username + ".png" + "?time=" + DateTime.Now;
+                                                    <a href="#">
+                                                        <img class="media-object photo-profile" src="@imageUrl" width="32" height="32" onerror="this.src = '../Content/images/profile/default.png';" />
+                                                    </a>
+                                                }
+                                            </div>
+                                            <div class="media-right">
 
-											</div>
-											<div class="media-body">
-												<a href="#" class="anchor-username anchor"><h4 class="media-heading">@comment.Author</h4></a>
-												<div class="anchor-time anchor">@comment.CommentPostDate</div>
+                                            </div>
+                                            <div class="media-body">
+                                                <a href="#" class="anchor-username anchor"><h4 class="media-heading">@comment.Author</h4></a>
+                                                <div class="anchor-time anchor">@comment.CommentPostDate</div>
 
-											</div>
-										</div>
-									</div>
-									
+                                            </div>
+                                        </div>
+                                    </div>
+
                                     <div class="comment-form">
                                         @comment.Text
                                         <br />
                                     </div>
-									   
-									
+
+
                                     <ul class="list-inline">
 
                                         <li class="comment-like-@comment.CommentId">
                                             @using (Ajax.BeginForm("CommentLike", "Home", new
-											{
-												id = comment.CommentId
-											}, new AjaxOptions
-											{
-												InsertionMode = InsertionMode.Replace,
-												UpdateTargetId = "comment-like-" + comment.CommentId,
-												OnSuccess = "commentLikeSuccessHandler(data)",
-											}, new
-											{
-												@class = ""
-											}))
-												{
-												<button type="submit" name="command" class="btn btn-success" value="Like"><span class="glyphicon glyphicon-thumbs-up" id="comment-likes-@comment.CommentId">@comment.CommentLikes</span></button>
+                                            {
+                                                id = comment.CommentId
+                                            }, new AjaxOptions
+                                            {
+                                                InsertionMode = InsertionMode.Replace,
+                                                UpdateTargetId = "comment-like-" + comment.CommentId,
+                                                OnSuccess = "commentLikeSuccessHandler(data)",
+                                            }, new
+                                            {
+                                                @class = ""
+                                            }))
+                                            {
+                                                <button type="submit" name="command" class="btn btn-success" value="Like"><span class="glyphicon glyphicon-thumbs-up" id="comment-likes-@comment.CommentId">@comment.CommentLikes</span></button>
                                                 <span id="comment-@comment.CommentId">@comment.CommentCountLikes</span>
                                                 <button type="submit" name="command" class="btn btn-danger" value="Dislike"><span class="glyphicon glyphicon-thumbs-down" id="comment-dislikes-@comment.CommentId">@comment.CommentDislikes</span></button>
                                             }
                                         </li>
                                     </ul>
-                              
+
                                     <hr />
                                                     }
                             </div>
@@ -190,5 +205,4 @@
 @section scripts {
     @Scripts.Render("~/bundles/ajax")
     @Scripts.Render("~/Scripts/Handlers/likeSuccessHandler.js")
-
 }
