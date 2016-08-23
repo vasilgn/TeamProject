@@ -396,3 +396,25 @@ box-shadow: 0px 0px 15px 5px rgba(0, 121, 204, .75);
 	color:lightblue;
 	text-decoration:none;
 }
+
+.form-horizontal-edit {
+color:black;
+}
+
+.title-h1 {
+    margin-top:35px;
+    margin-bottom:35px;
+margin-left:20px;
+}
+
+  hr {
+        display: block;
+        height: 1px;
+        border-top: 1px solid #000000;
+        margin: 1em 0;
+        padding: 0;
+    }
+
+.resize-box {
+resize:none;
+}

@@ -4,51 +4,15 @@
     ViewBag.Title = "Create";
 }
 <style>
- 
-
     div {
         color: black;
     }
-
-    hr {
-        display: block;
-        height: 1px;
-        border-top: 1px solid #000000;
-        margin: 1em 0;
-        padding: 0;
-    }
-
-    .row {
-        font-size: 28px;
-        margin: 25px 5px -30px 5px;
-    }
-
-    
-
-
-
-
     a.my-class {
         color: #000000;
     }
-
-        a.my-class:hover {
-            /*border: 1px solid rgba(0, 0, 0, 0.27);*/
-        }
-
-    footer {
-        text-align: center;
-        font-size: 16px;
+    .title-h1 {
+    margin-left:40px;
     }
-
-   
-	
-    /*.posted {
-            font-size: 16px;
-        }
-
-        .title {
-            font-weight: bold;*/
 </style>
 
 @using (Html.BeginForm())
@@ -56,7 +20,7 @@
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4 class="row">Create Post</h4>
+        <h1 class="title-h1">Create Post</h1>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
@@ -71,7 +35,7 @@
 
             @Html.LabelFor(model => model.Body, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextAreaFor(model => model.Body, new { @class = "form-control hvr-grow", @cols = 45, @rows = 10 })
+                @Html.TextAreaFor(model => model.Body, new { @class = "form-control hvr-grow resize-box", @cols = 45, @rows = 10 })
                 @Html.ValidationMessageFor(model => model.Body, "", new { @class = "text-danger" })
             </div>
         </div>
