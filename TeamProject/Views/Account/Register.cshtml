@@ -5,10 +5,6 @@
 
 
 <style>
-	body {
-		background-image: url('../../background.jpg');
-	}
-
 	div {
 		color: black;
 	}
@@ -87,30 +83,30 @@
 	<div class="form-group">
         @Html.LabelFor(m => m.UserName, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
+            @Html.TextBoxFor(m => m.UserName, new { @class = "form-control hvr-grow" })
         </div>
     </div>
 	<div class="form-group">
 		@Html.LabelFor(m => m.FullName, new { @class = "col-md-2 control-label" })
 		<div class="col-md-10">
-			@Html.TextBoxFor(m => m.FullName, new { @class = "form-control" })
+			@Html.TextBoxFor(m => m.FullName, new { @class = "form-control hvr-grow" })
 		</div>
 	</div>
 	<div class="form-group">
         @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+            @Html.TextBoxFor(m => m.Email, new { @class = "form-control hvr-grow" })
 		</div>
     </div>
 	<div class="form-group">
 		@Html.LabelFor(m => m.PhoneNumber, new { @class = "col-md-2 control-label" })
 		<div class="col-md-10">
-			@Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control" })
+			@Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control hvr-grow" })
 		</div>
 	</div>
 	<div class="form-group">
         @Html.LabelFor(m => m.Country, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
+        <div class="col-md-10 ">
 			<select >
 				<option value="AFG">Afghanistan</option>
 				<option value="ALA">Åland Islands</option>
@@ -367,23 +363,23 @@
 	<div class="form-group">
         @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+            @Html.PasswordFor(m => m.Password, new { @class = "form-control hvr-grow" })
         </div>
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.ConfirmPassword, new {@class = "col-md-2 control-label"})
         <div class="col-md-10">
-            @Html.PasswordFor(m => m.ConfirmPassword, new {@class = "form-control"})
+            @Html.PasswordFor(m => m.ConfirmPassword, new {@class = "form-control hvr-grow" })
         </div>
     </div>
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" class="btn btn-default" value="Register" />
+            <input type="submit" class="btn btn-default my-btns hvr-pulse" value="Register" />
         </div>
     </div>
 }
   <p>
-	@Html.ActionLink("I already have an account", "Login", new object { }, new { @class = "btn-login"})
+	@Html.ActionLink("I already have an account", "Login", new object { }, new { @class = "btn-login reg-log hvr-underline-from-center" })
   </p>
 
 @section Scripts {
