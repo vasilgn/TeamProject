@@ -258,11 +258,19 @@ background-color: #F1F1F1;
         margin-top : 30px;
     }
 }
+ .panel-body{
+      
+     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.6), 0 6px 20px 0 rgba(0, 0, 0, 0.50);
+    
+ }
 
 .row-panel {
 	background-color:transparent;
 }
-
+img:hover {
+    opacity: 0.8;
+    filter: alpha(opacity=50); /* For IE8 and earlier */
+}
 .container-profile{
 	  border: 1px solid rgba(0, 0, 0, 0.27);
     color:black;
@@ -320,11 +328,11 @@ background-color: #F1F1F1;
 	color:lightblue;
 }
 
-.navbar-brand {
+.home-bar-style {
 	color:#337ab7 !important;
 }
 
-.navbar-brand:hover {
+.home-bar-style:hover {
 	color:lightblue !important;
 }
 
@@ -353,4 +361,98 @@ margin-left:10px;
 .anchor-username:hover {
 	color:lightblue;
 	text-decoration:none;
+}
+
+ .my-btns {
+        background-color: transparent;
+        border: 1px solid rgba(0, 0, 0, 0.27);
+        color: black;
+        font-size: 16px;
+        border-radius: 5px;
+        padding: 5px 10px 5px 10px;
+    }
+    .my-btns:hover {
+        -webkit-box-shadow: 0px 0px 15px 5px rgba(0, 121, 204, .75);
+-moz-box-shadow: 0px 0px 15px 5px rgba(0, 121, 204, .75);
+box-shadow: 0px 0px 15px 5px rgba(0, 121, 204, .75);
+background-color:transparent;
+color:black;
+    }
+
+ .form-control {
+        background-color: transparent;
+        border: 1px solid rgba(0, 0, 0, 0.27);
+        -webkit-box-shadow: none;
+        -moz-box-shadow: none;
+        box-shadow: none;
+        color: black;
+        font-size: 16px;
+        cursor: text;
+    }
+
+ .reg-log {
+	color:#4e8abd;
+    font-family:'Yu Gothic UI';
+    font-size:16px !important;
+    font-weight:bold;
+}
+
+.reg-log:hover {
+    font-size:16px ;
+	color:lightblue;
+	text-decoration:none;
+    font-family:'Yu Gothic UI';
+    font-weight:bold;
+}
+
+.form-horizontal-edit {
+color:black;
+}
+
+.title-h1 {
+    margin-top:35px;
+    margin-bottom:35px;
+margin-left:20px;
+color:black;
+}
+
+  hr {
+        display: block;
+        height: 1px;
+        border-top: 1px solid #000000;
+        margin: 1em 0;
+        padding: 0;
+    }
+
+.resize-box {
+resize:none;
+}
+
+table tr:nth-child(even) td {
+		border-top: 1px solid #000000;
+	}
+
+table tr:nth-child(odd) td {
+		border-top: 1px solid #000000;
+	}
+
+.edit-delete-details{
+    font-size:16px;
+    font-family:'Yu Gothic UI';
+font-weight:bold;
+}
+
+.delete{
+    color:black;
+}
+
+.btn-delete {
+margin-left:100px;
+}
+
+.btn-back{
+    color:black;
+    font-size:16px;
+
+
 }

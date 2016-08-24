@@ -5,9 +5,8 @@
 }
 
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>Post</h4>
+<h1 class="title-h1">Are you sure you want to delete "@Model.Title"?</h1>
+<div class="delete">
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -80,8 +79,9 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            <input type="submit" value="Delete" class="btn btn-default btn-delete my-btns hvr-pulse" /> 
         </div>
+        @Html.ActionLink("Back to List", "Index", new object { },new { @class = "btn-back reg-log hvr-underline-from-center" })
+
     }
 </div>
