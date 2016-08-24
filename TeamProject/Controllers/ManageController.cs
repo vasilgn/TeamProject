@@ -86,7 +86,7 @@ namespace TeamProject.Controllers
                 Logins = await UserManager.GetLoginsAsync(userId),
                 BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId),
                 FullName = (claim != null) ? claim.Value : string.Empty
-        };
+            };
             return View(model);
         }
 

@@ -23,9 +23,9 @@ namespace TeamProject.DataModels
             : base("DefaultConnection", throwIfV1Schema: false)
         {
         }
-        public static BlogDbContext Create()
+        public static BlogDbContextEntities Create()
         {
-            return new BlogDbContext();
+            return new BlogDbContextEntities();
         }
 
        

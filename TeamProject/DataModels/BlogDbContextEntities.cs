@@ -6,7 +6,7 @@ using System.Web;
 
 namespace TeamProject.DataModels
 {
-     public partial class BlogDbContextEntities : BlogDbContext
+     public class BlogDbContextEntities : BlogDbContext
      {
          public override int SaveChanges()
          {
@@ -28,5 +28,7 @@ namespace TeamProject.DataModels
                  throw new DbEntityValidationException(exceptionMessage, ex.EntityValidationErrors);
              }
          }
+
+
      }
 }

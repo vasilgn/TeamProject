@@ -12,6 +12,7 @@ namespace TeamProject.Models
         public int CommentId { get; set; }
         public string Text { get; set; }
         public string Author { get; set; }
+        public string UserId { get; set; }
         public string Username { get; set; }
         public DateTime CommentPostDate { get; set; }
         public int CommentCountLikes { get; set; }
@@ -26,6 +27,7 @@ namespace TeamProject.Models
                     Text = c.Text,
                     CommentId = c.CommentId,
                     Author = c.User.FullName,
+                    UserId = c.User.Id,
                     Username = c.User.UserName,
                     CommentPostDate = c.CommentDate,
                     CommentCountLikes = c.CommentLikeCounter,

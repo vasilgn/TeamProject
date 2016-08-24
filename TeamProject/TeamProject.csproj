@@ -292,6 +292,7 @@
     <Folder Include="Content\images\posts\" />
     <Folder Include="Views\Like\" />
     <Folder Include="Views\Post\" />
+    <Folder Include="Views\Shared\Templates\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

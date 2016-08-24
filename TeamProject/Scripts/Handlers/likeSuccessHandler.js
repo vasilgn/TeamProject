@@ -13,7 +13,7 @@ function commentLikeSuccessHandler(data) {
     $('#comment-likes-' + data.commentId).text(data.commentLikeCount);
 }
 
-function function1() {
-    let a = $('#textarea-1').val();
-    console.log(a);
+function addCommentSuccessHandelr(data) {
+    console.log(data);
+    data.preventDefault();
 }

@@ -11,7 +11,6 @@ namespace TeamProject.Models
     {
         public int Id { get; set; }
         public string Description { get; set; }
-        public DateTime? ModifiedDate { get; set; }
         public string AuthorId { get; set; }
 
         public static Expression<Func<Post, PostDetailsViewModel>> ViewModel
@@ -22,7 +21,6 @@ namespace TeamProject.Models
                 {
                     Id = e.PostId,
                     Description = e.Description,
-                    ModifiedDate = e.Modified,
                     AuthorId = e.User.Id,
 
                 };

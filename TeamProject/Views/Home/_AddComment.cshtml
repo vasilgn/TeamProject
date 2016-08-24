@@ -1,20 +1,69 @@
 ﻿
-<form>
-    <!-- Textarea -->
-    <div class="form-group">
-        <label class="col-md-4 control-label" for="textarea"></label>
-        <div class="col-md-4">
-            <textarea class="form-control" id="textarea" name="textarea">Body</textarea>
-        </div>
-    </div>
+@using TeamProject.DataModels
+@using TeamProject.Models
+@model  PostViewModel
+@{
+    var item = Model.Posts;
+}
+<div class="post-footer-comment-wrapper">
+    
+    @foreach (var comments in item.)
+    {
+        <div class="comment">
+            <div class="media">
+                <div class="media-left">
+                    @{
+                        var imageUrl = Url.Content("~/Content/images/profile/") + comments.Username + ".png" + "?time=" + DateTime.Now;
+                        <a href="#">
+                            <img class="media-object photo-profile" src="@imageUrl" width="32" height="32" onerror="this.src = '../Content/images/profile/default.png';"/>
+                        </a>
+                    }
+                </div>
+                <div class="media-right">
 
-    <!-- Button (Double) -->
-    <div class="form-group">
-        <label class="col-md-4 control-label" for="add-comment"></label>
-        <div class="col-md-8">
-            <button id="add-comment" name="add-comment" class="btn btn-info">Comment</button>
-            <button id="cancel-comment" name="cancel-comment" class="btn btn-danger">Cancel</button>
-        </div>
-    </div>
+                </div>
+                <div class="media-body">
+                    <a href="#" class="anchor-username anchor"><h4 class="media-heading">@comments.Author</h4></a>
+                    <div class="anchor-time anchor">@comments.CommentPostDate</div>
 
-</form>
+                </div>
+            </div>
+        </div>
+
+        <div class="comment-form">
+            @comments.Text
+            <br/>
+        </div>
+
+
+        <ul class="list-inline">
+
+            <li class="comment-like-@comments.CommentId">
+                @using (Ajax.BeginForm("CommentLike", "Home", new
+                {
+                    id = comments.CommentId
+                }, new AjaxOptions
+                {
+                    InsertionMode = InsertionMode.Replace,
+                    UpdateTargetId = "comment-like-" + comments.CommentId,
+                    OnSuccess = "commentLikeSuccessHandler(data)",
+                }, new
+                {
+                    @class = ""
+                }))
+                {
+                    <button type="submit" name="command" class="btn btn-success" value="Like"><span class="glyphicon glyphicon-thumbs-up" id="comment-likes-@comments.CommentId">@comments.CommentLikes</span></button>
+                    <span id="comment-@comments.CommentId">@comments.CommentCountLikes</span>
+                    <button type="submit" name="command" class="btn btn-danger" value="Dislike"><span class="glyphicon glyphicon-thumbs-down" id="comment-dislikes-@comments.CommentId">@comments.CommentDislikes</span></button>
+                }
+            </li>
+        </ul>
+
+        <hr/>
+    }
+</div>
+
+    @section scripts {
+        @Scripts.Render("~/bundles/ajax")
+        @Scripts.Render("~/Scripts/Handlers/likeSuccessHandler.js")
+    }
