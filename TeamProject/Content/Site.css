@@ -418,3 +418,17 @@ margin-left:20px;
 .resize-box {
 resize:none;
 }
+
+table tr:nth-child(even) td {
+		border-top: 1px solid #000000;
+	}
+
+table tr:nth-child(odd) td {
+		border-top: 1px solid #000000;
+	}
+
+.edit-delete-details{
+    font-size:16px;
+    font-family:'Yu Gothic UI';
+font-weight:bold;
+}
