@@ -375,6 +375,8 @@ margin-left:10px;
         -webkit-box-shadow: 0px 0px 15px 5px rgba(0, 121, 204, .75);
 -moz-box-shadow: 0px 0px 15px 5px rgba(0, 121, 204, .75);
 box-shadow: 0px 0px 15px 5px rgba(0, 121, 204, .75);
+background-color:transparent;
+color:black;
     }
 
  .form-control {
@@ -390,11 +392,17 @@ box-shadow: 0px 0px 15px 5px rgba(0, 121, 204, .75);
 
  .reg-log {
 	color:#4e8abd;
+    font-family:'Yu Gothic UI';
+    font-size:16px !important;
+    font-weight:bold;
 }
 
 .reg-log:hover {
+    font-size:16px ;
 	color:lightblue;
 	text-decoration:none;
+    font-family:'Yu Gothic UI';
+    font-weight:bold;
 }
 
 .form-horizontal-edit {
@@ -405,6 +413,7 @@ color:black;
     margin-top:35px;
     margin-bottom:35px;
 margin-left:20px;
+color:black;
 }
 
   hr {
@@ -431,4 +440,19 @@ table tr:nth-child(odd) td {
     font-size:16px;
     font-family:'Yu Gothic UI';
 font-weight:bold;
+}
+
+.delete{
+    color:black;
+}
+
+.btn-delete {
+margin-left:100px;
+}
+
+.btn-back{
+    color:black;
+    font-size:16px;
+
+
 }

@@ -71,9 +71,9 @@
             @Html.DisplayFor(modelItem => item.PostLikeCounter)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new object { }, new { id=item.PostId , @class = "home-bar-style edit-delete-details" }) 
-            @Html.ActionLink("Details", "Details", new object { }, new { id = item.PostId, @class = "home-bar-style edit-delete-details" }) 
-            @Html.ActionLink("Delete", "Delete", new object { }, new { id = item.PostId, @class = "home-bar-style edit-delete-details" }) 
+            @Html.ActionLink("Edit", "Edit", new { id = item.PostId } , new { @class = "home-bar-style edit-delete-details" }) 
+            @Html.ActionLink("Details", "Details", new { id = item.PostId }, new { @class = "home-bar-style edit-delete-details" })  
+            @Html.ActionLink("Delete", "Delete", new { id = item.PostId }, new { @class = "home-bar-style edit-delete-details" })  
         </td>
     </tr>
 }
