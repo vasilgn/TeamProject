@@ -10,11 +10,12 @@ namespace TeamProject.Extensions
 {
     public static class HtmlHelperExtensions
     {
-        public static MvcHtmlString RawActionLink(this AjaxHelper ajaxHelper, string rawHtml, string action, string controller, object routeValues, AjaxOptions ajaxOptions, object htmlAttributes)
+
+       public static MvcHtmlString RawActionLink(this AjaxHelper ajaxHelper, string rawHtml, string action, string controller, object routeValues, AjaxOptions ajaxOptions, object htmlAttributes)
         {
             //string anchor = ajaxHelper.ActionLink("##holder##", action, controller, routeValues, ajaxOptions, htmlAttributes).ToString();
             //return MvcHtmlString.Create(anchor.Replace("##holder##", rawHtml));
-            /* Updated code to use a generated guid as from the suggestion of Phillip Haydon */
+            /* Updated code to use a generated guid as from */
             string holder = Guid.NewGuid().ToString();
             string anchor = ajaxHelper.ActionLink(holder, action, controller, routeValues, ajaxOptions, htmlAttributes).ToString();
             return MvcHtmlString.Create(anchor.Replace(holder, rawHtml));
@@ -24,7 +25,7 @@ namespace TeamProject.Extensions
         {
             //string anchor = htmlHelper.ActionLink("##holder##", action, controller, routeValues, htmlAttributes).ToString();
             //return MvcHtmlString.Create(anchor.Replace("##holder##", rawHtml));
-            /* Updated code to use a generated guid as from the suggestion of Phillip Haydon */
+            /* Updated code to use a generated guid as from  */
             string holder = Guid.NewGuid().ToString();
             string anchor = htmlHelper.ActionLink(holder, action, controller, routeValues, htmlAttributes).ToString();
             return MvcHtmlString.Create(anchor.Replace(holder, rawHtml));

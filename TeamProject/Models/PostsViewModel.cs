@@ -8,8 +8,7 @@ namespace TeamProject.Models
     public class PostsViewModel
     {
         public IEnumerable<PostViewModel> Posts { get; set; }
-
-
+        
     }
 
 }

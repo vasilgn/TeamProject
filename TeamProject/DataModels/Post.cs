@@ -36,7 +36,8 @@ namespace TeamProject.DataModels
         public int PostLikeCounter { get; set; }
         public string UserId { get; set; }
         public virtual ApplicationUser User { get; set; }
-
+        [Required]
+        [DefaultValue(true)]
         public bool IsPublic { get; set; }
         public virtual ICollection<Comment> Comments { get; set; }
         public virtual ICollection<PostLike> PostLikes { get; set; }

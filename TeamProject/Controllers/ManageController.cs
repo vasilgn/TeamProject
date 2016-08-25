@@ -75,6 +75,7 @@ namespace TeamProject.Controllers
                 : message == ManageMessageId.PhotoUploadSuccess ? "Your photo has been uploaded."
                 : message == ManageMessageId.FileExtensionError ? "Only .jpg, .png or .gif allowed."
                 : "";
+
             var claim = ((ClaimsIdentity)User.Identity).FindFirst("FullName");
 
             var userId = User.Identity.GetUserId();

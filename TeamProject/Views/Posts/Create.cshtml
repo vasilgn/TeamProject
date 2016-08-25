@@ -7,14 +7,16 @@
     div {
         color: black;
     }
+
     a.my-class {
         color: #000000;
     }
+
     .title-h1 {
-    margin-left:40px;
+        margin-left: 40px;
     }
 </style>
-
+@using TeamProject.Extensions
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
@@ -44,53 +46,23 @@
             @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control hvr-grow" } })
-                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.Description, null, new { @class = "text-danger" })
             </div>
         </div>
 
-      @*  <div class="form-group upload-post-image">
+        
+            @Html.LabelFor(model => model.PostImages, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @using (Html.BeginForm("Index", "Upload", FormMethod.Post, new {enctype = "multipart/form-data"}))
-                {
-                    <label for="file">Upload Image:</label>
-                    <input type="file" name="file" id="file"/><br><br>
-                    <input type="submit" value="Upload Image"/>
-                    <br><br>
-                    @ViewBag.Message
-                }
+                <div>
+                    <input type="file" name="UploadFile" id="txtUploadFile" class="makethispretty"/>
+                </div>
             </div>
-        </div>*@
-    </div>
-
-    @*<div class="form-group">
-            @Html.LabelFor(model => model.PostedOn, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.PostedOn, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.PostedOn, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Modified, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.PostVideo, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Modified, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Modified, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.PostLikeCounter, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.PostLikeCounter, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.PostLikeCounter, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.UserId, "UserId", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("UserId", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.UserId, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.PostVideo)
+                @Html.ValidationMessageFor(model => model.PostVideo, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -102,17 +74,19 @@
                     @Html.ValidationMessageFor(model => model.IsPublic, "", new { @class = "text-danger" })
                 </div>
             </div>
-        </div>*@
+        </div>
 
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Create" class="btn-create my-btns hvr-pulse" />
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-create my-btns hvr-pulse" />
+            </div>
         </div>
     </div>
-
 }
 
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/ajax")
+    @Scripts.Render("~/Scripts/Handlers/fileUpload.js")
 }

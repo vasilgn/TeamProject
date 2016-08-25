@@ -1,69 +1,68 @@
 ﻿
 @using TeamProject.DataModels
 @using TeamProject.Models
-@model  PostViewModel
-@{
-    var item = Model.Posts;
-}
+@model  CommentViewModel
+
 <div class="post-footer-comment-wrapper">
-    
-    @foreach (var comments in item.)
-    {
-        <div class="comment">
-            <div class="media">
-                <div class="media-left">
-                    @{
-                        var imageUrl = Url.Content("~/Content/images/profile/") + comments.Username + ".png" + "?time=" + DateTime.Now;
-                        <a href="#">
-                            <img class="media-object photo-profile" src="@imageUrl" width="32" height="32" onerror="this.src = '../Content/images/profile/default.png';"/>
-                        </a>
-                    }
-                </div>
-                <div class="media-right">
 
-                </div>
-                <div class="media-body">
-                    <a href="#" class="anchor-username anchor"><h4 class="media-heading">@comments.Author</h4></a>
-                    <div class="anchor-time anchor">@comments.CommentPostDate</div>
+    <div class="comment-@Model.Id">
+        <div class="media">
+            <div class="media-left">
+                @{
+                    var imageUrl = Url.Content("~/Content/images/profile/") + Model.Username + ".png" + "?time=" + DateTime.Now;
+                    <a href="#">
+                        <img class="media-object photo-profile" src="@imageUrl" width="32" height="32" onerror="this.src = '../Content/images/profile/default.png';" />
+                    </a>
+                }
+            </div>
+            <div class="media-right">
 
-                </div>
+            </div>
+            <div class="media-body">
+                <a href="#" class="anchor-username anchor"><h4 class="media-heading">@Model.Author</h4></a>
+                <div class="anchor-time anchor">@Model.CommentPostDate</div>
+
             </div>
         </div>
+    </div>
 
-        <div class="comment-form">
-            @comments.Text
-            <br/>
-        </div>
+    <div class="comment-form">
+        @Model.Text
+        <br />
+    </div>
 
 
-        <ul class="list-inline">
+    <ul class="list-inline">
 
-            <li class="comment-like-@comments.CommentId">
-                @using (Ajax.BeginForm("CommentLike", "Home", new
-                {
-                    id = comments.CommentId
-                }, new AjaxOptions
-                {
-                    InsertionMode = InsertionMode.Replace,
-                    UpdateTargetId = "comment-like-" + comments.CommentId,
-                    OnSuccess = "commentLikeSuccessHandler(data)",
-                }, new
-                {
-                    @class = ""
-                }))
-                {
-                    <button type="submit" name="command" class="btn btn-success" value="Like"><span class="glyphicon glyphicon-thumbs-up" id="comment-likes-@comments.CommentId">@comments.CommentLikes</span></button>
-                    <span id="comment-@comments.CommentId">@comments.CommentCountLikes</span>
-                    <button type="submit" name="command" class="btn btn-danger" value="Dislike"><span class="glyphicon glyphicon-thumbs-down" id="comment-dislikes-@comments.CommentId">@comments.CommentDislikes</span></button>
-                }
-            </li>
-        </ul>
+        <li class="comment-like-@Model.CommentId">
+            @using (Ajax.BeginForm("CommentLike", "Home", new
+            {
+                id = Model.CommentId
+            }, new AjaxOptions
+            {
+                InsertionMode = InsertionMode.Replace,
+                UpdateTargetId = "comment-like-" + Model.CommentId,
+                OnSuccess = "commentLikeSuccessHandler(data)",
+            }, new
+            {
+                @class = ""
+            }))
+            {
+                <button type="submit" name="command" class="btn btn-success" value="Like"><span class="glyphicon glyphicon-thumbs-up" id="comment-likes-@Model.CommentId">@Model.CommentLikes</span></button>
+                                            <span id="comment-@Model.CommentId">@Model.CommentCountLikes</span>
+                                            <button type="submit" name="command" class="btn btn-danger" value="Dislike"><span class="glyphicon glyphicon-thumbs-down" id="comment-dislikes-@Model.CommentId">@Model.CommentDislikes</span></button>
+            }
+        </li>
+    </ul>
 
-        <hr/>
+    <hr />
     }
+
 </div>
 
-    @section scripts {
-        @Scripts.Render("~/bundles/ajax")
-        @Scripts.Render("~/Scripts/Handlers/likeSuccessHandler.js")
-    }
+
+
+@section scripts {
+    @Scripts.Render("~/bundles/ajax")
+    @Scripts.Render("~/Scripts/Handlers/likeSuccessHandler.js")
+}

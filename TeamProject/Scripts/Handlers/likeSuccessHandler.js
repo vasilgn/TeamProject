@@ -3,6 +3,7 @@
     $('#post-' + data.postId).text(data.postLikes);
     $('#post-dislikes-' + data.postId).text(data.postDislikeCount);
     $('#post-likes-' + data.postId).text(data.postLikeCount);
+
 }
 
 function commentLikeSuccessHandler(data) {
@@ -13,7 +14,17 @@ function commentLikeSuccessHandler(data) {
     $('#comment-likes-' + data.commentId).text(data.commentLikeCount);
 }
 
-function addCommentSuccessHandelr(data) {
-    console.log(data);
-    data.preventDefault();
+function addCommentSuccessHandler(data) {
+    console.log(data.model);
+    
+    /*console.log(obj);
+    console.log(data.data['commentId']);
+
+    $('#comment-section-' + data.postId)
+        .appendTo('<div>')
+        .addClass("post-footer-comment-wrapper")
+        .appendTo('<div>')
+        .addClass("comment-" + data.data)
+        .appendTo('<div>')
+        .addClass("media-left");*/
 }

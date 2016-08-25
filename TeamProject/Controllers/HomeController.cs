@@ -26,7 +26,7 @@ namespace TeamProject.Controllers
                     : "";
             var posts = this.db.Posts.OrderByDescending(p => p.PostedOn)
                     .Select(PostViewModel.ViewModel);
-            
+
             return this.View(new PostsViewModel()
             {
                 Posts = posts
@@ -61,32 +61,32 @@ namespace TeamProject.Controllers
             ViewBag.CanEdit = items;
 
             return PartialView("_PostOptionsMenu");
-
         }
 
 
         [HttpPost]
-        public ActionResult AddComment(int id, string commentText)
+        public async Task<ActionResult> AddComment(CommentViewModel model, int id, string commentText)
         {
-
-            var userId = this.User.Identity.GetUserId();
-            var newComment = new Comment()
-            {
-                PostId = id,
-                CommentDate = DateTime.Now,
-                Text = commentText,
-                UserId = userId,
-                CommentLikeCounter = 0,
-
-            };
-            this.db.Comments.Add(newComment);
-            this.db.SaveChanges();
-            
-
-            return Json(new
+            if (model != null && ModelState.IsValid)
             {
 
-            });
+                var userId = this.User.Identity.GetUserId();
+                var newComment = new Comment()
+                {
+                    PostId = id,
+                    CommentDate = DateTime.Now,
+                    Text = commentText,
+                    UserId = userId,
+                    CommentLikeCounter = 0,
+
+                };
+                this.db.Comments.Add(newComment);
+                await this.db.SaveChangesAsync();
+                ModelState.Clear();
+                var thisComments = db.Comments.Where(c=>c.PostId == id).AsEnumerable().LastOrDefault();
+                return Json(new { model = thisComments });
+            }
+            return View("Index");
         }
         //POST Like
         [HttpPost]
@@ -148,13 +148,13 @@ namespace TeamProject.Controllers
                         db.PostLikes.Add(newPostLike);
                         db.SaveChanges();
                     }
-
                 }
 
-                db.Entry(post).State = System.Data.Entity.EntityState.Modified;
+                db.Entry(post).State = EntityState.Modified;
                 db.SaveChanges();
 
 
+                message = DbChangeMessageId.LikeSuccessfully;
 
 
                 var postLikeCount = db.Posts.Find(id).PostLikeCounter;
@@ -165,7 +165,8 @@ namespace TeamProject.Controllers
                     postId = postId,
                     postDislikeCount = postDislikes,
                     postLikeCount = postLikes,
-                    postLikes = postLikeCount
+                    postLikes = postLikeCount,
+                    statusMessage = message
                 });
                 //return RedirectToAction("Index");
             }
@@ -265,7 +266,7 @@ namespace TeamProject.Controllers
             }
             message = DbChangeMessageId.Error;
 
-            return RedirectToAction("Index", new {Message = message});
+            return RedirectToAction("Index", new { Message = message });
         }
     }
 

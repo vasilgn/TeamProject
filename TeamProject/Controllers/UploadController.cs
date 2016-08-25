@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -9,7 +11,10 @@ namespace TeamProject.Controllers
 {
     public class UploadController : BaseController
     {
-        [HttpPost]
+        
+
+        
+        /*[HttpPost]
         public ActionResult Index(HttpPostedFileBase file)
         {
             if (file != null && file.ContentLength > 0)
@@ -33,5 +38,6 @@ namespace TeamProject.Controllers
             }
             return RedirectToAction("Create","Posts");
         }
+    }*/
     }
 }
