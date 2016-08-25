@@ -340,11 +340,11 @@ img:hover {
 	color:lightblue;
 }
 
-.home-bar-style {
+.navbar-brand {
 	color:#337ab7 !important;
 }
 
-.home-bar-style:hover {
+.navbar-brand:hover {
 	color:lightblue !important;
 }
 
