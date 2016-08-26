@@ -1,0 +1,52 @@
+﻿@using TeamProject.Models
+
+@model PostsViewModel
+
+<div class="post-footer-option container">
+    <ul class="list-inline about">
+
+        <li class="post-like-@Model.Posts.Id">
+            @using (Ajax.BeginForm("AddLike", "Home", new
+            {
+                id = post.Id
+            }, new AjaxOptions
+            {
+                InsertionMode = InsertionMode.Replace,
+                UpdateTargetId = "post-like-" + post.Id,
+
+                OnSuccess = "likeSuccessHandler(data)",
+            }, new
+            {
+                @class = ""
+            }))
+            {
+                <button type="submit" name="command" class="btn btn-success" value="Like"><span class="glyphicon glyphicon-thumbs-up" id="post-likes-@post.Id">@post.PostLikes</span></button>
+                                        <span id="post-@post.Id">@post.LikesCount</span>
+                                        <button type="submit" name="command" class="btn btn-danger" value="Dislike"><span class="glyphicon glyphicon-thumbs-down" id="post-dislikes-@post.Id">@post.PostDislikes</span></button>
+            }
+        </li>
+
+        <li class="new-comment">
+
+            @using (Ajax.BeginForm("AddComment", "Home", new { id = post.Id },
+            new AjaxOptions
+            {
+                InsertionMode = InsertionMode.InsertAfter,
+
+                UpdateTargetId = "comment-section-" + post.Id,
+                OnSuccess = "addCommentSuccessHandler(data)",
+            }, new
+            {
+                @class = ""
+            }))
+            {
+                string commentText = "";
+                @Html.EditorFor(x => commentText)
+                <input type="submit" value="Comment" class="btn btn-create" />
+            }
+        </li>
+        @*<li><a href="#"><i class="glyphicon glyphicon-share-alt"></i> Share</a></li>*@
+    </ul>
+    <hr />
+</div>
+}
