@@ -40,7 +40,7 @@ textarea {
     border: none;
     cursor: pointer;
 }
-@@-40,6+40,18@@textarea {
+.textarea {
       cursor: pointer;
   }
 
