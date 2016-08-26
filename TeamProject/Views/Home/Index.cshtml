@@ -109,7 +109,7 @@
                             <p class="body-text">@post.Body</p>
                             @if (post.VideoUrl != null)
                             {
-                                <div class="video"><iframe width="854" height="480" src="@post.VideoUrl" frameborder="0" allowfullscreen></iframe>
+                                <div class="vid"><iframe width="854" height="480" src="@post.VideoUrl" frameborder="0" allowfullscreen></iframe>
                                 </div>
 
                             }
@@ -235,7 +235,6 @@
         }
     </div>
 </div>
-
 
 @section scripts {
     @Scripts.Render("~/bundles/ajax")

@@ -119,14 +119,6 @@ namespace TeamProject.Controllers
         // GET : /Post/Post
         //TODO
 
-        [HttpGet]
-        public async Task<ActionResult> PostsInfo(PostViewModel model)
-        {
-            var userId = this.User.Identity.GetUserId();
-            var postCount = db.Posts.Count(p => p.UserId == userId);
-
-            return View();
-        }
         //
         // POST: /Manage/GetProfilePicture
 
