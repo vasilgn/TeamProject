@@ -435,6 +435,5 @@ D:\Visual Studio\TeamProject\TeamProject\bin\Microsoft.Owin.Security.OAuth.xml
 D:\Visual Studio\TeamProject\TeamProject\bin\Microsoft.Owin.Security.Google.xml
 D:\Visual Studio\TeamProject\TeamProject\bin\Microsoft.Owin.Security.Twitter.xml
 D:\Visual Studio\TeamProject\TeamProject\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
-D:\Visual Studio\TeamProject\TeamProject\obj\Debug\TeamProject.csprojResolveAssemblyReference.cache
 D:\Visual Studio\TeamProject\TeamProject\obj\Debug\TeamProject.dll
 D:\Visual Studio\TeamProject\TeamProject\obj\Debug\TeamProject.pdb
