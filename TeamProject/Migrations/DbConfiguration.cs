@@ -97,6 +97,8 @@ namespace TeamProject.Migrations
                 Comments = new HashSet<Comment>()
                 {
 
+                    new Comment() { Text ="Last User comment", User = context.Users.First()} ,
+                    new Comment() { Text ="First User comment", User = context.Users.OrderByDescending(u => u.Id).First()}
                 }
             });
             context.Posts.Add(new Post()
@@ -110,6 +112,8 @@ namespace TeamProject.Migrations
                 Comments = new HashSet<Comment>()
                 {
 
+                    new Comment() { Text ="Last User comment", User = context.Users.First()} ,
+                    new Comment() { Text ="First User comment", User = context.Users.OrderByDescending(u => u.Id).First()}
                 }
             });
             context.Posts.Add(new Post()
@@ -123,6 +127,8 @@ namespace TeamProject.Migrations
                 Comments = new HashSet<Comment>()
                 {
 
+                    new Comment() { Text ="Last User comment", User = context.Users.First()} ,
+                    new Comment() { Text ="First User comment", User = context.Users.OrderByDescending(u => u.Id).First()}
                 }
             });
 
