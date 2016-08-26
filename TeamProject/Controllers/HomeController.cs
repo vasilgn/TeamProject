@@ -32,7 +32,7 @@ namespace TeamProject.Controllers
                 Posts = posts
             });
         }
-
+        [ValidateAntiForgeryToken]
         public ActionResult PostById(int id)
         {
             var currentUserId = this.User.Identity.GetUserId();
@@ -63,7 +63,8 @@ namespace TeamProject.Controllers
             return PartialView("_PostOptionsMenu");
         }
 
-
+        //
+        //POST Add comment
         [HttpPost]
         public async Task<ActionResult> AddComment(CommentViewModel model, int id, string commentText)
         {
@@ -84,11 +85,15 @@ namespace TeamProject.Controllers
                 await this.db.SaveChangesAsync();
                 ModelState.Clear();
                 var thisComments = db.Comments.Where(c=>c.PostId == id).AsEnumerable().LastOrDefault();
+                thisComments.
                 return Json(new { model = thisComments });
             }
             return View("Index");
         }
+
+        //
         //POST Like
+
         [HttpPost]
         public ActionResult AddLike(PostViewModel model, int id, string command)
         {
@@ -175,7 +180,8 @@ namespace TeamProject.Controllers
         }
 
 
-
+        //
+        //POST Comment Like
         [HttpPost]
         public ActionResult CommentLike(CommentViewModel model, int id, string command)
         {

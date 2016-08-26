@@ -117,7 +117,7 @@ namespace TeamProject.Controllers
 
 
         //
-        // GET : /Manage/Post
+        // GET : /Post/Post
         //TODO
 
 

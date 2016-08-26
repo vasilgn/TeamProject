@@ -39,6 +39,9 @@ textarea {
     border: none;
     cursor: pointer;
 }
+@@-40,6+40,18@@textarea {
+      cursor: pointer;
+  }
 
 .description {
     border: 1px solid #ff2700;
