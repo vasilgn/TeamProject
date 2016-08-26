@@ -51,37 +51,39 @@
         </div>
 
         
-            @Html.LabelFor(model => model.PostImages, htmlAttributes: new { @class = "control-label col-md-2" })
+
+            @*@Html.LabelFor(model => model.PostImages, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 <div>
-                    <input type="file" name="UploadFile" id="txtUploadFile" class="makethispretty"/>
+                    <input type="file" name="UploadFile" id="txtUploadFile" class="makethispretty" />
+                </div>
+            </div>*@
+        <div class="form-group">
+            <div class="form-group">
+                @Html.LabelFor(model => model.PostVideo, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.PostVideo, new { htmlAttributes = new { @class = "form-control hvr-grow" } })
+                    @Html.ValidationMessageFor(model => model.PostVideo, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.IsPublic, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <div class="checkbox">
+                        @Html.EditorFor(model => model.IsPublic)
+                        @Html.ValidationMessageFor(model => model.IsPublic, "", new { @class = "text-danger" })
+                    </div>
                 </div>
             </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.PostVideo, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.PostVideo)
-                @Html.ValidationMessageFor(model => model.PostVideo, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.IsPublic, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.IsPublic)
-                    @Html.ValidationMessageFor(model => model.IsPublic, "", new { @class = "text-danger" })
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-create my-btns hvr-pulse" />
                 </div>
             </div>
         </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-create my-btns hvr-pulse" />
-            </div>
-        </div>
-    </div>
 }
 
 

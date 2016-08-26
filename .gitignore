@@ -243,3 +243,6 @@ ModelManifest.xml
 
 # FAKE - F# Make
 .fake/
+.vs/config/applicationhost.config
+.vs/TeamProject/v14/.suo
+TeamProject/obj/Debug/TeamProject.dll

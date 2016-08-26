@@ -77,7 +77,6 @@ namespace TeamProject.Controllers
                 : "";
 
             var claim = ((ClaimsIdentity)User.Identity).FindFirst("FullName");
-
             var userId = User.Identity.GetUserId();
             var model = new IndexViewModel
             {
@@ -120,7 +119,14 @@ namespace TeamProject.Controllers
         // GET : /Post/Post
         //TODO
 
+        [HttpGet]
+        public async Task<ActionResult> PostsInfo(PostViewModel model)
+        {
+            var userId = this.User.Identity.GetUserId();
+            var postCount = db.Posts.Count(p => p.UserId == userId);
 
+            return View();
+        }
         //
         // POST: /Manage/GetProfilePicture
 
