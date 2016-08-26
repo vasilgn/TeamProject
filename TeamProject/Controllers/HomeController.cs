@@ -85,7 +85,6 @@ namespace TeamProject.Controllers
                 await this.db.SaveChangesAsync();
                 ModelState.Clear();
                 var thisComments = db.Comments.Where(c=>c.PostId == id).AsEnumerable().LastOrDefault();
-                thisComments.
                 return Json(new { model = thisComments });
             }
             return View("Index");
