@@ -366,6 +366,14 @@ namespace TeamProject.Controllers
             return new AccountController.ChallengeResult(provider, Url.Action("LinkLoginCallback", "Manage"), User.Identity.GetUserId());
         }
 
+        public async Task<ActionResult> PostInfo() {
+            var userId = this.User.Identity.GetUserId();
+            var title = db.Posts.Where(p => p.UserId == userId).Select(p => p.Title);
+            var likes = db.Posts.Where(p => p.UserId == userId).Count(p => p.pos);
+
+            return
+        }
+
         //
         // GET: /Manage/LinkLoginCallback
         public async Task<ActionResult> LinkLoginCallback()

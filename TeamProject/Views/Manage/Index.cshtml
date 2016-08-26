@@ -1,7 +1,7 @@
 ﻿@using Microsoft.AspNet.Identity
 @model TeamProject.Models.IndexViewModel
 @{
-	ViewBag.Title = "Manage";
+    ViewBag.Title = "Manage";
 }
 
 <h2>@ViewBag.Title.</h2>
@@ -91,7 +91,7 @@
                         <img src="@imageUrl" height="250" width="250"/>
                     </div>
                     <div class="mnging">
-                        @using (Html.BeginForm("UploadPhoto", "Manage", FormMethod.Post, new {enctype = "multipart/form-data"}))
+                        @using (Html.BeginForm("UploadPhoto", "Manage", FormMethod.Post, new { enctype = "multipart/form-data" }))
                         {
                             <div class="btn btn-default browseimg">
                                 <input type="file" name="file" id="files" onchange="this.form.submit()"/>
@@ -131,6 +131,8 @@
 		<div class="col-md-4"></div>
 		<div class="col-md-8 col-xs-12" style="margin: 0px;padding: 0px;">
 			<div class="col-md-4 col-xs-4 well"><i class="fa fa-heart-o fa-lg"></i>POSTS </div>
+            @foreach (var post in Model.Post) {
+            <div>@post.Body</div>}
 			<div class="col-md-4 col-xs-4 well"><i class="fa fa-weixin fa-lg"></i>COMMENTS</div>
 			<div class="col-md-4 col-xs-4 well"><i class="fa fa-thumbs-o-up fa-lg"></i> LIKES</div>
 		</div>

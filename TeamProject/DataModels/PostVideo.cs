@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace TeamProject.DataModels
 {
@@ -12,11 +13,13 @@ namespace TeamProject.DataModels
         public int VideoId { get; set; }
         [Required]
         [Display(Name = "VideoUrl")]
-        [DataType(DataType.Url)]
+        //[DataType(DataType.Url)]
+        [AllowHtml]
         public string VideoUrl { get; set; }
         public string VideoItemName { get; set; }
 
         public int PostId { get; set; }
-        public virtual Post Post { get; set; }
+        //[Required]
+        public Post Post { get; set; }
     }
 }

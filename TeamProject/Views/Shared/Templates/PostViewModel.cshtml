@@ -1,0 +1,220 @@
+﻿@{
+    ViewBag.Titele = "Index";
+}
+@using TeamProject.Models
+@model PostsViewModel
+
+<style>
+    div {
+        color: black;
+    }
+
+    .row {
+        margin: 10px;
+        font-size: 18px;
+    }
+
+    footer {
+        text-align: center;
+        font-size: 16px;
+    }
+
+    .posted {
+        font-size: 16px;
+    }
+
+    .title {
+        font-weight: bold;
+    }
+
+    hr {
+        display: block;
+        height: 1px;
+        border-top: 1px solid #000000;
+        margin: 1em 0;
+        padding: 0;
+    }
+
+    .body-content-post {
+        word-wrap: break-word;
+    }
+    /**/ /**/
+</style>
+<div class="container">
+
+    <div class="col-md-11 col-xs-12">
+        <h3 class="text-success">@ViewBag.StatusMessage</h3>
+        @foreach (var post in Model.Posts)
+        {
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <section class="post-heading">
+                        <div class="row">
+
+                            <div class="row-home">
+                                <div class="col-md-10">
+                                    <div class="media">
+                                        <div class="media-left">
+                                            @{
+                                                var imagePostUrl = Url.Content("~/Content/images/profile/") + post.Username + ".png" + "?time=" + DateTime.Now;
+
+                                                <img class="media-object photo-profile" src="@imagePostUrl" width="60" height="60" onerror="this.src = '../Content/images/profile/default.png';" />
+                                            }
+
+                                        </div>
+                                        <div class="media-body">
+                                            <a href="#" class="anchor-username anchor"><h4 class="media-heading">@post.Author</h4></a>
+                                            <span class="anchor-time anchor">@post.PostDate</span>
+                                            <span class="anchor-title"><h3 class="media-title">@post.Title</h3></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-2" id="post-details-@post.Id">
+                                @Ajax.ActionLink(" ", "PostById", "Home",
+                                new { id = post.Id },
+                                new AjaxOptions
+                                {
+                                    InsertionMode = InsertionMode.Replace,
+                                    UpdateTargetId = "post-details-" + post.Id
+                                }, new { @class = "glyphicon glyphicon-chevron-down" })
+
+                                @* <a href='@Url.Action("PostById","Home", new {id = post.Id})'><i class="glyphicon glyphicon-chevron-down"></i></a>*@
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="post-body">
+                        <div class="body-content-post">
+                            @post.Body
+                            @*@if (post.videoUrl != null) {
+                                    @post.videoUrl
+                                }*@
+                        </div>
+
+                    </section>
+                    <section class="post-footer post-footer-@post.Id">
+                        <div class="post-footer-option container">
+                            <ul class="list-inline about">
+
+                                <li class="post-like-@post.Id">
+                                    @using (Ajax.BeginForm("AddLike", "Home", new
+                                    {
+                                        id = post.Id
+                                    }, new AjaxOptions
+                                    {
+                                        InsertionMode = InsertionMode.Replace,
+                                        UpdateTargetId = "post-like-" + post.Id,
+
+                                        OnSuccess = "likeSuccessHandler(data)",
+                                    }, new
+                                    {
+                                        @class = ""
+                                    }))
+                                    {
+                                        <button type="submit" name="command" class="btn btn-success" value="Like"><span class="glyphicon glyphicon-thumbs-up" id="post-likes-@post.Id">@post.PostLikes</span></button>
+                                        <span id="post-@post.Id">@post.LikesCount</span>
+                                        <button type="submit" name="command" class="btn btn-danger" value="Dislike"><span class="glyphicon glyphicon-thumbs-down" id="post-dislikes-@post.Id">@post.PostDislikes</span></button>
+                                    }
+                                </li>
+
+                                <li class="new-comment">
+                                    @using (Ajax.BeginForm("AddComment", "Home", new { id = post.Id },
+            new AjaxOptions
+            {
+
+                InsertionMode = InsertionMode.Replace,
+                UpdateTargetId = "new-comment",
+                OnSuccess = "addCommentSuccessHandelr(data)",
+            }, new
+            {
+                @class = ""
+            }))
+                                    {
+                                        string commentText = "";
+                                        @Html.EditorFor(x => commentText)
+                                        <input type="submit" value="Comment" class="btn btn-create" />
+
+                                    }
+                                </li>
+                                @*<li><a href="#"><i class="glyphicon glyphicon-share-alt"></i> Share</a></li>*@
+                            </ul>
+                        </div>
+                        <hr />
+
+                        <section class="comment-section">
+                            <div id="new-comment">
+
+                                @*@Html.Partial("_AddComment",Model)*@
+                            </div>
+                            <div class="post-footer-comment-wrapper">
+                                @foreach (var comment in post.Comments)
+                                {
+                                    <div class="comment-@post.Id">
+                                        <div class="media">
+                                            <div class="media-left">
+                                                @{
+                                                    var imageUrl = Url.Content("~/Content/images/profile/") + comment.Username + ".png" + "?time=" + DateTime.Now;
+                                                    <a href="#">
+                                                        <img class="media-object photo-profile" src="@imageUrl" width="32" height="32" onerror="this.src = '../Content/images/profile/default.png';" />
+                                                    </a>
+                                                }
+                                            </div>
+                                            <div class="media-right">
+
+                                            </div>
+                                            <div class="media-body">
+                                                <a href="#" class="anchor-username anchor"><h4 class="media-heading">@comment.Author</h4></a>
+                                                <div class="anchor-time anchor">@comment.CommentPostDate</div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="comment-form">
+                                        @comment.Text
+                                        <br />
+                                    </div>
+
+
+                                    <ul class="list-inline">
+
+                                        <li class="comment-like-@comment.CommentId">
+                                            @using (Ajax.BeginForm("CommentLike", "Home", new
+                                            {
+                                                id = comment.CommentId
+                                            }, new AjaxOptions
+                                            {
+                                                InsertionMode = InsertionMode.Replace,
+                                                UpdateTargetId = "comment-like-" + comment.CommentId,
+                                                OnSuccess = "commentLikeSuccessHandler(data)",
+                                            }, new
+                                            {
+                                                @class = ""
+                                            }))
+                                            {
+                                                <button type="submit" name="command" class="btn btn-success" value="Like"><span class="glyphicon glyphicon-thumbs-up" id="comment-likes-@comment.CommentId">@comment.CommentLikes</span></button>
+                                                <span id="comment-@comment.CommentId">@comment.CommentCountLikes</span>
+                                                <button type="submit" name="command" class="btn btn-danger" value="Dislike"><span class="glyphicon glyphicon-thumbs-down" id="comment-dislikes-@comment.CommentId">@comment.CommentDislikes</span></button>
+                                            }
+                                        </li>
+                                    </ul>
+
+                                    <hr />
+                                                    }
+
+                            </div>
+
+                        </section>
+                    </section>
+                </div>
+            </div>
+                                                    }
+    </div>
+</div>
+
+@section scripts {
+    @Scripts.Render("~/bundles/ajax")
+    @Scripts.Render("~/Scripts/Handlers/likeSuccessHandler.js")
+}

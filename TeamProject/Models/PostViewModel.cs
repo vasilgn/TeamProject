@@ -25,6 +25,8 @@ namespace TeamProject.Models
         public string UserId { get; set; }
         public string Username { get; set; }
         public string Author { get; set; }
+        public string videoUrl{ get; set; }
+
         public IEnumerable<CommentViewModel> Comments { get; set; }
         public static Expression<Func<Post, PostViewModel>> ViewModel
         {
@@ -45,6 +47,7 @@ namespace TeamProject.Models
                     UserId = p.UserId,
                     Username = p.User.UserName,
                     Author = p.User.FullName,
+                    //videoUrl = p.PostVideo.VideoUrl,
                     Comments = p.Comments.AsQueryable().Select(CommentViewModel.ViewModel)
 
                 };

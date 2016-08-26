@@ -42,7 +42,7 @@
 </style>
 <div class="container">
 
-    <div class="col-md-6 col-xs-12">
+    <div class="col-md-11 col-xs-12">
         <h3 class="text-success">@ViewBag.StatusMessage</h3>
         @foreach (var post in Model.Posts)
         {
@@ -88,7 +88,10 @@
                 <section class="post-body">
                     <div class="body-content-post">
                         @post.Body
-                    </div>
+                        @*@if (post.videoUrl != null) { 
+                        @post.videoUrl
+                    }*@
+                                        </div>
 
                 </section>
                 <section class="post-footer post-footer-@post.Id">

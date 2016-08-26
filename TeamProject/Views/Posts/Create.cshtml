@@ -1,4 +1,4 @@
-﻿@model TeamProject.DataModels.Post
+﻿@model TeamProject.DataModels.TwoModels
 
 @{
     ViewBag.Title = "Create";
@@ -24,30 +24,37 @@
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-            @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Post.Title, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control hvr-grow" } })
-                @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.Post.Title, new { htmlAttributes = new { @class = "form-control hvr-grow" } })
+                @Html.ValidationMessageFor(model => model.Post.Title, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
 
-            @Html.LabelFor(model => model.Body, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Post.Body, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextAreaFor(model => model.Body, new { @class = "form-control hvr-grow resize-box", @cols = 45, @rows = 10 })
-                @Html.ValidationMessageFor(model => model.Body, "", new { @class = "text-danger" })
+                @Html.TextAreaFor(model => model.Post.Body, new { @class = "form-control hvr-grow resize-box", @cols = 45, @rows = 10 })
+                @Html.ValidationMessageFor(model => model.Post.Body, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Post.Description, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control hvr-grow" } })
-                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.Post.Description, new { htmlAttributes = new { @class = "form-control hvr-grow" } })
+                @Html.ValidationMessageFor(model => model.Post.Description, "", new { @class = "text-danger" })
             </div>
         </div>
 
+        <div class="form-group">
+            @Html.LabelFor(model => model.PostVideo.VideoUrl, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PostVideo.VideoUrl, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.PostVideo.VideoUrl, "", new { @class = "text-danger" })
+            </div>
+        </div>
       @*  <div class="form-group upload-post-image">
             <div class="col-md-10">
                 @using (Html.BeginForm("Index", "Upload", FormMethod.Post, new {enctype = "multipart/form-data"}))

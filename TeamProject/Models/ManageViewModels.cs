@@ -15,6 +15,8 @@ namespace TeamProject.Models
         public bool TwoFactor { get; set; }
         public bool BrowserRemembered { get; set; }
         public string FullName { get; set; }	
+        [Required]
+        public IEnumerable<Post> Post { get; set; }
     }
 
 

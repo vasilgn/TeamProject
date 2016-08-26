@@ -172,6 +172,7 @@
     <Compile Include="DataModels\ApplicationUser.cs" />
     <Compile Include="DataModels\Comment.cs" />
     <Compile Include="DataModels\CommentLike.cs" />
+    <Compile Include="DataModels\TwoModels.cs" />
     <Compile Include="DataModels\PostVideo.cs" />
     <Compile Include="DataModels\UserImage.cs" />
     <Compile Include="DataModels\Post.cs" />
@@ -286,13 +287,14 @@
     <Content Include="Views\Shared\_PostOptionsMenu.cshtml" />
     <Content Include="Views\Home\_PostDetailsView.cshtml" />
     <Content Include="Views\Home\_AddComment.cshtml" />
+    <Content Include="Views\Shared\Templates\PostViewModel.cshtml" />
+    <Content Include="Views\Shared\Templates\_PostHead.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\images\posts\" />
     <Folder Include="Views\Like\" />
     <Folder Include="Views\Post\" />
-    <Folder Include="Views\Shared\Templates\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
