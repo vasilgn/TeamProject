@@ -97,6 +97,8 @@ namespace TeamProject.Migrations
                 Comments = new HashSet<Comment>()
                 {
 
+                    new Comment() { Text ="Last User comment", User = context.Users.First()} ,
+                    new Comment() { Text ="First User comment", User = context.Users.OrderByDescending(u => u.Id).First()}
                 }
             });
             context.Posts.Add(new Post()
@@ -110,6 +112,8 @@ namespace TeamProject.Migrations
                 Comments = new HashSet<Comment>()
                 {
 
+                    new Comment() { Text ="Last User comment", User = context.Users.First()} ,
+                    new Comment() { Text ="First User comment", User = context.Users.OrderByDescending(u => u.Id).First()}
                 }
             });
             context.Posts.Add(new Post()
@@ -123,6 +127,22 @@ namespace TeamProject.Migrations
                 Comments = new HashSet<Comment>()
                 {
 
+                    new Comment() { Text ="Last User comment", User = context.Users.First()} ,
+                    new Comment() { Text ="First User comment", User = context.Users.OrderByDescending(u => u.Id).First()}
+                }
+            });
+            context.Posts.Add(new Post()
+            {
+                Title = "Evolution of UEFA club competitions from 2018",
+                Body = "The top four teams from the four highest-ranked associations will enter the UEFA Champions League group stage from 2018 after new formats were confirmed for both major club competitions.The format for the UEFA Champions League and UEFA Europa League for 2018/19, 2019/20 and 2020/21 have been confirmed, with no changes to the compettions system but a new procedure for entries.Following an extensive consultative process involving all European football stakeholders, UEFA proposed amendments which have been approved by the UEFA Executive Committee, upon recommendations of the UEFA Club Competitions Committee and the European Club Association Board.",
+                Description = "Some Description",
+                PostedOn = DateTime.Now.AddDays(5),
+                Modified = DateTime.Now.AddDays(4),
+                User = context.Users.OrderByDescending(e => e.Email).First(),
+                Comments = new HashSet<Comment>()
+                {
+                    new Comment() { Text ="Last User comment", User = context.Users.First()} ,
+                    new Comment() { Text ="First User comment", User = context.Users.OrderByDescending(u => u.Id).First()}
                 }
             });
 
