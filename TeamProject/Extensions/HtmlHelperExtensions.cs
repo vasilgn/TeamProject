@@ -11,7 +11,20 @@ namespace TeamProject.Extensions
     public static class HtmlHelperExtensions
     {
 
-       public static MvcHtmlString RawActionLink(this AjaxHelper ajaxHelper, string rawHtml, string action, string controller, object routeValues, AjaxOptions ajaxOptions, object htmlAttributes)
+        public static UrlHelper UrlHelper(this HtmlHelper htmlHelper)
+        {
+            if (htmlHelper.ViewContext.Controller is Controller)
+                return ((Controller)htmlHelper.ViewContext.Controller).Url;
+
+            const string itemKey = "HtmlHelper_UrlHelper";
+
+            if (htmlHelper.ViewContext.HttpContext.Items[itemKey] == null)
+                htmlHelper.ViewContext.HttpContext.Items[itemKey] = new UrlHelper(htmlHelper.ViewContext.RequestContext, htmlHelper.RouteCollection);
+
+            return (UrlHelper)htmlHelper.ViewContext.HttpContext.Items[itemKey];
+        }
+
+        public static MvcHtmlString RawActionLink(this AjaxHelper ajaxHelper, string rawHtml, string action, string controller, object routeValues, AjaxOptions ajaxOptions, object htmlAttributes)
         {
             //string anchor = ajaxHelper.ActionLink("##holder##", action, controller, routeValues, ajaxOptions, htmlAttributes).ToString();
             //return MvcHtmlString.Create(anchor.Replace("##holder##", rawHtml));

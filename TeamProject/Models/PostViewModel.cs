@@ -25,6 +25,7 @@ namespace TeamProject.Models
         public string UserId { get; set; }
         public string Username { get; set; }
         public string Author { get; set; }
+
         [DataType(DataType.Url)]
         public string VideoUrl { get; set; }
         public IEnumerable<CommentViewModel> Comments { get; set; }

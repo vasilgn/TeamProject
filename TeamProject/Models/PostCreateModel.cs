@@ -26,7 +26,6 @@ namespace TeamProject.Models
         [Display(Name = "Picture")]
         [DataType(DataType.ImageUrl)]
         public string ImageUrl { get; set; }
-
         [Display(Name = "Video")]
         [DataType(DataType.Url)]
         public string VideoUrl { get; set; }

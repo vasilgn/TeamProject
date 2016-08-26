@@ -109,8 +109,9 @@
                             <p class="body-text">@post.Body</p>
                             @if (post.VideoUrl != null)
                             {
-                                <div class="video"><iframe></iframe>
+                                <div class="video"><iframe width="854" height="480" src="@post.VideoUrl" frameborder="0" allowfullscreen></iframe>
                                 </div>
+
                             }
 
                         </div>
@@ -234,7 +235,7 @@
         }
     </div>
 </div>
-<iframe width="854" height="480" src="https://www.youtube.com/embed/dHSn3wGSW9c" frameborder="0" allowfullscreen></iframe>
+
 
 @section scripts {
     @Scripts.Render("~/bundles/ajax")

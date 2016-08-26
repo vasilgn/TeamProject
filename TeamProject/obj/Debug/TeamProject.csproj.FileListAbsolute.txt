@@ -382,7 +382,6 @@ C:\Users\Kreatos\Source\Repos\TeamProject4\TeamProject\bin\Microsoft.Owin.Securi
 C:\Users\Kreatos\Source\Repos\TeamProject4\TeamProject\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\Users\Kreatos\Source\Repos\TeamProject4\TeamProject\obj\Debug\TeamProject.dll
 C:\Users\Kreatos\Source\Repos\TeamProject4\TeamProject\obj\Debug\TeamProject.pdb
-C:\Users\Kreatos\Source\Repos\TeamProject4\TeamProject\obj\Debug\TeamProject.csprojResolveAssemblyReference.cache
 D:\Visual Studio\TeamProject\TeamProject\bin\TeamProject.dll.config
 D:\Visual Studio\TeamProject\TeamProject\bin\TeamProject.dll
 D:\Visual Studio\TeamProject\TeamProject\bin\TeamProject.pdb
@@ -493,3 +492,4 @@ C:\Users\Lencho\Desktop\Project github\TeamProject\TeamProject\bin\Microsoft.Owi
 C:\Users\Lencho\Desktop\Project github\TeamProject\TeamProject\bin\Microsoft.Owin.Security.Twitter.xml
 C:\Users\Lencho\Desktop\Project github\TeamProject\TeamProject\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 D:\Visual Studio\TeamProject\TeamProject\obj\Debug\TeamProject.csprojResolveAssemblyReference.cache
+C:\Users\Kreatos\Source\Repos\TeamProject4\TeamProject\obj\Debug\TeamProject.csprojResolveAssemblyReference.cache
