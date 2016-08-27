@@ -285,8 +285,9 @@
     <Content Include="Views\Shared\Templates\_PostViewHead.cshtml" />
     <Content Include="Views\Shared\Templates\_PostViewBody.cshtml" />
     <Content Include="Views\Shared\Templates\_PostViewFooter.cshtml" />
-    <Content Include="Views\Post\Create.cshtml" />
     <Content Include="Views\Post\Edit.cshtml" />
+    <Content Include="Views\Post\Delete.cshtml" />
+    <Content Include="Views\Post\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
