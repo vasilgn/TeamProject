@@ -39,10 +39,10 @@ namespace TeamProject.Controllers
             var postDetails = this.db.Posts
                 .Where(p => p.PostId == id)
                 .Where(p => p.IsPublic || isAdmin || (p.UserId != null && p.UserId == currentUserId))
-                .Select(PostViewModel.ViewModel).
+                .Select(PostDetailsViewModel.ViewModel).
                 FirstOrDefault();
 
-            var isOwner = (postDetails != null && postDetails.UserId != null && postDetails.UserId == currentUserId);
+            var isOwner = (postDetails != null && postDetails.AuthorId != null && postDetails.AuthorId == currentUserId);
             this.ViewBag.CanEdit = isOwner || isAdmin;
             return this.PartialView("_PostDetailsView", postDetails);
         }
