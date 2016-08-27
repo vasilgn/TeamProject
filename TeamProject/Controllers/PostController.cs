@@ -23,18 +23,16 @@ namespace TeamProject.Controllers
 
         public ActionResult Create()
         {
+            ViewBag.UserId = new SelectList(db.Users, "Id", "FullName");
             return View();
         }
-
 
         // POST: Posts/Create
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create(PostViewModel model)
+        public async Task<ActionResult> Create(PostCreateModel model)
         {
-
-
             if (model != null && ModelState.IsValid)
             {
                 var post = new Post
@@ -60,17 +58,17 @@ namespace TeamProject.Controllers
                     db.PostVideos.Add(postVideo);
                     await db.SaveChangesAsync();
                 }
-                else if (model.ImageUrl != null && ViewBag.Message == 7)
-                {
-                    var postImage = new PostImage
-                    {
-                        ImageUrl = model.ImageUrl,
-                        PostId = model.Id
+                /* else if (model.ImageUrl != null && ViewBag.Message == 7)
+                 {
+                     var postImage = new PostImage
+                     {
+                         ImageUrl = model.ImageUrl,
+                         PostId = model
 
-                    };
-                    db.PostImages.Add(postImage);
-                    await db.SaveChangesAsync();
-                }
+                     };
+                     db.PostImages.Add(postImage);
+                     await db.SaveChangesAsync();
+                 }*/
 
             }
 
@@ -78,76 +76,41 @@ namespace TeamProject.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        // GET: Posts/Details/5
-        public async Task<ActionResult> Details(int? id)
+        public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Post post = await db.Posts.FirstOrDefaultAsync(x => x.PostId == id);
-            if (post == null)
+            Post post =  db.Posts.FirstOrDefault(x => x.PostId == id);
+            var toView = new PostCreateModel
             {
-                return HttpNotFound();
-            }
-            return View(post);
-        }
-        public async Task<ActionResult> Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Post post = await db.Posts.FirstOrDefaultAsync(x => x.PostId == id);
-            if (post == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.UserId = new SelectList(db.Users, "Id", "FullName", post.UserId);
-            return View(post);
-        }
+                Body = post.Body,
+                Description = post.Description,
+                ImageUrl = post.PostImages.Where(e => e.PostId == post.PostId).Select(a => a.ImageUrl).FirstOrDefault(),
+                Title = post.Title,
+                VideoUrl = post.PostVideo.Where(e => e.PostId == post.PostId).Select(a => a.VideoUrl).FirstOrDefault(),
+                IsPublic = post.IsPublic
 
+            };
+            return View(toView);
+        }
         // POST: Posts/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "PostId,Title,Body,Description,UserId,IsPublic")] Post post)
+        public ActionResult Edit(PostCreateModel post)
         {
+
             if (ModelState.IsValid)
             {
                 db.Entry(post).State = EntityState.Modified;
-                await db.SaveChangesAsync();
+                db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            
-            ViewBag.UserId = new SelectList(db.Users, "Id", "FullName", post.UserId);
             return View(post);
         }
 
-        // GET: Posts/Delete/5
-        public async Task<ActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Post post = await db.Posts.FirstOrDefaultAsync(x => x.PostId == id);
-            if (post == null)
-            {
-                return HttpNotFound();
-            }
-            return View(post);
-        }
-
-        // POST: Posts/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteConfirmed(int id)
-        {
-            Post post = await db.Posts.FirstOrDefaultAsync(x => x.PostId == id);
-            db.Posts.Remove(post);
-            await db.SaveChangesAsync();
-            return RedirectToAction("Index", "Home");
-        }
+        
 
         protected override void Dispose(bool disposing)
         {
