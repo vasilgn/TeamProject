@@ -41,7 +41,7 @@ namespace TeamProject.DataModels
         public bool IsPublic { get; set; }
         public virtual ICollection<Comment> Comments { get; set; }
         public virtual ICollection<PostLike> PostLikes { get; set; }
-        public virtual ICollection<PostVideo> PostVideo { get; set; }
+        public virtual ICollection<PostVideo> PostVideos { get; set; }
         public virtual ICollection<PostImage> PostImages { get; set; }
     }
 }

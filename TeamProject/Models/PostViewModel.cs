@@ -21,6 +21,7 @@ namespace TeamProject.Models
         public int LikesCount { get; set; }
         public int PostLikes { get; set; }
         public int PostDislikes { get; set; }
+        [DataType(DataType.ImageUrl)]
         public string ImageUrl { get; set; }
         public string UserId { get; set; }
         public string Username { get; set; }
@@ -48,7 +49,7 @@ namespace TeamProject.Models
                     UserId = p.UserId,
                     Username = p.User.UserName,
                     Author = p.User.FullName,
-                    VideoUrl = p.PostVideo.Select(a=>a.VideoUrl).FirstOrDefault(),
+                    VideoUrl = p.PostVideos.Select(a=>a.VideoUrl).FirstOrDefault(),
                     Comments = p.Comments.AsQueryable().Select(CommentViewModel.ViewModel)
 
                 };

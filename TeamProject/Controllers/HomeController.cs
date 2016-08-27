@@ -24,7 +24,7 @@ namespace TeamProject.Controllers
                     : message == DbChangeMessageId.LikeSuccessfully ? "Liked."
                     : message == DbChangeMessageId.Error ? "Error."
                     : "";
-            var posts = this.db.Posts.OrderByDescending(p => p.PostedOn)
+            var posts = this.db.Posts.OrderBy(p => p.PostedOn)
                     .Select(PostViewModel.ViewModel);
 
             return this.View(new PostsViewModel()
@@ -42,7 +42,7 @@ namespace TeamProject.Controllers
                 .Select(PostDetailsViewModel.ViewModel).
                 FirstOrDefault();
 
-            var isOwner = (postDetails != null && postDetails.AuthorId != null && postDetails.AuthorId == currentUserId);
+            var isOwner = (postDetails != null && postDetails.UserId != null && postDetails.UserId == currentUserId);
             this.ViewBag.CanEdit = isOwner || isAdmin;
             return this.PartialView("_PostDetailsView", postDetails);
         }

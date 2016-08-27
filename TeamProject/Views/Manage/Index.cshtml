@@ -114,7 +114,9 @@
         <div class="col-md-4 bg_blur ">
             @*<a href="#" class="follow_btn hidden-xs">Follow</a>*@
         </div>
-        @{var imageUrlProf = Url.Content("~/Content/images/profile/") + User.Identity.GetUserName() + ".png" + "?time=" + DateTime.Now.ToString();}
+        @{
+            var imageUrlProf = Url.Content("~/Content/images/profile/") + User.Identity.GetUserName() + ".png" + "?time=" + DateTime.Now.ToString();
+        }
 
         <div class="col-md-8  col-xs-12">
             <img src="@imageUrlProf" class="img-thumbnail picture hidden-xs" />
