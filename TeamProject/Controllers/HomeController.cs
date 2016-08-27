@@ -32,7 +32,6 @@ namespace TeamProject.Controllers
                 Posts = posts
             });
         }
-        [ValidateAntiForgeryToken]
         public ActionResult PostById(int id)
         {
             var currentUserId = this.User.Identity.GetUserId();
@@ -40,10 +39,10 @@ namespace TeamProject.Controllers
             var postDetails = this.db.Posts
                 .Where(p => p.PostId == id)
                 .Where(p => p.IsPublic || isAdmin || (p.UserId != null && p.UserId == currentUserId))
-                .Select(PostDetailsViewModel.ViewModel).
+                .Select(PostViewModel.ViewModel).
                 FirstOrDefault();
 
-            var isOwner = (postDetails != null && postDetails.AuthorId != null && postDetails.AuthorId == currentUserId);
+            var isOwner = (postDetails != null && postDetails.UserId != null && postDetails.UserId == currentUserId);
             this.ViewBag.CanEdit = isOwner || isAdmin;
             return this.PartialView("_PostDetailsView", postDetails);
         }

@@ -12,7 +12,7 @@ namespace TeamProject.Models
         public int Id { get; set; }
         public string Description { get; set; }
         public string AuthorId { get; set; }
-
+        public string VideoUrl { get; set; }
         public static Expression<Func<Post, PostDetailsViewModel>> ViewModel
         {
             get
@@ -22,7 +22,6 @@ namespace TeamProject.Models
                     Id = e.PostId,
                     Description = e.Description,
                     AuthorId = e.User.Id,
-
                 };
             }
         }

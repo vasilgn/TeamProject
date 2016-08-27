@@ -1,9 +1,9 @@
-﻿@model TeamProject.Models.PostDetailsViewModel
+﻿@model TeamProject.Models.PostViewModel
     
 @if (ViewBag.CanEdit)
 {
-    @Html.ActionLink("Edit", "Edit", "Posts", new { id = Model.Id }, new { @class = "btn btn-xs btn-info" })
+    @Html.ActionLink("Edit", "Edit", "Post", new { id = Model.Id }, new { @class = "btn btn-xs btn-info" })
     <span></span>
-    @Html.ActionLink("Delete", "Delete", "Posts", new { id = Model.Id }, new { @class = "btn btn-xs btn-danger glyphicon glyphicon-trash " })
+    @Html.ActionLink("Delete", "Delete", "Post", new { id = Model.Id }, new { @class = "btn btn-xs btn-danger glyphicon glyphicon-trash " })
 
 }
