@@ -90,10 +90,10 @@
                     <div class="accimg">
                         <img src="@imageUrl" height="250" width="250"/>
                     </div>
-                    <div class="mnging">
+                    <div>
                         @using (Html.BeginForm("UploadPhoto", "Manage", FormMethod.Post, new {enctype = "multipart/form-data"}))
                         {
-                            <div class="btn btn-default browseimg">
+                            <div class="btn btn-default">
                                 <input type="file" name="file" id="files" onchange="this.form.submit()"/>
                             </div>
                         }

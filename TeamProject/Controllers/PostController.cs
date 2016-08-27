@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
@@ -11,6 +12,7 @@ using TeamProject.Models;
 
 namespace TeamProject.Controllers
 {
+    [Authorize]
     public class PostController : BaseController
     {
         // GET: Post
@@ -76,5 +78,84 @@ namespace TeamProject.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        // GET: Posts/Details/5
+        public async Task<ActionResult> Details(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Post post = await db.Posts.FirstOrDefaultAsync(x => x.PostId == id);
+            if (post == null)
+            {
+                return HttpNotFound();
+            }
+            return View(post);
+        }
+        public async Task<ActionResult> Edit(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Post post = await db.Posts.FirstOrDefaultAsync(x => x.PostId == id);
+            if (post == null)
+            {
+                return HttpNotFound();
+            }
+            ViewBag.UserId = new SelectList(db.Users, "Id", "FullName", post.UserId);
+            return View(post);
+        }
+
+        // POST: Posts/Edit/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Edit([Bind(Include = "PostId,Title,Body,Description,UserId,IsPublic")] Post post)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(post).State = EntityState.Modified;
+                await db.SaveChangesAsync();
+                return RedirectToAction("Index");
+            }
+            
+            ViewBag.UserId = new SelectList(db.Users, "Id", "FullName", post.UserId);
+            return View(post);
+        }
+
+        // GET: Posts/Delete/5
+        public async Task<ActionResult> Delete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Post post = await db.Posts.FirstOrDefaultAsync(x => x.PostId == id);
+            if (post == null)
+            {
+                return HttpNotFound();
+            }
+            return View(post);
+        }
+
+        // POST: Posts/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> DeleteConfirmed(int id)
+        {
+            Post post = await db.Posts.FirstOrDefaultAsync(x => x.PostId == id);
+            db.Posts.Remove(post);
+            await db.SaveChangesAsync();
+            return RedirectToAction("Index", "Home");
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
+        }
     }
 }

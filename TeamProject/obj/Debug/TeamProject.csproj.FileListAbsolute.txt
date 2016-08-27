@@ -492,3 +492,4 @@ C:\Users\Lencho\Desktop\Project github\TeamProject\TeamProject\bin\Microsoft.Owi
 C:\Users\Lencho\Desktop\Project github\TeamProject\TeamProject\bin\Microsoft.Owin.Security.Twitter.xml
 C:\Users\Lencho\Desktop\Project github\TeamProject\TeamProject\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 D:\Visual Studio\TeamProject\TeamProject\obj\Debug\TeamProject.csprojResolveAssemblyReference.cache
+C:\Users\Kreatos\Source\Repos\TeamProject4\TeamProject\obj\Debug\TeamProject.csprojResolveAssemblyReference.cache
