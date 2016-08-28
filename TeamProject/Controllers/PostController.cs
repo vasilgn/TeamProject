@@ -167,7 +167,7 @@ namespace TeamProject.Controllers
 
                     }
                     //Add Edit Image
-                    /*if (model.ImageUrl != null)
+                    if (model.ImageUrl != null && currentImage != null)
                     {
                         currentImage.ImageUrl = model.ImageUrl;
                         currentImage.PostId = id;
@@ -188,7 +188,7 @@ namespace TeamProject.Controllers
                     {
                         db.Entry(currentImage).State = EntityState.Deleted;
                         await db.SaveChangesAsync();
-                    }*/
+                    }
                 }
 
 
