@@ -110,6 +110,7 @@
                                         InsertionMode = InsertionMode.Replace,
                                         UpdateTargetId = "post-details-" + post.Id
                                     }, new {@class = "glyphicon glyphicon-chevron-down"})*@
+                                Notification
                             </div>
                         </div>
                     </section>
@@ -163,16 +164,16 @@
                                 <li class="new-comment">
 
                                     @using (Ajax.BeginForm("AddComment", "Home", new { id = post.Id },
-new AjaxOptions
-{
-    InsertionMode = InsertionMode.InsertAfter,
+                                                    new AjaxOptions
+                                                    {
+                                                        InsertionMode = InsertionMode.InsertAfter,
 
-    UpdateTargetId = "comment-section-" + post.Id,
-    OnSuccess = "addCommentSuccessHandler(data)",
-}, new
-{
-    @class = ""
-}))
+                                                        UpdateTargetId = "comment-section-" + post.Id,
+                                                        OnSuccess = "addCommentSuccessHandler(data)",
+                                                    }, new
+                                                    {
+                                                        @class = ""
+                                                    }))
                                     {
                                         string commentText = "";
                                         @Html.EditorFor(x => commentText)
@@ -254,7 +255,7 @@ new AjaxOptions
 
     </div>
 <div class="col-md-3 col-lg-2 pull-right" style="border-style: solid; border-color: red">
-    
+    <label>Notifications:</label>
     @Html.Partial("_Alert")
 
 </div>

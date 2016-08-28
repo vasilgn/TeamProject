@@ -4,6 +4,14 @@
 {
     @Html.ActionLink("Edit", "Edit", "Post", new { id = Model.Id }, new { @class = "btn btn-xs btn-info" })
     <span></span>
-    @Html.ActionLink("Delete", "Delete", "Post", new { id = Model.Id }, new { @class = "btn btn-xs btn-danger glyphicon glyphicon-trash " })
-
+    @Html.ActionLink("Delete", "Delete", "Post", new { id = Model.Id }, new { @class = "btn btn-xs btn-danger glyphicon glyphicon-trash",onclick = "postDeleteHandler()" })
 }
+<script>
+    function postDeleteHandler() {
+        var deleteConfirmed = confirm("Are you sure?");
+        alert(deleteConfirmed);
+        $.ajax()
+
+        event.preventDefault();
+    }
+</script>

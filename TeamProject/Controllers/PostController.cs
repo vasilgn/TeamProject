@@ -69,7 +69,7 @@ namespace TeamProject.Controllers
                     }
 
                 }
-                /*if (model.ImageUrl != null)
+                if (file.FileName != null)
                 {
                     var tryUpload = UploadPhoto(file);
 
@@ -77,14 +77,14 @@ namespace TeamProject.Controllers
                     {
                         var postImage = new PostImage
                         {
-                            ImageUrl = model.ImageUrl,
+                            ImageUrl = tryUpload,
                             PostId = post.PostId
                         };
                         db.PostImages.Add(postImage);
                         await db.SaveChangesAsync();
                     }
                     
-                }*/
+                }
 
             }
 
@@ -215,17 +215,16 @@ namespace TeamProject.Controllers
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteConfirmed(int id)
+        public async Task<JsonResult> DeleteConfirmed(int id)
         {
             Post post = await db.Posts.FirstOrDefaultAsync(x => x.PostId == id);
             db.Posts.Remove(post);
             await db.SaveChangesAsync();
             Information("You have successfully delete this post.", true);
 
-            return RedirectToAction("Index", "Home");
+            return Json(new {id = id});
         }
 
-        /*[HttpPost]
         public string UploadPhoto(HttpPostedFileBase file)
         {
             if (file != null && file.ContentLength > 0)
@@ -251,7 +250,7 @@ namespace TeamProject.Controllers
             }
             return "Error";
 
-        }*/
+        }
 
         protected override void Dispose(bool disposing)
         {

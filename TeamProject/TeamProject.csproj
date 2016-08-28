@@ -292,6 +292,7 @@
     <Content Include="Views\Post\Delete.cshtml" />
     <Content Include="Views\Post\Create.cshtml" />
     <Content Include="Views\Shared\_Alert.cshtml" />
+    <Content Include="Views\Shared\Templates\_CommentViewBody.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
