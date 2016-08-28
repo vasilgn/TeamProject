@@ -182,6 +182,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\Alert.cs" />
+    <Compile Include="Helpers\AlertStyles.cs" />
+    <Compile Include="Helpers\YouTubeUrlHandler.cs" />
     <Compile Include="Migrations\DbConfiguration.cs" />
     <Compile Include="Migrations\DbUserConfiguration.cs" />
     <Compile Include="Models\PostCreateModel.cs" />
@@ -288,11 +291,11 @@
     <Content Include="Views\Post\Edit.cshtml" />
     <Content Include="Views\Post\Delete.cshtml" />
     <Content Include="Views\Post\Create.cshtml" />
+    <Content Include="Views\Shared\_Alert.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\images\posts\" />
-    <Folder Include="Views\Like\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

@@ -479,3 +479,29 @@ table tr:nth-child(odd) td {
     color: black;
     font-size: 16px;
 }
+
+.responsive-video {
+    position: relative;
+    padding-bottom: 56.25%;
+    padding-top: 60px; overflow: hidden;
+}
+
+.responsive-video iframe,
+.responsive-video object,
+.responsive-video embed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.alert-error {
+  background-image: -webkit-linear-gradient(top, #f10505 0%, #f10505 100%);
+  background-image:      -o-linear-gradient(top, #f10505 0%, #f10505 100%);
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#f10505), to(#f10505));
+  background-image:         linear-gradient(to bottom, #f10505 0%, #f10505 100%);
+  
+  background-repeat: repeat-x;
+  border-color: #f10505;
+}
