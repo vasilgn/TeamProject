@@ -138,7 +138,7 @@ namespace TeamProject.Controllers
 
                     if (model.VideoUrl != null && currentVideo != null)
                     {
-                        currentVideo.VideoUrl = model.VideoUrl;
+                        currentVideo.VideoUrl = YouTubeUrlHandler.GetVideoId(model.VideoUrl);
                         currentVideo.PostId = id;
                         db.Entry(currentVideo).State = EntityState.Modified;
                         await db.SaveChangesAsync();
@@ -147,7 +147,7 @@ namespace TeamProject.Controllers
                     {
                         PostVideo postVideo = new PostVideo()
                         {
-                            VideoUrl = model.VideoUrl,
+                            VideoUrl = YouTubeUrlHandler.GetVideoId(model.VideoUrl),
                             PostId = id,
                         };
                         db.PostVideos.Add(postVideo);

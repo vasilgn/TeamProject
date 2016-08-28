@@ -128,10 +128,9 @@
                             <p class="body-text">@post.Body</p>
                             @if (post.VideoUrl != null)
                             {
-                                <div class="vid">
-                                    <iframe class="embed-responsive-item" width="854" height="480" src="@post.VideoUrl" frameborder="0" allowfullscreen></iframe>
+                                <div class="responsive-video">
+                                    <iframe src="@post.VideoUrl" frameborder="0" allowfullscreen></iframe>
                                 </div>
-
                             }
 
                         </div>
