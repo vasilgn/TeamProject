@@ -1,12 +1,13 @@
 ﻿@using Microsoft.AspNet.Identity
 @model TeamProject.Models.IndexViewModel
 @{
-	ViewBag.Title = "Manage";
+    ViewBag.Title = "Manage";
 }
 
 <h2>@ViewBag.Title.</h2>
 
 <p class="text-success">@ViewBag.StatusMessage</p>
+<p>@ViewBag.FilePath</p>
 <div>
     <h4>Change your account settings</h4>
     <hr />
@@ -85,16 +86,17 @@
         <dd>
             @if (User.Identity.GetUserName() != null)
             {
+
                 var imageUrl = Url.Content("~/Content/images/profile/") + User.Identity.GetUserName() + ".png" + "?time=" + DateTime.Now.ToString();
                 <div class="upimage">
                     <div class="accimg">
-                        <img src="@imageUrl" height="250" width="250"/>
+                        <img src="@imageUrl" height="250" width="250" />
                     </div>
                     <div>
-                        @using (Html.BeginForm("UploadPhoto", "Manage", FormMethod.Post, new {enctype = "multipart/form-data"}))
+                        @using (Html.BeginForm("UploadPhoto", "Manage", FormMethod.Post, new { enctype = "multipart/form-data" }))
                         {
                             <div class="btn btn-default">
-                                <input type="file" name="file" id="files" onchange="this.form.submit()"/>
+                                <input type="file" name="file" id="files" onchange="this.form.submit()" />
                             </div>
                         }
                     </div>
@@ -103,6 +105,7 @@
             }
         </dd>
     </dl>
+    
 </div>
 
 
@@ -123,15 +126,15 @@
             <div class="header">
                 <h1>@User.Identity.Name</h1>
                 <h1>@Model.FullName</h1>
-                <h4>
-                </h4>
+                <h4></h4>
+
             </div>
         </div>
     </div>
     @using (Ajax.BeginForm("PostById", "Home", new AjaxOptions
     {
-            InsertionMode = InsertionMode.Replace,
-            UpdateTargetId = ""
+        InsertionMode = InsertionMode.Replace,
+        UpdateTargetId = ""
     }))
     {
         <div class="row nav user-activity">
@@ -143,5 +146,5 @@
             </div>
         </div>
     }
-	
+
 </div>

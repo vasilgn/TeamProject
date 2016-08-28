@@ -4,12 +4,14 @@ using System.Data.Entity;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Hosting;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using TeamProject.DataModels;
+using TeamProject.Handlers;
 using TeamProject.Models;
 
 namespace TeamProject.Controllers
@@ -52,13 +54,19 @@ namespace TeamProject.Controllers
 
                 if (model.VideoUrl != null)
                 {
-                    var postVideo = new PostVideo
+                    string s = YouTubeUrlHandler.GetVideoId(model.VideoUrl);
+                    if (s != "Error")
                     {
-                        PostId = post.PostId,
-                        VideoUrl = model.VideoUrl,
-                    };
-                    db.PostVideos.Add(postVideo);
-                    await db.SaveChangesAsync();
+
+                        var postVideo = new PostVideo
+                        {
+                            PostId = post.PostId,
+                            VideoUrl = s,
+                        };
+                        db.PostVideos.Add(postVideo);
+                        await db.SaveChangesAsync();
+                    }
+
                 }
                 /*if (model.ImageUrl != null)
                 {
@@ -89,7 +97,7 @@ namespace TeamProject.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Post post = db.Posts.FirstOrDefault(a=>a.PostId == id);
+            Post post = db.Posts.FirstOrDefault(a => a.PostId == id);
             if (post == null)
             {
                 return HttpNotFound();
@@ -115,7 +123,7 @@ namespace TeamProject.Controllers
                 var currentPost = db.Posts.FirstOrDefault(p => p.PostId == id);
                 var currentVideo = db.PostVideos.FirstOrDefault(p => p.PostId == id);
                 var currentImage = db.PostImages.FirstOrDefault(p => p.PostId == id);
-                
+
                 if (currentPost != null)
                 {
 
@@ -128,7 +136,7 @@ namespace TeamProject.Controllers
                     db.Entry(currentPost).State = EntityState.Modified;
                     await db.SaveChangesAsync();
 
-                    if (model.VideoUrl != null)
+                    if (model.VideoUrl != null && currentVideo != null)
                     {
                         currentVideo.VideoUrl = model.VideoUrl;
                         currentVideo.PostId = id;
@@ -150,32 +158,33 @@ namespace TeamProject.Controllers
                         db.Entry(currentVideo).State = EntityState.Deleted;
                         await db.SaveChangesAsync();
                     }
-                    if (model.ImageUrl != null)
+                    //Add Edit Image
+                    /*if (model.ImageUrl != null)
                     {
                         currentImage.ImageUrl = model.ImageUrl;
                         currentImage.PostId = id;
                         db.Entry(currentImage).State = EntityState.Modified;
                         await db.SaveChangesAsync();
                     }
-                    else if (model.VideoUrl != null && currentVideo == null)
+                    else if (model.ImageUrl != null && currentImage == null)
                     {
-                        PostImage postVideo = new PostImage()
+                        PostImage postImage = new PostImage()
                         {
                             ImageUrl = model.VideoUrl,
                             PostId = id,
                         };
-                        db.PostImages.Add(postVideo);
+                        db.PostImages.Add(postImage);
                         await db.SaveChangesAsync();
                     }
                     else
                     {
                         db.Entry(currentImage).State = EntityState.Deleted;
                         await db.SaveChangesAsync();
-                    }
+                    }*/
                 }
 
 
-                return RedirectToAction("Index","Home");
+                return RedirectToAction("Index", "Home");
             }
             return View();
         }
@@ -202,6 +211,7 @@ namespace TeamProject.Controllers
             Post post = await db.Posts.FirstOrDefaultAsync(x => x.PostId == id);
             db.Posts.Remove(post);
             await db.SaveChangesAsync();
+
             return RedirectToAction("Index", "Home");
         }
 
