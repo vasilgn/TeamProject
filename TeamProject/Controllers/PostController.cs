@@ -11,7 +11,7 @@ using System.Web.Hosting;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using TeamProject.DataModels;
-using TeamProject.Handlers;
+using TeamProject.Helpers;
 using TeamProject.Models;
 
 namespace TeamProject.Controllers
@@ -51,7 +51,7 @@ namespace TeamProject.Controllers
 
                 db.Posts.Add(post);
                 await db.SaveChangesAsync();
-
+                Success("Successfully create post.", true);
                 if (model.VideoUrl != null)
                 {
                     string s = YouTubeUrlHandler.GetVideoId(model.VideoUrl);
@@ -65,6 +65,7 @@ namespace TeamProject.Controllers
                         };
                         db.PostVideos.Add(postVideo);
                         await db.SaveChangesAsync();
+                        Success("Video to post was successfully added.", true);
                     }
 
                 }
@@ -135,6 +136,8 @@ namespace TeamProject.Controllers
 
                     db.Entry(currentPost).State = EntityState.Modified;
                     await db.SaveChangesAsync();
+                    Information("You have successfully edit post.", true);
+
 
                     if (model.VideoUrl != null && currentVideo != null)
                     {
@@ -142,6 +145,7 @@ namespace TeamProject.Controllers
                         currentVideo.PostId = id;
                         db.Entry(currentVideo).State = EntityState.Modified;
                         await db.SaveChangesAsync();
+                        Information("You have successfully edit video url.", true);
                     }
                     else if (model.VideoUrl != null && currentVideo == null)
                     {
@@ -152,11 +156,15 @@ namespace TeamProject.Controllers
                         };
                         db.PostVideos.Add(postVideo);
                         await db.SaveChangesAsync();
+                        Success("Successfully add video to post.");
                     }
                     else
                     {
                         db.Entry(currentVideo).State = EntityState.Deleted;
                         await db.SaveChangesAsync();
+                        Information("Video to this post was deleted.", true);
+
+
                     }
                     //Add Edit Image
                     /*if (model.ImageUrl != null)
@@ -186,6 +194,7 @@ namespace TeamProject.Controllers
 
                 return RedirectToAction("Index", "Home");
             }
+            Error("Something went wrong.", true);
             return View();
         }
 
@@ -211,6 +220,7 @@ namespace TeamProject.Controllers
             Post post = await db.Posts.FirstOrDefaultAsync(x => x.PostId == id);
             db.Posts.Remove(post);
             await db.SaveChangesAsync();
+            Information("You have successfully delete this post.", true);
 
             return RedirectToAction("Index", "Home");
         }

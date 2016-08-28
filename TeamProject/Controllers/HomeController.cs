@@ -16,14 +16,8 @@ namespace TeamProject.Controllers
     [Authorize]
     public class HomeController : BaseController
     {
-        public ActionResult Index(DbChangeMessageId? message)
+        public ActionResult Index()
         {
-            ViewBag.StatusMessage =
-                message == DbChangeMessageId.AddCommentSuccessfully ? "Add comment successfully."
-                    : message == DbChangeMessageId.DislikeSuccessfully ? "Disliked."
-                    : message == DbChangeMessageId.LikeSuccessfully ? "Liked."
-                    : message == DbChangeMessageId.Error ? "Error."
-                    : "";
             var posts = this.db.Posts.OrderBy(p => p.PostedOn)
                     .Select(PostViewModel.ViewModel);
 
@@ -96,7 +90,6 @@ namespace TeamProject.Controllers
         [HttpPost]
         public ActionResult AddLike(PostViewModel model, int id, string command)
         {
-            DbChangeMessageId? message;
 
             if (ModelState.IsValid && model != null)
             {
@@ -129,7 +122,6 @@ namespace TeamProject.Controllers
 
                         db.Entry(postLike).State = EntityState.Modified;
                         db.SaveChanges();
-                        message = DbChangeMessageId.LikeSuccessfully;
                     }
                     else
                     {
@@ -152,13 +144,13 @@ namespace TeamProject.Controllers
                         db.PostLikes.Add(newPostLike);
                         db.SaveChanges();
                     }
+                    
                 }
 
                 db.Entry(post).State = EntityState.Modified;
                 db.SaveChanges();
 
 
-                message = DbChangeMessageId.LikeSuccessfully;
 
 
                 var postLikeCount = db.Posts.Find(id).PostLikeCounter;
@@ -170,12 +162,11 @@ namespace TeamProject.Controllers
                     postDislikeCount = postDislikes,
                     postLikeCount = postLikes,
                     postLikes = postLikeCount,
-                    statusMessage = message
                 });
                 //return RedirectToAction("Index");
             }
-            message = DbChangeMessageId.Error;
-            return RedirectToAction("Index", new { Message = message });
+            Error("Something went wrong try again.", true);
+            return RedirectToAction("Index");
         }
 
 
@@ -184,7 +175,6 @@ namespace TeamProject.Controllers
         [HttpPost]
         public ActionResult CommentLike(CommentViewModel model, int id, string command)
         {
-            DbChangeMessageId message;
 
             if (ModelState.IsValid && model != null)
             {
@@ -212,14 +202,13 @@ namespace TeamProject.Controllers
                         {
                             comment.CommentLikeCounter -= 2;
                             commentLike.Like = false;
-                            message = DbChangeMessageId.DislikeSuccessfully;
-
+                            Success("Disliked.",true);
                         }
                         else if (!isLike && command.Equals("Like"))
                         {
                             comment.CommentLikeCounter += 2;
                             commentLike.Like = true;
-                            message = DbChangeMessageId.LikeSuccessfully;
+                            Success("Liked.", true);
 
                         }
 
@@ -238,14 +227,15 @@ namespace TeamProject.Controllers
                         {
                             comment.CommentLikeCounter += 1;
                             newCommentLike.Like = true;
-                            message = DbChangeMessageId.LikeSuccessfully;
+                            Success("Liked.", true);
 
                         }
                         else if (command.Equals("Dislike"))
                         {
                             comment.CommentLikeCounter -= 1;
                             newCommentLike.Like = false;
-                            message = DbChangeMessageId.DislikeSuccessfully;
+                            Success("Disliked.", true);
+
 
                         }
                         db.CommentsLikes.Add(newCommentLike);
@@ -269,23 +259,11 @@ namespace TeamProject.Controllers
                 });
                 //return RedirectToAction("Index");
             }
-            message = DbChangeMessageId.Error;
+            Warning("Error.", true);
 
-            return RedirectToAction("Index", new { Message = message });
+            return RedirectToAction("Index");
         }
     }
 
 
-    #region HelpMessages
-
-
-
-    public enum DbChangeMessageId
-    {
-        AddCommentSuccessfully,
-        LikeSuccessfully,
-        DislikeSuccessfully,
-        Error
-    }
-    #endregion
 }

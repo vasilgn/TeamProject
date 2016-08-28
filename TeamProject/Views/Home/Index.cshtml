@@ -102,7 +102,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-2">
+                            <div class="col-md-2 notification-@post.Id">
                                 @*@Ajax.ActionLink(" ", "PostById", "Home",
                                     new {id = post.Id},
                                     new AjaxOptions
@@ -110,7 +110,6 @@
                                         InsertionMode = InsertionMode.Replace,
                                         UpdateTargetId = "post-details-" + post.Id
                                     }, new {@class = "glyphicon glyphicon-chevron-down"})*@
-                                Notification
                             </div>
                         </div>
                     </section>
@@ -254,9 +253,11 @@ new AjaxOptions
                                                     }
 
     </div>
-    <div class="col-md-3 col-lg-2 pull-right" style="border-style: solid">
-        RSS
-    </div>
+<div class="col-md-3 col-lg-2 pull-right" style="border-style: solid; border-color: red">
+    
+    @Html.Partial("_Alert")
+
+</div>
 </div>
 
 @section scripts {
