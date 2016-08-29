@@ -143,6 +143,7 @@ namespace TeamProject.Controllers
                         directory.Create();
                     }
                     ViewBag.FilePath = filePath.ToString();
+                   
                     file.SaveAs(filePath);
                     return RedirectToAction("Index", new { Message = ManageMessageId.PhotoUploadSuccess });
                 }

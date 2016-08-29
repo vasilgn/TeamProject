@@ -34,84 +34,110 @@
         margin: 1em 0;
         padding: 0;
     }
-
     .body-content-post {
         word-wrap: break-word;
     }
-/**/ /**/
+    /**/ /**/
 </style>
 
-<div class="container">
 
-    <div class="col-- col-md-11 col-xs-12">
-        
-        @*<h3 class="text-success">@ViewBag.StatusMessage</h3>*@
+@*@using (Html.BeginForm())
+    {
+        <p>
+            Find by name: @Html.TextBox("SearchString")
+            <input type="submit" value="Search" />
+        </p>
+    }*@
+<div class="container-fluid">
+
+    <div class="col-md-8 col-sm-12 col-lg-9">
+
         @foreach (var post in Model.Posts)
         {
             <div class="panel panel-default">
-                
+
                 <div class="panel-body">
-                    
+
                     <section class="post-heading">
-                        
+
                         <div class="row">
 
                             <div class="row-home">
-                                
+
                                 <div class="col-md-10">
-                                    
+
                                     <div class="media">
-                                        
+
                                         <div class="media-left">
-                                            
+
                                             @{
                                                 var imagePostUrl = Url.Content("~/Content/images/profile/") + post.Username + ".png" + "?time=" + DateTime.Now;
 
-                                                <img class="media-object photo-profile" src="@imagePostUrl" width="60" height="60" onerror="this.src = '../Content/images/profile/default.png';"/>
+                                                <img class="media-object photo-profile" src="@imagePostUrl" width="60" height="60" onerror="this.src = '../Content/images/profile/default.png';" />
                                             }
 
                                         </div>
 
                                         <div class="media-body">
-                                            
+
                                             <a href="#" class="anchor-username anchor"><h4 class="media-heading">@post.Author</h4></a>
-                                            <span class="anchor-time anchor">@post.PostDate</span>
+                                            @{
+                                                if (post.Modified != null)
+                                                {
+                                                    <span class="anchor-time anchor">@post.Modified <label>Edited</label></span>
+                                                }
+                                                else
+                                                {
+                                                    <span class="anchor-time anchor">@post.PostDate</span>
+
+                                                }
+                                            }
                                             <span class="anchor-title"><h3 class="media-title">@post.Title</h3></span>
+                                        </div>
+                                        <div class="media-right" id="post-details-@post.Id">
+                                            @Ajax.ActionLink(" ", "PostById", "Home",
+                                        new { id = post.Id },
+                                        new AjaxOptions
+                                        {
+                                            InsertionMode = InsertionMode.Replace,
+                                            UpdateTargetId = "post-details-" + post.Id
+                                        }, new { @class = "glyphicon glyphicon-chevron-down" })
+
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="col-md-2" id="post-details-@post.Id">
-                                @Ajax.ActionLink(" ", "PostById", "Home",
+                            <div class="col-md-2 notification-@post.Id">
+                                @*@Ajax.ActionLink(" ", "PostById", "Home",
                                     new {id = post.Id},
                                     new AjaxOptions
                                     {
                                         InsertionMode = InsertionMode.Replace,
                                         UpdateTargetId = "post-details-" + post.Id
-                                    }, new {@class = "glyphicon glyphicon-chevron-down"})
-
-                                @* <a href='@Url.Action("PostById","Home", new {id = post.Id})'><i class="glyphicon glyphicon-chevron-down"></i></a>*@
+                                    }, new {@class = "glyphicon glyphicon-chevron-down"})*@
+                                Notification
                             </div>
                         </div>
                     </section>
 
                     <section class="post-body">
-                        
+
                         <div class="body-content-post">
 
                             @if (post.Description != null)
                             {
                                 <h4 class="post-description">Description:</h4>
                                 <span class="description">@post.Description</span>
-                                <hr/>
+                                <hr />
                             }
                             <p class="body-text">@post.Body</p>
                             @if (post.VideoUrl != null)
                             {
-                                <div class="vid"><iframe width="854" height="480" src="@post.VideoUrl" frameborder="0" allowfullscreen></iframe>
-                                </div>
 
+                                <div class="responsive-video">
+                                    <iframe src="@post.VideoUrl" frameborder="0" allowfullscreen></iframe>
+                                </div>
                             }
 
                         </div>
@@ -144,28 +170,30 @@
 
                                 <li class="new-comment">
 
-                                    @using (Ajax.BeginForm("AddComment", "Home", new {id = post.Id},
-                                        new AjaxOptions
-                                        {
-                                            InsertionMode = InsertionMode.InsertAfter,
+                                    @using (Ajax.BeginForm("AddComment", "Home", new { id = post.Id },
+new AjaxOptions
+{
+    InsertionMode = InsertionMode.InsertAfter,
 
-                                            UpdateTargetId = "comment-section-" + post.Id,
-                                            OnSuccess = "addCommentSuccessHandler(data)",
-                                        }, new
-                                        {
-                                            @class = ""
-                                        }))
+    UpdateTargetId = "comment-section-" + post.Id,
+    OnSuccess = "addCommentSuccessHandler(data)",
+}, new
+{
+    @class = ""
+}))
                                     {
                                         string commentText = "";
-                                        @Html.EditorFor(x => commentText)
-                                        <input type="submit" value="Comment" class="btn btn-create"/>
+                                        <div class="com">
+                                            @Html.EditorFor(x => commentText, new { htmlAttributes = new { @class = "com-form hvr-grow" } })
+                                            <input type="submit" value="Comment" class="btn my-btns hvr-pulse" />
+                                        </div>
                                     }
                                 </li>
                                 @*<li><a href="#"><i class="glyphicon glyphicon-share-alt"></i> Share</a></li>*@
                             </ul>
 
                         </div>
-                        <hr/>
+                        <hr />
 
                         <section id="comment-section-@post.Id">
 
@@ -179,7 +207,7 @@
                                                 @{
                                                     var imageUrl = Url.Content("~/Content/images/profile/") + comment.Username + ".png" + "?time=" + DateTime.Now;
                                                     <a href="#">
-                                                        <img class="media-object photo-profile" src="@imageUrl" width="32" height="32" onerror="this.src = '../Content/images/profile/default.png';"/>
+                                                        <img class="media-object photo-profile" src="@imageUrl" width="32" height="32" onerror="this.src = '../Content/images/profile/default.png';" />
                                                     </a>
                                                 }
                                             </div>
@@ -196,7 +224,7 @@
 
                                     <div class="comment-form">
                                         @comment.Text
-                                        <br/>
+                                        <br />
                                     </div>
 
 
@@ -223,8 +251,8 @@
                                         </li>
                                     </ul>
 
-                                    <hr/>
-                                }
+                                    <hr />
+                                                    }
 
                             </div>
 
@@ -232,6 +260,25 @@
                     </section>
                 </div>
             </div>
+                                                    }
+
+    </div>
+    <div class="col-md-3 col-lg-2 pull-right side-bar-nav side-bar-nav2">
+        <div class="notifications">Notifications:</div>
+        @Html.Partial("_Alert")
+    </div>
+
+    <div class="col-md-3 col-lg-2 pull-right side-bar-nav side-bar-nav2">
+        @{var i = 1;}
+        @foreach (var item in Model.Posts)
+        {
+            @Html.ActionLink(@item.Title, "Post/Details", new { id = item.Id }, new { @class = "home-bar-style edit-delete-details" })
+            <p></p>
+            if (i == 5)
+            {
+                break;
+            }
+            i++;
         }
     </div>
 </div>

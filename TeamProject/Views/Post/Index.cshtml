@@ -1,0 +1,69 @@
+﻿@model IEnumerable<TeamProject.DataModels.Post>
+@using Microsoft.AspNet.Identity;
+
+@{
+    ViewBag.Title = "My posts";
+}
+<h1 class="title-h1">@ViewBag.Title</h1>
+
+<table class="table">
+    <tr class="tr-my-posts-head">
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Body)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            Post date
+        </th>
+        <th>
+            Last modified
+        </th>
+        <th>
+            Post likes
+        </th>
+
+        <th></th>
+    </tr>
+
+    @{
+        var strCurrentUserId = User.Identity.GetUserId();
+    }
+
+    @foreach (var item in Model)
+    {
+        if (item.UserId == strCurrentUserId)
+        {
+        <tr class="tr-my-posts">
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td class='post-body-view'>
+                @Html.DisplayFor(modelItem => item.Body)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PostedOn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Modified)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PostLikeCounter)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.PostId }, new { @class = "home-bar-style edit-delete-details" })
+                @Html.ActionLink("Details", "Details", new { id = item.PostId }, new { @class = "home-bar-style edit-delete-details" })
+                @Html.ActionLink("Delete", "Delete", new { id = item.PostId }, new { @class = "home-bar-style edit-delete-details" })
+            </td>
+        </tr>
+        }
+    }
+    
+</table>

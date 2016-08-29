@@ -7,10 +7,7 @@ body {
 }
 
 .avatar {
-    padding-left: 10%;
-    padding-bottom: 10%;
-    padding-right: 10%;
-    padding-top: 10%;
+    padding: 10%;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -46,14 +43,6 @@ textarea {
     cursor: pointer;
 }
 
-.description {
-    border: 1px solid #ff2700;
-    margin-bottom: 3px;
-    padding-bottom: 3px;
-}
-
-.post-description {
-}
 
 .body-text {
     margin-top: 3px;
@@ -354,6 +343,7 @@ img:hover {
 
 .navbar-brand {
     color: #337ab7 !important;
+    font-size:16px;
 }
 
     .navbar-brand:hover {
@@ -437,7 +427,7 @@ img:hover {
 .title-h1 {
     margin-top: 35px;
     margin-bottom: 35px;
-    margin-left: 20px;
+    margin-left: 40px !important;
     color: black;
 }
 
@@ -447,6 +437,8 @@ hr {
     border-top: 1px solid #000000;
     margin: 1em 0;
     padding: 0;
+    margin-left:25px;
+    margin-right:-25px;
 }
 
 .resize-box {
@@ -478,4 +470,98 @@ table tr:nth-child(odd) td {
 .btn-back {
     color: black;
     font-size: 16px;
+}
+
+.responsive-video {
+    position: relative;
+    padding-bottom: 56.25%;
+    padding-top: 60px; overflow: hidden;
+}
+
+.responsive-video iframe,
+.responsive-video object,
+.responsive-video embed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.alert-error {
+  background-image: -webkit-linear-gradient(top, #f10505 0%, #f10505 100%);
+  background-image:      -o-linear-gradient(top, #f10505 0%, #f10505 100%);
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#f10505), to(#f10505));
+  background-image:         linear-gradient(to bottom, #f10505 0%, #f10505 100%);
+  
+  background-repeat: repeat-x;
+  border-color: #f10505;
+}
+
+.image-choose{
+    background-color:transparent !important;
+    color:black;
+    border:none;
+}
+
+.image-choose:hover{
+    background-color:transparent !important;
+    color:black;
+    border:none;
+}
+
+.table {
+margin-left:25px;
+}
+.tr-my-posts-head {
+font-size:17px;
+}
+.tr-my-posts {
+font-size:15px;
+}
+
+.search-user-style{
+font-size:22px;
+}
+
+    .side-bar-nav2 {
+    text-align:center;
+    }
+
+.btn-back {
+margin-left:30px;
+}
+
+.responsive-video {
+    margin-bottom:10px;
+}
+
+.notifications{
+    color: #337ab7 !important;
+    text-align:center;
+    font-size:16px;
+    font-family:'Yu Gothic';
+    font-weight:bold;
+}
+
+.description{
+    font-family:'Yu Gothic';
+    font-weight:bold;
+    margin-left:3px;
+}
+
+.com {
+    display:inline-block;
+}
+
+.com-form {
+ background-color: transparent;
+    border: 1px solid rgba(0, 0, 0, 0.27);
+    color: black;
+    margin-left: 7px;
+    margin-right: 15px;
+    font-size:15px;
+    border-radius:4px;
+    padding:5px;
+    width:600px;
 }

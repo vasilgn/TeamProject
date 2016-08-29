@@ -28,7 +28,7 @@
 
 @using (Html.BeginForm("Index", "Users", FormMethod.Get))
 {
-    <p class="search-user">
+    <p class="search-user-style title-h1">
         Find by name: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string,new { @class="search-field"})
         <input type="submit" value="Search" class="btn-search" />
     </p>

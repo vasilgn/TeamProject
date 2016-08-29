@@ -1,8 +1,6 @@
 ﻿@using TeamProject.Models
+@model CommentViewModel
 
-@model PostsViewModel 
-@foreach (var post in Model.Posts)
-{
 <div class="row">
     <div class="row-home">
 
@@ -13,7 +11,7 @@
                 <div class="media-left">
 
                     @{
-                        var imagePostUrl = Url.Content("~/Content/images/profile/") + post.Username + ".png" + "?time=" + DateTime.Now;
+                        var imagePostUrl = Url.Content("~/Content/images/profile/") + .Username + ".png" + "?time=" + DateTime.Now;
 
                         <img class="media-object photo-profile" src="@imagePostUrl" width="60" height="60" onerror="this.src = '../Content/images/profile/default.png';" />
                     }
@@ -39,4 +37,3 @@
                                     }, new { @class = "glyphicon glyphicon-chevron-down" })
     </div>
 </div>
-}

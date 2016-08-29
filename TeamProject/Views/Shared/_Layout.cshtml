@@ -18,7 +18,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("MySocial", "Index", "Home", new { area = "" }, new { @class = "navbar-brand home-bar-style" })
+                @Html.ActionLink("MySocial", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
 
@@ -45,8 +45,8 @@
                                         <h5 class="h5-dropdownmenu">Create Post</h5>
                                     </button>
                                     <button class="btn btn-link" type="button" id="addressSearch"
-                                            onclick="location.href='@Url.Action("Index", "Posts")'">
-                                        <h5 class="h5-dropdownmenu">View Posts</h5>
+                                            onclick="location.href='@Url.Action("Index", "Post")'">
+                                        <h5 class="h5-dropdownmenu">Show my posts</h5>
                                     </button>
 
                                 </div>

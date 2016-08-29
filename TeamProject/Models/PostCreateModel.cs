@@ -27,7 +27,9 @@ namespace TeamProject.Models
         [DataType(DataType.ImageUrl)]
         public string ImageUrl { get; set; }
         [Display(Name = "Video")]
-        [DataType(DataType.Url)]
+        [DataType(DataType.Url,ErrorMessage ="Invalid url.")]
+        [RegularExpression(@"^(?:https?\:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v\=))([\w-]{10,12})(?:$|\&|\?\#).*", ErrorMessage = "Invalid youtube link.")]
+        
         public string VideoUrl { get; set; }
         [Display(Name = "IsPublic?")]
         public bool IsPublic { get; set; }

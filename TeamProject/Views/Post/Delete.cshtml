@@ -1,0 +1,16 @@
+﻿@model TeamProject.DataModels.Post
+
+<h1 class="title-h1">Are you sure you want to delete "@Model.Title"?</h1>
+<div>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+    <div class="form-actions no-color">
+        <input type="submit" value="Delete" class="btn btn-default btn-delete my-btns hvr-pulse" />
+    </div>
+    @Html.ActionLink("Back to List", "Index", new object { }, new { @class = "btn-back reg-log hvr-underline-from-center" })
+    }
+
+
+</div>
