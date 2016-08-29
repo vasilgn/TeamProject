@@ -438,7 +438,7 @@ img:hover {
 .title-h1 {
     margin-top: 35px;
     margin-bottom: 35px;
-    margin-left: 20px;
+    margin-left: 40px !important;
     color: black;
 }
 
@@ -448,6 +448,8 @@ hr {
     border-top: 1px solid #000000;
     margin: 1em 0;
     padding: 0;
+    margin-left:25px;
+    margin-right:-25px;
 }
 
 .resize-box {
@@ -519,3 +521,16 @@ table tr:nth-child(odd) td {
     border:none;
 }
 
+.table {
+margin-left:25px;
+}
+.tr-my-posts-head {
+font-size:17px;
+}
+.tr-my-posts {
+font-size:15px;
+}
+
+.search-user-style{
+font-size:22px;
+}

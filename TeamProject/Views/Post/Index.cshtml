@@ -2,12 +2,12 @@
 @using Microsoft.AspNet.Identity;
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "My posts";
 }
-<h2>@ViewBag.Title</h2>
+<h1 class="title-h1">@ViewBag.Title</h1>
 
 <table class="table">
-    <tr>
+    <tr class="tr-my-posts-head">
         <th>
             @Html.DisplayNameFor(model => model.Title)
         </th>
@@ -38,7 +38,7 @@
     {
         if (item.UserId == strCurrentUserId)
         {
-        <tr>
+        <tr class="tr-my-posts">
             <td>
                 @Html.DisplayFor(modelItem => item.Title)
             </td>
@@ -65,5 +65,5 @@
         </tr>
         }
     }
-
+    
 </table>
