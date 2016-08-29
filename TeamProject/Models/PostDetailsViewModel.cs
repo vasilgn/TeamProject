@@ -15,6 +15,9 @@ namespace TeamProject.Models
         public string Title { get; set; }
         public string UserId { get; set; }
         public string Body { get; set; }
+        public DateTime PostDateTime { get; set; }
+        public int PostLike { get; set; }
+        public DateTime? Modified { get; set; }
         [DataType(DataType.ImageUrl)]
         public string ImageUrl { get; set; }
         [DataType(DataType.Url)]
@@ -32,6 +35,9 @@ namespace TeamProject.Models
                     IsPublic = e.IsPublic,
                     UserId = e.User.Id,
                     Body = e.Body,
+                    Modified = e.Modified,
+                    PostDateTime = e.PostedOn,
+                    PostLike = e.PostLikeCounter,
                     ImageUrl = e.PostImages.Select(s=>s.ImageUrl).FirstOrDefault(),
                     VideoUrl = e.PostVideos.Select(s => s.VideoUrl).FirstOrDefault(),
                     
