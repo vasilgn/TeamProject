@@ -16,8 +16,15 @@ namespace TeamProject.Controllers
     [Authorize]
     public class HomeController : BaseController
     {
-        public ActionResult Index()
+        public ActionResult Index(string searchString)
         {
+            var search = from s in db.Posts
+                           select s;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                search = search.Where(s => s.Title.Contains(searchString)
+                                       || s.Description.Contains(searchString));
+            }
             var posts = this.db.Posts.OrderBy(p => p.PostedOn)
                     .Select(PostViewModel.ViewModel);
 

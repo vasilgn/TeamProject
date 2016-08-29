@@ -22,7 +22,8 @@ namespace TeamProject.Controllers
         // GET: Post
         public ActionResult Index()
         {
-            return View();
+            var posts = db.Posts.Include(p => p.User);
+            return View(posts);
         }
 
         public ActionResult Create()
