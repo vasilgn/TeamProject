@@ -18,7 +18,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control hvr-grow " } })
                     @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -34,7 +34,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control hvr-grow " } })
                     @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -43,7 +43,7 @@
                 @Html.LabelFor(model => model.ImageUrl, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
 
-                    <div class="btn btn-default">
+                    <div class="btn btn-default image-choose">
                         <input type="file" name="file" id="files" />
                     </div>
 
@@ -54,7 +54,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.VideoUrl, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.VideoUrl, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.EditorFor(model => model.VideoUrl, new { htmlAttributes = new { @class = "form-control hvr-grow " } })
                     @Html.ValidationMessageFor(model => model.VideoUrl, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -71,7 +71,7 @@
 
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Create" class="btn btn-default" />
+                    <input type="submit" value="Create" class="btn btn-default my-btns hvr-pulse" />
                 </div>
             </div>
         </div>

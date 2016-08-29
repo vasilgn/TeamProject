@@ -354,6 +354,7 @@ img:hover {
 
 .navbar-brand {
     color: #337ab7 !important;
+    font-size:16px;
 }
 
     .navbar-brand:hover {
@@ -505,3 +506,16 @@ table tr:nth-child(odd) td {
   background-repeat: repeat-x;
   border-color: #f10505;
 }
+
+.image-choose{
+    background-color:transparent !important;
+    color:black;
+    border:none;
+}
+
+.image-choose:hover{
+    background-color:transparent !important;
+    color:black;
+    border:none;
+}
+
