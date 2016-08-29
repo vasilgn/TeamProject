@@ -34,7 +34,6 @@
         margin: 1em 0;
         padding: 0;
     }
-
     .body-content-post {
         word-wrap: break-word;
     }
@@ -261,10 +260,19 @@
                                                     }
 
     </div>
-<div class="col-md-3 col-lg-2 pull-right" style="border-style: solid; border-color: red">
-    <label>Notifications:</label>
+<div class="col-md-3 col-lg-2 pull-right side-bar-nav side-bar-nav2">
     @Html.Partial("_Alert")
-
+    @{var i = 1;}
+    @foreach (var item in Model.Posts)
+    {
+        @Html.ActionLink(@item.Title, "Post/Details", new { id = item.Id }, new { @class = "home-bar-style edit-delete-details" })
+        <p></p>
+        if (i == 5)
+        {
+            break;
+        }
+        i++;
+    }
 </div>
 </div>
 

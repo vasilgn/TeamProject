@@ -27,6 +27,8 @@ namespace TeamProject.Controllers
             }
             var posts = this.db.Posts.OrderBy(p => p.PostedOn)
                     .Select(PostViewModel.ViewModel);
+            var lastThreePosts = this.db.Posts.OrderBy(p => p.PostedOn).Take(3)
+                    .Select(PostViewModel.ViewModel);
 
             return this.View(new PostsViewModel()
             {
