@@ -4,9 +4,9 @@
     ViewBag.Title = "Create post";
 }
 
-<h2>@ViewBag.Title</h2>
+<h1 class="title-h1">@ViewBag.Title</h1>
 
-<div class="col-md-8">
+<div class="form-group">
     @using (Html.BeginForm("Create", "Post", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
         @Html.AntiForgeryToken()
@@ -79,6 +79,11 @@
 
 </div>
 
-<div class="col-md-3 pull-right">
+@*<div class="col-md-3 pull-right">
     <img src="@ViewBag.FilePath" height="250" width="250" />
-</div>
+</div>*@
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/ajax")
+    @Scripts.Render("~/Scripts/Handlers/fileUpload.js")
+}

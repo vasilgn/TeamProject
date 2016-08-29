@@ -216,14 +216,15 @@ namespace TeamProject.Controllers
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<JsonResult> DeleteConfirmed(int id)
+        public async Task<ActionResult> DeleteConfirmed(int id)
         {
             Post post = await db.Posts.FirstOrDefaultAsync(x => x.PostId == id);
             db.Posts.Remove(post);
             await db.SaveChangesAsync();
             Information("You have successfully delete this post.", true);
 
-            return Json(new {id = id});
+            return RedirectToAction("Index", "Home");
+
         }
 
         public string UploadPhoto(HttpPostedFileBase file)
