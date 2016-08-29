@@ -170,20 +170,22 @@
                                 <li class="new-comment">
 
                                     @using (Ajax.BeginForm("AddComment", "Home", new { id = post.Id },
-                                                    new AjaxOptions
-                                                    {
-                                                        InsertionMode = InsertionMode.InsertAfter,
+            new AjaxOptions
+            {
+                InsertionMode = InsertionMode.InsertAfter,
 
-                                                        UpdateTargetId = "comment-section-" + post.Id,
-                                                        OnSuccess = "addCommentSuccessHandler(data)",
-                                                    }, new
-                                                    {
-                                                        @class = ""
-                                                    }))
+                UpdateTargetId = "comment-section-" + post.Id,
+                OnSuccess = "addCommentSuccessHandler(data)",
+            }, new
+            {
+                @class = ""
+            }))
                                     {
                                         string commentText = "";
-                                        @Html.EditorFor(x => commentText)
-                                        <input type="submit" value="Comment" class="btn btn-create" />
+                                        <div class="com">
+                                            @Html.EditorFor(x => commentText, new { htmlAttributes = new { @class = "com-form hvr-grow" } })
+                                            <input type="submit" value="Comment" class="btn my-btns hvr-pulse" />
+                                        </div>
                                     }
                                 </li>
                                 @*<li><a href="#"><i class="glyphicon glyphicon-share-alt"></i> Share</a></li>*@
@@ -260,6 +262,11 @@
                                                     }
 
     </div>
+    <div class="col-md-3 col-lg-2 pull-right side-bar-nav side-bar-nav2">
+       <div class="notifications">Notifications:</div>
+         @Html.Partial("_Alert") 
+    </div>
+
 <div class="col-md-3 col-lg-2 pull-right side-bar-nav side-bar-nav2">
     @Html.Partial("_Alert") @*REMOVE FROM SIDEBAR*@
     @{var i = 1;}
