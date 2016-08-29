@@ -169,18 +169,17 @@
                                 </li>
 
                                 <li class="new-comment">
-
                                     @using (Ajax.BeginForm("AddComment", "Home", new { id = post.Id },
-new AjaxOptions
-{
-    InsertionMode = InsertionMode.InsertAfter,
+                                                    new AjaxOptions
+                                                    {
+                                                        InsertionMode = InsertionMode.InsertAfter,
 
-    UpdateTargetId = "comment-section-" + post.Id,
-    OnSuccess = "addCommentSuccessHandler(data)",
-}, new
-{
-    @class = ""
-}))
+                                                        UpdateTargetId = "comment-section-" + post.Id,
+                                                        OnSuccess = "addCommentSuccessHandler(data)",
+                                                    }, new
+                                                    {
+                                                        @class = ""
+                                                    }))
                                     {
                                         string commentText = "";
                                         <div class="com">
@@ -280,6 +279,7 @@ new AjaxOptions
             }
             i++;
         }
+
     </div>
 </div>
 
