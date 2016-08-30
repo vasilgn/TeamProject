@@ -6,7 +6,7 @@
 }
 <h1 class="title-h1">@ViewBag.Title</h1>
 
-<table class="table">
+<table class="table my-tables">
     <tr class="tr-my-posts-head">
         <th>
             @Html.DisplayNameFor(model => model.Title)
@@ -39,8 +39,8 @@
         if (item.UserId == strCurrentUserId)
         {
         <tr class="tr-my-posts">
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
+            <td class="post-title-view">
+                @Html.ActionLink(@item.Title, "Details", "Post", new { id = item.PostId }, new { @class = "post-title-search hvr-underline-from-center" })
             </td>
             <td class='post-body-view'>
                 @Html.DisplayFor(modelItem => item.Body)
