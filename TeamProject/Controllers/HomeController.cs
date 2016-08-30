@@ -114,11 +114,13 @@ namespace TeamProject.Controllers
                         {
                             post.PostLikeCounter -= 2;
                             postLike.Like = false;
+                            Success("Disliked.");
                         }
                         else if (!isLike && command.Equals("Like"))
                         {
                             post.PostLikeCounter += 2;
                             postLike.Like = true;
+                            Success("Liked");
                         }
 
                         db.Entry(postLike).State = EntityState.Modified;
@@ -136,11 +138,13 @@ namespace TeamProject.Controllers
                         {
                             post.PostLikeCounter += 1;
                             newPostLike.Like = true;
+                            Information("You like this.");
                         }
                         else if (command.Equals("Dislike"))
                         {
                             post.PostLikeCounter -= 1;
                             newPostLike.Like = false;
+                            Information("You didn't like this.");
                         }
                         db.PostLikes.Add(newPostLike);
                         db.SaveChanges();
@@ -150,9 +154,6 @@ namespace TeamProject.Controllers
 
                 db.Entry(post).State = EntityState.Modified;
                 db.SaveChanges();
-
-
-
 
                 var postLikeCount = db.Posts.Find(id).PostLikeCounter;
                 var postDislikes = db.PostLikes.Where(l => l.PostId == postId).Count(l => l.Like == false);

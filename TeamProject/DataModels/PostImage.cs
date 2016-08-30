@@ -12,9 +12,7 @@ namespace TeamProject.DataModels
 
         [Key]
         public int PostImageId { get; set; }
-        [Required]
         public string ImageUrl { get; set; }
-
         public int PostId { get; set; }
         public virtual Post Post { get; set; }
 

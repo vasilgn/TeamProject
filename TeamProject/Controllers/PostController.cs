@@ -70,7 +70,7 @@ namespace TeamProject.Controllers
                     }
 
                 }
-                if (file.FileName != null)
+                if (file?.FileName != null)
                 {
                     var tryUpload = UploadPhoto(file);
 
@@ -84,9 +84,8 @@ namespace TeamProject.Controllers
                         db.PostImages.Add(postImage);
                         await db.SaveChangesAsync();
                     }
-                    
-                }
 
+                }
             }
 
             ViewBag.UserId = new SelectList(db.Users, "Id", "FullName");
@@ -115,6 +114,7 @@ namespace TeamProject.Controllers
             };
             return View(toView);
         }
+
         // POST: Posts/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -211,49 +211,36 @@ namespace TeamProject.Controllers
             {
                 return HttpNotFound();
             }
-            return View(currentPost);
-        }
 
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteConfirmed(int id)
-        {
-            Post post = await db.Posts.FirstOrDefaultAsync(x => x.PostId == id);
-            db.Posts.Remove(post);
-            await db.SaveChangesAsync();
-            Information("You have successfully delete this post.", true);
-
-            return RedirectToAction("Index", "Home");
-
-        }
-
-        public string UploadPhoto(HttpPostedFileBase file)
-        {
-            if (file != null && file.ContentLength > 0)
+            var json = new
             {
+                postId = currentPost.PostId,
 
-                var fileExtension = Path.GetExtension(file.FileName);
-                var fnm = Guid.NewGuid() + ".png";
+            };
 
-
-                if (fileExtension.ToLower().EndsWith(".png") || fileExtension.ToLower().EndsWith(".jpg") ||
-                    fileExtension.ToLower().EndsWith(".gif"))
-                {
-                    var filePath = HostingEnvironment.MapPath("~/Content/images/posts/") + fnm;
-                    var directory = new DirectoryInfo(HostingEnvironment.MapPath("~/Content/images/posts/"));
-                    if (directory.Exists == false)
-                    {
-                        directory.Create();
-                    }
-                    ViewBag.FilePath = filePath.ToString();
-                    file.SaveAs(filePath);
-                    return filePath;
-                }
-            }
-            return "Error";
-
+            return Json(json, "application/json", JsonRequestBehavior.AllowGet);
         }
 
+        [HttpPost]
+        public async Task<JsonResult> DeleteComfirmed(string id)
+        {
+            try
+            {
+                var postId = int.Parse(id);
+                Post post = await db.Posts.FirstOrDefaultAsync(x => x.PostId == postId);
+                db.Posts.Remove(post);
+                await db.SaveChangesAsync();
+                Information("You have successfully delete this post.", true);
+                return Json("Success", "Home");
+            }
+            catch (Exception e)
+            {
+                return Json("Error",e.ToString() );
+
+            }
+            
+
+        }
 
         protected override void Dispose(bool disposing)
         {

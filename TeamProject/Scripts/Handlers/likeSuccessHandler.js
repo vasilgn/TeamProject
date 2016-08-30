@@ -13,18 +13,6 @@ function commentLikeSuccessHandler(data) {
     $('#comment-dislikes-' + data.commentId).text(data.commentDislikeCount);
     $('#comment-likes-' + data.commentId).text(data.commentLikeCount);
 }
+function updateContent(){
 
-function addCommentSuccessHandler(data) {
-    console.log(data.model);
-    
-    /*console.log(obj);
-    console.log(data.data['commentId']);
-
-    $('#comment-section-' + data.postId)
-        .appendTo('<div>')
-        .addClass("post-footer-comment-wrapper")
-        .appendTo('<div>')
-        .addClass("comment-" + data.data)
-        .appendTo('<div>')
-        .addClass("media-left");*/
 }

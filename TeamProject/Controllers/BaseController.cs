@@ -1,6 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Web;
+using System.Web.Hosting;
 using Microsoft.AspNet.Identity;
 using TeamProject.DataModels;
 using TeamProject.Helpers;
@@ -14,8 +18,37 @@ namespace TeamProject.Controllers
     {
         protected BlogDbContextEntities db = new BlogDbContextEntities();
 
+
+        public string UploadPhoto(HttpPostedFileBase file)
+        {
+            if (file != null && file.ContentLength > 0)
+            {
+
+                var fileExtension = Path.GetExtension(file.FileName);
+                var fnm = Guid.NewGuid() + ".png";
+
+
+                if (fileExtension.ToLower().EndsWith(".png") || fileExtension.ToLower().EndsWith(".jpg") ||
+                    fileExtension.ToLower().EndsWith(".gif"))
+                {
+                    var filePath = HostingEnvironment.MapPath("~/Content/images/posts/") + fnm;
+                    var directory = new DirectoryInfo(HostingEnvironment.MapPath("~/Content/images/posts/"));
+                    if (directory.Exists == false)
+                    {
+                        directory.Create();
+                    }
+                    ViewBag.FilePath = filePath.ToString();
+                    file.SaveAs(filePath);
+                    return filePath;
+                }
+            }
+            return "Error";
+
+        }
+
         public bool IsAdmin()
         {
+            
             var currentUserId = this.User.Identity.GetUserId();
             var isAdmin = (currentUserId != null && this.User.IsInRole("Administrator"));
             return isAdmin;

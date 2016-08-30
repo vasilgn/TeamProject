@@ -1,17 +1,14 @@
 ﻿@model TeamProject.Models.PostDetailsViewModel
-    
+
 @if (ViewBag.CanEdit)
 {
+    @Html.AntiForgeryToken()
     @Html.ActionLink("Edit", "Edit", "Post", new { id = Model.Id }, new { @class = "btn btn-xs btn-info" })
     <span></span>
-    @Html.ActionLink("Delete", "Delete", "Post", new { id = Model.Id }, new { @class = "btn btn-xs btn-danger glyphicon glyphicon-trash",onclick = "postDeleteHandler()" })
-}
-<script>
-    function postDeleteHandler() {
-        var deleteConfirmed = confirm("Are you sure?");
-        alert(deleteConfirmed);
-        $.ajax()
+    @Html.ActionLink("Delete", "Delete", "Post", new { id = Model.Id },
+    new
+    {   @class = "btn btn-xs btn-danger",
+        onclick = string.Format("postDeleteHandler('{0}')", Model.Id),
+    })
 
-        event.preventDefault();
-    }
-</script>
+}

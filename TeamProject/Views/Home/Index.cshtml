@@ -54,7 +54,7 @@
 
         @foreach (var post in Model.Posts)
         {
-            <div class="panel panel-default">
+            <div class="panel panel-default" id="full-post-@post.Id" style="visibility:visible">
 
                 <div class="panel-body">
 
@@ -170,16 +170,16 @@
 
                                 <li class="new-comment">
                                     @using (Ajax.BeginForm("AddComment", "Home", new { id = post.Id },
-                                                    new AjaxOptions
-                                                    {
-                                                        InsertionMode = InsertionMode.InsertAfter,
+                                new AjaxOptions
+                                {
+                                    InsertionMode = InsertionMode.InsertAfter,
 
-                                                        UpdateTargetId = "comment-section-" + post.Id,
-                                                        OnSuccess = "addCommentSuccessHandler(data)",
-                                                    }, new
-                                                    {
-                                                        @class = ""
-                                                    }))
+                                    UpdateTargetId = "comment-section-" + post.Id,
+                                    OnSuccess = "addCommentSuccessHandler(data)",
+                                }, new
+                                {
+                                    @class = ""
+                                }))
                                     {
                                         string commentText = "";
                                         <div class="com">
@@ -263,7 +263,7 @@
 
     </div>
     <div class="col-md-3 col-lg-2 pull-right side-bar-nav side-bar-nav2">
-        <div class="notifications">Notifications:</div>
+        <div class="notifications" id="notifications">Notifications:</div>
         @Html.Partial("_Alert")
     </div>
 
@@ -286,4 +286,6 @@
 @section scripts {
     @Scripts.Render("~/bundles/ajax")
     @Scripts.Render("~/Scripts/Handlers/likeSuccessHandler.js")
+    @Scripts.Render("~/Scripts/Handlers/postDeleteHandler.js")
 }
+    
