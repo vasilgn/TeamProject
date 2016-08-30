@@ -109,7 +109,7 @@ textarea {
     position: absolute;
     float: right;
     top: 0;
-    left: 105px;
+    left: 132px;
 }
 
 .right {
@@ -436,8 +436,8 @@ hr {
     border-top: 1px solid #000000;
     margin: 1em 0;
     padding: 0;
-    margin-left:25px;
-    margin-right:-25px;
+    margin-left:60px;
+    margin-right:-60px;
 }
 
 .resize-box {
@@ -612,4 +612,32 @@ width:150px !important;
 }
 .my-tables{
     width:1195px !important;
+}
+
+.search-menu{
+    font-size:18px;
+    margin-left:-3px;
+}
+.search-menu:hover{
+        background-color: #222222 !important;
+        font-size: 18px;
+        color: lightblue;
+}
+
+.table-search-posts{
+    display:block;
+    margin-left:60px;
+}
+
+.my-group{
+    margin-top:73px;
+}
+
+.my-group-search{
+    margin-top:-50px;
+    margin-left: 60px;
+}
+
+.responsive-image {
+    padding-bottom: 2%;
 }

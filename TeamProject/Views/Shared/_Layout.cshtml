@@ -35,7 +35,7 @@
                 <li>
                     <div class="btn-group">
                         <button class="btn btn-link dropdown-toggle hvr-icon-wobble-horizontal" data-toggle="dropdown" href="#" style="font-size:130%;">
-                            Posts
+                            My posts
                         </button>
 
                         <ul class="dropdown-menu rightMenu">
@@ -55,6 +55,10 @@
                         </ul>
                     </div>
                 </li>
+                <li>
+                <a class="home-bar-style search-menu hvr-bob" href= "@Url.Action("Search", "Post")">Posts <span  class="glyphicon glyphicon-search"></span></a>
+                </li>
+
                 <li>
                     @Html.ActionLink("Users", "Index", "Users", new object { }, new { @class = "btn-user hvr-bob" })
                 </li>

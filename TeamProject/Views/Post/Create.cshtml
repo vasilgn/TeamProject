@@ -7,7 +7,7 @@
 
 <h1 class="title-h1">@ViewBag.Title</h1>
 
-<div class="form-group">
+<div class="form-group my-group">
     @using (Html.BeginForm("Create", "Post", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
         @Html.AntiForgeryToken()
