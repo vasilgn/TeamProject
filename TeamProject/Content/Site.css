@@ -651,3 +651,13 @@ width:150px !important;
     margin-top:70px;
     width:1137px;
 }
+
+table.table-td td {
+    width: 1000px;
+    font-size:18px;
+}
+
+table.table-td th {
+    
+    font-size:20px;
+}
