@@ -1,0 +1,47 @@
+﻿@model IEnumerable<TeamProject.DataModels.Post>
+
+@{
+    ViewBag.Title = "Search";
+}
+
+@using (Html.BeginForm("Search", "Post", FormMethod.Get))
+
+{
+        <p class="search-user-style title-h1">
+            Find by title/description: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @class = "search-margin search-field hvr-grow" })
+            <input type="submit" value="Search" class="btn-search my-btns hvr-pulse" />
+        </p>
+    }
+<table class="table">
+    <tr>
+        <th>
+            Title
+        </th>
+        <th>
+            Description
+        </th>
+        <th>
+            Body
+        </th>
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.ActionLink(@item.Title, "Details", "Post", new { id = item.PostId }, new { @class = "post-title-search hvr-underline-from-center" })
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Body)
+            </td>
+       </tr>
+    }
+
+</table>
+<p>
+    @Html.ActionLink("Back to Home Page", "Index","Home", new { }, new {@class = "reg-log hvr-underline-from-center position" })
+</p>

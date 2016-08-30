@@ -245,6 +245,32 @@ namespace TeamProject.Controllers
 
 
         }
+        public async Task<ActionResult> Details(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Post post = await db.Posts.FirstOrDefaultAsync(x => x.PostId == id);
+            if (post == null)
+            {
+                return HttpNotFound();
+            }
+            return View(post);
+        }
+
+        public async Task<ActionResult> Search(string searchString)
+        {
+            var search = from s in db.Posts
+                         select s;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                search = search.Where(s => s.Title.Contains(searchString)
+                                    || s.Description.Contains(searchString));
+            }
+
+            return View(search);
+        }
 
         protected override void Dispose(bool disposing)
         {

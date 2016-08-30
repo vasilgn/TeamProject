@@ -457,6 +457,13 @@ table tr:nth-child(odd) td {
     font-family: 'Yu Gothic UI';
     font-weight: bold;
 }
+.edit-delete-details:hover {
+    font-size: 16px;
+    font-family: 'Yu Gothic UI';
+    font-weight: bold;
+    color:lightblue;
+    text-decoration:none;
+}
 
 .delete {
     color: black;
@@ -568,4 +575,41 @@ margin-left:30px;
 .post-image {
     max-width:60%;
     max-height:60%;
+}
+
+.position {
+    margin-left:28px;
+}
+
+.post-title-search{
+    color:black;
+    font-size: 15px;
+    font-family: 'Yu Gothic UI';
+    font-weight: bold;
+}
+
+.post-title-search:hover{
+    color:lightblue;
+    text-decoration:none;
+}
+
+.search-margin {
+margin-left:10px;
+margin-right:20px;
+font-size:16px;
+padding:5px;
+width:600px;
+
+
+}
+
+.post-body-view{
+    word-break:break-word;
+}
+.post-title-view{
+width:150px !important;
+
+}
+.my-tables{
+    width:1195px !important;
 }

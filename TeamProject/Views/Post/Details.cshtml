@@ -1,0 +1,76 @@
+﻿@model TeamProject.DataModels.Post
+
+@{
+    ViewBag.Title = "Details about \""+@Model.Title+"\"";
+}
+
+
+<div>
+    <h1 class="title-h1">"@Model.Title"</h1>
+    <hr />
+    <dl class="dl-horizontal">
+        @*<dt>
+            @Html.DisplayNameFor(model => model.)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User.FullName)
+        </dd>*@
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Body)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Body)
+        </dd>
+        @if (Model.Description != null)
+        {
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+        }
+        <dt>
+            @Html.DisplayNameFor(model => model.PostedOn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PostedOn)
+        </dd>
+        @if (Model.Modified != null) { 
+        <dt>
+            @Html.DisplayNameFor(model => model.Modified)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Modified)
+        </dd>
+        }
+        <dt>
+            @Html.DisplayNameFor(model => model.PostLikeCounter)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PostLikeCounter)
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Back to Home Page", "Index","Home", new { }, new {@class = "reg-log hvr-underline-from-center position" })
+    @Html.ActionLink("Search posts", "Search", "Post", new { @class = "home-bar-style edit-delete-details" })
+
+
+</p>
