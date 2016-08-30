@@ -72,24 +72,15 @@ namespace TeamProject.Controllers
                 }
                 if (file?.FileName != null)
                 {
-                    var tryUpload = UploadPhoto(file);
-
-                    if (tryUpload != "Error")
-                    {
-                        var startInx = tryUpload.LastIndexOf('\\');
-
-                        var lenght = tryUpload.Length-1;
-
-                        string shortCut = tryUpload.Substring(startInx+1, lenght - startInx);
+                    
                         var postImage = new PostImage
                         {
-                            ImageUrl = shortCut,
+                            ImageUrl = UploadPhoto(file),
                             PostId = post.PostId
                         };
                         db.PostImages.Add(postImage);
                         await db.SaveChangesAsync();
-                    }
-
+                    Success("Successfully upload picture.", true);
                 }
             }
 
@@ -123,7 +114,7 @@ namespace TeamProject.Controllers
         // POST: Posts/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit(int id, PostCreateModel model)
+        public async Task<ActionResult> Edit(int id, PostCreateModel model, HttpPostedFileBase file)
         {
             if (ModelState.IsValid)
             {
@@ -164,36 +155,44 @@ namespace TeamProject.Controllers
                         await db.SaveChangesAsync();
                         Success("Successfully add video to post.");
                     }
-                    else
+                    /*else if (model.VideoUrl == null && currentVideo == null)
                     {
-                        db.Entry(currentVideo).State = EntityState.Deleted;
+                        var postVideo = db.PostVideos.Select(p => p.PostId == id);
+                        db.Entry(postVideo).State = EntityState.Deleted;
                         await db.SaveChangesAsync();
                         Information("Video to this post was deleted.", true);
 
 
-                    }
+                    }*/
                     //Add Edit Image
-                    if (model.ImageUrl != null && currentImage != null)
+                    
+                    if (file?.FileName != null && currentImage != null)
                     {
-                        currentImage.ImageUrl = model.ImageUrl;
-                        currentImage.PostId = id;
-                        db.Entry(currentImage).State = EntityState.Modified;
-                        await db.SaveChangesAsync();
+                        if (file.FileName != currentImage.ImageUrl)
+                        {
+
+                            currentImage.ImageUrl = UploadPhoto(file);
+                            currentImage.PostId = id;
+                            db.Entry(currentImage).State = EntityState.Modified;
+                            await db.SaveChangesAsync();
+                        }
+                        
                     }
-                    else if (model.ImageUrl != null && currentImage == null)
+                    else if (file?.FileName != null)
                     {
                         PostImage postImage = new PostImage()
                         {
-                            ImageUrl = model.VideoUrl,
+                            ImageUrl = UploadPhoto(file),
                             PostId = id,
                         };
                         db.PostImages.Add(postImage);
                         await db.SaveChangesAsync();
                     }
-                    else
+                    else if(currentImage != null && file?.FileName == null)
                     {
                         db.Entry(currentImage).State = EntityState.Deleted;
                         await db.SaveChangesAsync();
+                        Information("Remove picture from post.");
                     }
                 }
 
@@ -240,10 +239,10 @@ namespace TeamProject.Controllers
             }
             catch (Exception e)
             {
-                return Json("Error",e.ToString());
+                return Json("Error", e.ToString());
 
             }
-            
+
 
         }
 

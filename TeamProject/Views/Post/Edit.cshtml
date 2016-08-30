@@ -3,11 +3,9 @@
 
 <h2>@ViewBag.Title</h2>
 
-@using (Html.BeginForm("Edit", "Post", FormMethod.Post, new { enctype = "multipart/form-data" }))
-
+@using (Html.BeginForm("Edit", "Post", FormMethod.Post, new { enctype = "multipart/form-data" } ))
 {
     @Html.AntiForgeryToken()
-    
 
     <div class="form-horizontal">
         <h1 class="title-h1">Edit "@Model.Title" </h1>
@@ -40,11 +38,12 @@
         <div class="form-group">
             @Html.LabelFor(model => model.ImageUrl, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-
-                <div class="btn btn-default image-choose">
-                    <input type="file" name="file" id="files" />
-                </div>
-
+                
+                    
+                        <img hidden src="@Url.Content("~/Content/images/posts/" + Model.ImageUrl)" class="img-thumbnail post-image" id="picture" />
+                        
+                    <input hidden type="file" name="file" id="files" class="btn btn-group  image-choose img-thumbnail post-image" />
+                
                 @Html.ValidationMessageFor(model => model.ImageUrl, "", new { @class = "text-danger" })
             </div>
         </div>

@@ -21,6 +21,7 @@ namespace TeamProject.Controllers
 
         public string UploadPhoto(HttpPostedFileBase file)
         {
+            
             if (file != null && file.ContentLength > 0)
             {
 
@@ -39,7 +40,12 @@ namespace TeamProject.Controllers
                     }
                     ViewBag.FilePath = filePath.ToString();
                     file.SaveAs(filePath);
-                    return filePath;
+                    var startInx = filePath.LastIndexOf('\\');
+
+                    var lenght = filePath.Length - 1;
+
+                    string shortCut = filePath.Substring(startInx + 1, lenght - startInx);
+                    return shortCut;
                 }
             }
             return "Error";

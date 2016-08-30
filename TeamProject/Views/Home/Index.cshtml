@@ -175,7 +175,7 @@
                                     InsertionMode = InsertionMode.InsertAfter,
 
                                     UpdateTargetId = "comment-section-" + post.Id,
-                                    OnSuccess = "addCommentSuccessHandler(data)",
+                                    OnSuccess = "addComment1(data)",
                                 }, new
                                 {
                                     @class = ""
@@ -193,9 +193,9 @@
 
                         </div>
                         <hr />
+                        
 
                         <section id="comment-section-@post.Id">
-
                             <div class="post-footer-comment-wrapper">
 
                                 @foreach (var comment in post.Comments)
@@ -286,6 +286,7 @@
 @section scripts {
     @Scripts.Render("~/bundles/ajax")
     @Scripts.Render("~/Scripts/Handlers/likeSuccessHandler.js")
-    @Scripts.Render("~/Scripts/Handlers/postDeleteHandler.js")
+    @Scripts.Render("~/Scripts/Handlers/likeSuccessHandler.js")
+    @Scripts.Render("~/Scripts/Handlers/addComment.js")
 }
     

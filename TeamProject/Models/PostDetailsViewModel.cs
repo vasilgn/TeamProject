@@ -40,7 +40,6 @@ namespace TeamProject.Models
                     PostLike = e.PostLikeCounter,
                     ImageUrl = e.PostImages.Select(s=>s.ImageUrl).FirstOrDefault(),
                     VideoUrl = e.PostVideos.Select(s => s.VideoUrl).FirstOrDefault(),
-                    
                 };
             }
         }

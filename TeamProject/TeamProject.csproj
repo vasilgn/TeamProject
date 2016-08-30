@@ -226,6 +226,7 @@
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\Handlers\addComment.js" />
     <Content Include="Scripts\Handlers\postDeleteHandler.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -237,6 +238,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\mustache.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
@@ -283,7 +285,7 @@
     <Content Include="Views\Shared\_PostDetails.cshtml" />
     <Content Include="Views\Shared\_PostOptionsMenu.cshtml" />
     <Content Include="Views\Home\_PostDetailsView.cshtml" />
-    <Content Include="Views\Home\_AddComment.cshtml" />
+    <Content Include="Views\Home\AddComment.cshtml" />
     <Content Include="Views\Shared\Templates\PostViewHome.cshtml" />
     <Content Include="Views\Shared\Templates\_PostViewHead.cshtml" />
     <Content Include="Views\Shared\Templates\_PostViewBody.cshtml" />
