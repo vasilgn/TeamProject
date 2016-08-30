@@ -124,7 +124,7 @@ namespace TeamProject.Controllers
 
 
         [HttpPost]
-        public async Task<ActionResult> UploadPhoto(HttpPostedFileBase file)
+        public new async Task<ActionResult> UploadPhoto(HttpPostedFileBase file)
         {
             if (file != null && file.ContentLength > 0)
             {

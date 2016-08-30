@@ -76,9 +76,14 @@ namespace TeamProject.Controllers
 
                     if (tryUpload != "Error")
                     {
+                        var startInx = tryUpload.LastIndexOf('\\');
+
+                        var lenght = tryUpload.Length-1;
+
+                        string shortCut = tryUpload.Substring(startInx+1, lenght - startInx);
                         var postImage = new PostImage
                         {
-                            ImageUrl = tryUpload,
+                            ImageUrl = shortCut,
                             PostId = post.PostId
                         };
                         db.PostImages.Add(postImage);
@@ -235,7 +240,7 @@ namespace TeamProject.Controllers
             }
             catch (Exception e)
             {
-                return Json("Error",e.ToString() );
+                return Json("Error",e.ToString());
 
             }
             

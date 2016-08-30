@@ -109,13 +109,7 @@
                             </div>
 
                             <div class="col-md-2 notification-@post.Id">
-                                @*@Ajax.ActionLink(" ", "PostById", "Home",
-                                    new {id = post.Id},
-                                    new AjaxOptions
-                                    {
-                                        InsertionMode = InsertionMode.Replace,
-                                        UpdateTargetId = "post-details-" + post.Id
-                                    }, new {@class = "glyphicon glyphicon-chevron-down"})*@
+                                
                                 Notification
                             </div>
                         </div>
@@ -137,6 +131,12 @@
 
                                 <div class="responsive-video">
                                     <iframe src="@post.VideoUrl" frameborder="0" allowfullscreen></iframe>
+                                </div>
+                            }
+                            @if (post.ImageUrl != null)
+                            {
+                                <div>
+                                    <img src="@Url.Content("~/Content/images/posts/"+ post.ImageUrl)" class="post-image"/>
                                 </div>
                             }
 
