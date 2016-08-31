@@ -1,10 +1,10 @@
 ﻿@using Microsoft.AspNet.Identity
 @model TeamProject.Models.IndexViewModel
 @{
-    ViewBag.Title = "Manage";
+    ViewBag.Title = "My Profile";
 }
 
-<h2>@ViewBag.Title.</h2>
+@*<h2>@ViewBag.Title.</h2>
 
 <p class="text-success">@ViewBag.StatusMessage</p>
 <p>@ViewBag.FilePath</p>
@@ -54,14 +54,14 @@
                 }
                 ]
             </dd>
-        *@
+        
         <dt>Two-Factor Authentication:</dt>
         <dd>
             <p>
                 There are no two-factor authentication providers configured. See <a href="http://go.microsoft.com/fwlink/?LinkId=403804">this article</a>
                 for details on setting up this ASP.NET application to support two-factor authentication.
             </p>
-            @*@if (Model.TwoFactor)
+            @if (Model.TwoFactor)
                 {
                     using (Html.BeginForm("DisableTwoFactorAuthentication", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
                     {
@@ -80,7 +80,7 @@
                         <input type="submit" value="Enable" class="btn btn-link" />
                         </text>
                     }
-                }*@
+                }
         </dd>
         <dt>Upload Profile Picture:</dt>
         <dd>
@@ -106,45 +106,67 @@
         </dd>
     </dl>
     
-</div>
+</div>*@
 
 
 <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 
-<div class="container-profile" style="margin-top: 20px; margin-bottom: 20px;">
+<div class="container-profile">
     <div class="row-panel">
         <div class="col-md-4 bg_blur ">
             @*<a href="#" class="follow_btn hidden-xs">Follow</a>*@
         </div>
         @{
             var imageUrlProf = Url.Content("~/Content/images/profile/") + User.Identity.GetUserName() + ".png" + "?time=" + DateTime.Now.ToString();
-        }
+        }   
+        
+       
+            <div class="col-md-8 col-xs-12 image-profile">
+                <img src="@imageUrlProf" class="img-thumbnail picture hidden-xs post-image" />
+                <div class="header header-profile">
+                    <h1>@User.Identity.Name</h1>
+                    <h1>@Model.FullName</h1>
+                    <div>
+                        @using (Html.BeginForm("UploadPhoto", "Manage", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                        {
+                            <div class="btn btn-upload-move">
+                                <input class="my-btns" type="file" name="file" id="files" onchange="this.form.submit()" />
+                            </div>
+                        }
+                    </div>
+                    <dl class="dl-horizontal password-move">
+                        <dd>
+                            
+                            @if (Model.HasPassword)
+                            {
+                                @Html.ActionLink("Change your password", "ChangePassword", new object { },new { @class = "my-btns password" })
+                            }
+                            else
+                            {
+                                @Html.ActionLink("Create", "SetPassword")
+                            }
+                            
+                        </dd>
+                    </dl>
+                            </div>
 
-        <div class="col-md-8  col-xs-12">
-            <img src="@imageUrlProf" class="img-thumbnail picture hidden-xs post-image" />
-            <div class="header">
-                <h1>@User.Identity.Name</h1>
-                <h1>@Model.FullName</h1>
-                <h4></h4>
+                    </div>
+                </div>
+                @using (Ajax.BeginForm("PostById", "Home", new AjaxOptions
+                {
+                    InsertionMode = InsertionMode.Replace,
+                    UpdateTargetId = ""
+                }))
+                {
+                    <div class="row nav user-activity">
+                        <div class="col-md-4"></div>
+                        <div class="col-md-8 col-xs-12 user-activity" style="margin: 0px;padding: 0px;">
+                            <div class="col-md-4 col-xs-4 well"><i class="fa fa-heart-o fa-lg"></i>POSTS </div>
+                            <div class="col-md-4 col-xs-4 well"><i class="fa fa-weixin fa-lg"></i>COMMENTS</div>
+                            <div class="col-md-4 col-xs-4 well"><i class="fa fa-thumbs-o-up fa-lg"></i> LIKES</div>
+                        </div>
+                    </div>
+                }
 
             </div>
-        </div>
-    </div>
-    @using (Ajax.BeginForm("PostById", "Home", new AjaxOptions
-    {
-        InsertionMode = InsertionMode.Replace,
-        UpdateTargetId = ""
-    }))
-    {
-        <div class="row nav user-activity">
-            <div class="col-md-4"></div>
-            <div class="col-md-8 col-xs-12" style="margin: 0px;padding: 0px;">
-                <div class="col-md-4 col-xs-4 well"><i class="fa fa-heart-o fa-lg"></i>POSTS </div>
-                <div class="col-md-4 col-xs-4 well"><i class="fa fa-weixin fa-lg"></i>COMMENTS</div>
-                <div class="col-md-4 col-xs-4 well"><i class="fa fa-thumbs-o-up fa-lg"></i> LIKES</div>
-            </div>
-        </div>
-    }
-
-</div>
