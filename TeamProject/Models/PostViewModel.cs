@@ -29,6 +29,8 @@ namespace TeamProject.Models
 
         [DataType(DataType.Url)]
         public string VideoUrl { get; set; }
+
+        public bool IsPublic { get; set; }
         public IEnumerable<CommentViewModel> Comments { get; set; }
         public static Expression<Func<Post, PostViewModel>> ViewModel
         {
@@ -49,6 +51,7 @@ namespace TeamProject.Models
                     UserId = p.UserId,
                     Username = p.User.UserName,
                     Author = p.User.FullName,
+                    IsPublic =p.IsPublic,
                     VideoUrl = p.PostVideos.Select(a=>a.VideoUrl).FirstOrDefault(),
                     Comments = p.Comments.AsQueryable().Select(CommentViewModel.ViewModel)
 

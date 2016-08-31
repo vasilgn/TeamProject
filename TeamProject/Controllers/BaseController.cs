@@ -12,8 +12,7 @@ using TeamProject.Helpers;
 namespace TeamProject.Controllers
 {
     using System.Web.Mvc;
-
-    [ValidateInput(false)]
+    
     public class BaseController : Controller
     {
         protected BlogDbContextEntities db = new BlogDbContextEntities();
@@ -99,7 +98,6 @@ namespace TeamProject.Controllers
 
             TempData[Alert.TempDataKey] = alerts;
         }
-
 
 
         #region HelpMessages

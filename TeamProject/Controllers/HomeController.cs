@@ -4,7 +4,9 @@ using System.Linq;
 using System.Web;
 using TeamProject.DataModels;
 using System.Data.Entity;
+using System.Data.Entity.Validation;
 using System.Net;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
@@ -18,15 +20,16 @@ namespace TeamProject.Controllers
     {
         public ActionResult Index()
         {
-          
+
             var posts = this.db.Posts.OrderBy(p => p.PostedOn)
-                    .Select(PostViewModel.ViewModel);
-            
+                .Select(PostViewModel.ViewModel);
+
             return this.View(new PostsViewModel()
             {
                 Posts = posts
             });
         }
+
         public ActionResult PostById(int id)
         {
             var currentUserId = this.User.Identity.GetUserId();
@@ -47,9 +50,9 @@ namespace TeamProject.Controllers
 
             List<SelectListItem> items = new List<SelectListItem>();
 
-            items.Add(new SelectListItem { Text = "Edit", Value = "0" });
+            items.Add(new SelectListItem {Text = "Edit", Value = "0"});
 
-            items.Add(new SelectListItem { Text = "Delete", Value = "1" });
+            items.Add(new SelectListItem {Text = "Delete", Value = "1"});
 
 
             ViewBag.CanEdit = items;
@@ -60,12 +63,14 @@ namespace TeamProject.Controllers
         //
         //POST Add comment
         [HttpPost]
-        public async Task<ActionResult> AddComment(CommentViewModel model, int id, string commentText)
+        public ActionResult AddComment(CommentViewModel model, int id, string commentText)
         {
+            var userId = this.User.Identity.GetUserId();
+            var claim = ((ClaimsIdentity) User.Identity).FindFirst("FullName");
             if (model != null && ModelState.IsValid)
             {
 
-                var userId = this.User.Identity.GetUserId();
+
                 var newComment = new Comment()
                 {
                     PostId = id,
@@ -75,14 +80,42 @@ namespace TeamProject.Controllers
                     CommentLikeCounter = 0,
 
                 };
-                this.db.Comments.Add(newComment);
-                await this.db.SaveChangesAsync();
-                ModelState.Clear();
-                var thisComments = db.Comments.Where(c=>c.PostId == id).AsEnumerable().LastOrDefault();
+                try
+                {
+                    this.db.Comments.Add(newComment);
+                    this.db.SaveChanges();
+                    /*var thisComments = db.Comments.Where(c=>c.PostId== id).FirstOrDefault(c => c.CommentId== newComment.CommentId);*/
+                }
+                catch (DbEntityValidationException e)
+                {
+
+                    return Json(e);
+                }
                 
-                return Json(new { model = thisComments });
+
+                var currentComment = db.Comments.Local[0].CommentId;
+                var fullName = (claim != null) ? claim.Value : "Cant find Full name";
+
+
+                var postId = newComment.PostId;
+                    var text = newComment.Text;
+                    var commentId = currentComment;
+                
+                    var commentDate = (newComment.CommentDate).ToString();
+
+                    var data = new
+                    {
+                        PostId = postId,
+                        FullName = fullName,
+                        Text = text,
+                        CommentId = commentId,
+                        CommentDate = commentDate,
+                        UserName = this.User.Identity.GetUserName(),
+                    };
+
+                    return Json(new { model = data , JsonRequestBehavior.AllowGet});
             }
-            return View("Index");
+            return RedirectToAction("Index");
         }
 
         //

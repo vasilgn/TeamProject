@@ -661,7 +661,8 @@ table.table-td th {
     
     font-size:20px;
 }
-p{
+
+p {
     font-family: "Times New Roman", Georgia, Serif;
     font-size: 1.5em;
 }
@@ -669,3 +670,43 @@ div.comment-form {
     font-family: "Times New Roman", Georgia, Serif;
     font-size: 1.5em;
 }
+
+
+.container-profile{
+    margin-left: 70px;
+    margin-top:10px;
+    padding-left:50px;
+    display:block;
+        color:black;
+
+}
+
+.image-profile{
+    margin-top:-50px;
+    margin-left:-235px;
+}
+
+.user-activity{
+    bottom:60px ;
+}
+
+
+
+.password-move{
+    margin-left:-70px;
+margin-top:4px;
+    color:black;
+
+}
+
+.password{
+    margin-left:-96px;
+}
+.password:hover{
+    text-decoration:none;
+}
+
+.header-profile{
+    color:black;
+}
+
