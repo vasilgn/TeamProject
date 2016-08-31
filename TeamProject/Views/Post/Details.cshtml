@@ -7,8 +7,8 @@
 
 <div>
     <h1 class="title-h1">"@Model.Title"</h1>
-    <hr />
-    <dl class="dl-horizontal">
+    <hr class="my-hr"/>
+    <dl class="dl-horizontal my-group-details">
         @*<dt>
             @Html.DisplayNameFor(model => model.)
         </dt>
@@ -70,7 +70,4 @@
 </div>
 <p>
     @Html.ActionLink("Back to Home Page", "Index","Home", new { }, new {@class = "reg-log hvr-underline-from-center position" })
-    @Html.ActionLink("Search posts", "Search", "Post", new { @class = "home-bar-style edit-delete-details" })
-
-
 </p>

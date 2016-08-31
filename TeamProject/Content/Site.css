@@ -109,7 +109,7 @@ textarea {
     position: absolute;
     float: right;
     top: 0;
-    left: 105px;
+    left: 132px;
 }
 
 .right {
@@ -436,8 +436,8 @@ hr {
     border-top: 1px solid #000000;
     margin: 1em 0;
     padding: 0;
-    margin-left:25px;
-    margin-right:-25px;
+    margin-left:60px;
+    margin-right:-60px;
 }
 
 .resize-box {
@@ -612,4 +612,90 @@ width:150px !important;
 }
 .my-tables{
     width:1195px !important;
+}
+
+.search-menu{
+    font-size:18px;
+    margin-left:-3px;
+}
+.search-menu:hover{
+        background-color: #222222 !important;
+        font-size: 18px;
+        color: lightblue;
+}
+
+.table-search-posts{
+    display:block;
+    margin-left:60px;
+}
+
+.my-group{
+    margin-top:73px;
+}
+
+.my-group-search{
+    margin-top:-50px;
+    margin-left: 60px;
+}
+
+.responsive-image {
+    padding-bottom: 2%;
+}
+
+.my-group-details{
+        margin-top:20px;
+
+}
+
+.my-hr{
+    margin-top:70px;
+    width:1137px;
+}
+
+table.table-td td {
+    width: 1000px;
+    font-size:18px;
+}
+
+table.table-td th {
+    
+    font-size:20px;
+}
+
+.container-profile{
+    margin-left: 70px;
+    margin-top:10px;
+    padding-left:50px;
+    display:block;
+        color:black;
+
+}
+
+.image-profile{
+    margin-top:-50px;
+    margin-left:-235px;
+}
+
+.user-activity{
+    bottom:60px ;
+}
+
+
+
+.password-move{
+    margin-left:-70px;
+margin-top:4px;
+    color:black;
+
+}
+
+.password{
+    margin-left:-96px;
+}
+.password:hover{
+    text-decoration:none;
+}
+
+.header-profile{
+    color:black;
 }

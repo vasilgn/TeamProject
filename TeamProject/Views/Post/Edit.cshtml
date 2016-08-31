@@ -2,13 +2,12 @@
 
 
 <h2>@ViewBag.Title</h2>
-
+<h1 class="title-h1">Edit "@Model.Title" </h1>
 @using (Html.BeginForm("Edit", "Post", FormMethod.Post, new { enctype = "multipart/form-data" } ))
 {
     @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
-        <h1 class="title-h1">Edit "@Model.Title" </h1>
+    <div class="form-horizontal my-group">
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">

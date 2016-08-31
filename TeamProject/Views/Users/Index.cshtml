@@ -29,11 +29,11 @@
 @using (Html.BeginForm("Index", "Users", FormMethod.Get))
 {
     <p class="search-user-style title-h1">
-        Find by name: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string,new { @class="search-field"})
-        <input type="submit" value="Search" class="btn-search" />
+        Find by username/full name: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string,new { @class= "search-margin search-field hvr-grow" })
+        <input type="submit" value="Search" class="btn-search my-btns hvr-pulse" />
     </p>
 }
-<table class="table">
+<table class="table my-group-search table-td">
     <tr>
         <th>
             @Html.ActionLink("Username", "Index", new { sortOrder = ViewBag.UserSortParm, currentFilter=ViewBag.CurrentFilter })
@@ -45,17 +45,12 @@
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
+    <tr class="my-tr">
         <td>
             @Html.DisplayFor(modelItem => item.UserName)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.FullName)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
         </td>
     </tr>
 }
