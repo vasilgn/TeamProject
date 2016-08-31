@@ -109,7 +109,7 @@
                             </div>
 
                             <div class="col-md-2 notification-@post.Id">
-                                
+
                                 Notification
                             </div>
                         </div>
@@ -136,7 +136,7 @@
                             @if (post.ImageUrl != null)
                             {
                                 <div>
-                                    <img src="@Url.Content("~/Content/images/posts/"+ post.ImageUrl)" class="post-image"/>
+                                    <img src="@Url.Content("~/Content/images/posts/"+ post.ImageUrl)" class="post-image" />
                                 </div>
                             }
 
@@ -170,16 +170,16 @@
 
                                 <li class="new-comment">
                                     @using (Ajax.BeginForm("AddComment", "Home", new { id = post.Id },
-                                new AjaxOptions
-                                {
-                                    InsertionMode = InsertionMode.InsertAfter,
+                                            new AjaxOptions
+                                            {
+                                                InsertionMode = InsertionMode.InsertAfter,
 
-                                    UpdateTargetId = "comment-section-" + post.Id,
-                                    OnSuccess = "addComment1(data)",
-                                }, new
-                                {
-                                    @class = ""
-                                }))
+                                                UpdateTargetId = "comment-section-" + post.Id,
+                                                OnSuccess = "addComment(data)",
+                                            }, new
+                                            {
+                                                @class = ""
+                                            }))
                                     {
                                         string commentText = "";
                                         <div class="com">
@@ -193,11 +193,51 @@
 
                         </div>
                         <hr />
-                        
+
 
                         <section id="comment-section-@post.Id">
                             <div class="post-footer-comment-wrapper">
 
+                                <script type="text/html" id="comment-template">
+                                    <div class="comment-{{postId}}">
+                                        <div class="media">
+                                            <div class="media-left">
+
+                                                <a href="#">
+                                                    <img class="media-object photo-profile" width="32" height="32" src="../Content/images/profile/{{userName}}.png" onerror="this.src = '../Content/images/profile/default.png';" />
+                                                </a>
+                                            </div>
+                                            <div class="media-right">
+
+                                            </div>
+                                            <div class="media-body">
+                                                <a href="#" class="anchor-username anchor"><h4 class="media-heading">{{fullName}}</h4></a>
+                                                <div class="anchor-time anchor">{{commentDate}}</div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="comment-form">
+                                        {{text}}
+                                        <br />
+                                    </div>
+
+                                    <ul class="list-inline">
+                                        <li class="comment-like-{{commentId}}">
+                                            <form action="/Home/CommentLike/{{commentId}}" class="" data-ajax="true" data-ajax-mode="replace" data-ajax-success="commentLikeSuccessHandler(data)" data-ajax-update="#comment-like-{{commentId}}" id="form2" method="post">
+                                            <button type="submit" name="command" class="btn btn-success" value="Like">
+                                            <span class="glyphicon glyphicon-thumbs-up" id="comment-likes-{{commentId}}">0</span></button>
+                                            <span id="comment-{{commentId}}">0</span>
+                                            <button type="submit" name="command" class="btn btn-danger" value="Dislike"><span class="glyphicon glyphicon-thumbs-down" id="comment-dislikes-{{commentId}}">0</span></button>
+                                            </form>
+                                        </li>
+                                    </ul>
+
+                                    <hr />
+
+
+</script>
                                 @foreach (var comment in post.Comments)
                                 {
                                     <div class="comment-@post.Id">
@@ -268,12 +308,12 @@
     </div>
 
     <div class="col-md-3 col-lg-2 pull-right side-bar-nav side-bar-nav2">
-      
-          @foreach (var item in Model.Posts.Take(5))
+
+        @foreach (var item in Model.Posts.Take(5))
         {
-            @Html.ActionLink(@item.Title, "Details", "Post", new { id = item.Id } , new { @class = "home-bar-style edit-delete-details" })
+            @Html.ActionLink(@item.Title, "Details", "Post", new { id = item.Id }, new { @class = "home-bar-style edit-delete-details" })
             <p></p>
-            
+
         }
 
     </div>
@@ -281,6 +321,5 @@
 
 @section scripts {
     @Scripts.Render("~/bundles/ajax")
-    
+
 }
-    
