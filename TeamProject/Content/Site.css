@@ -145,9 +145,9 @@ footer {
 
 
 /*/*/ /*/*/ /*/*/ /*/*/
-* {
+/** {
     font-family: 'Open Sans', sans-serif;
-}
+}*/
 
 .well {
     margin-top: -20px;
@@ -662,6 +662,16 @@ table.table-td th {
     font-size:20px;
 }
 
+p {
+    font-family: "Times New Roman", Georgia, Serif;
+    font-size: 1.5em;
+}
+div.comment-form {
+    font-family: "Times New Roman", Georgia, Serif;
+    font-size: 1.5em;
+}
+
+
 .container-profile{
     margin-left: 70px;
     margin-top:10px;
@@ -699,3 +709,4 @@ margin-top:4px;
 .header-profile{
     color:black;
 }
+

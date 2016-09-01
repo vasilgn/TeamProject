@@ -38,7 +38,7 @@
     {
         if (item.UserId == strCurrentUserId)
         {
-        <tr class="tr-my-posts">
+        <tr class="tr-my-posts" id="full-post-@item.PostId">
             <td class="post-title-view">
                 @Html.ActionLink(@item.Title, "Details", "Post", new { id = item.PostId }, new { @class = "post-title-search hvr-underline-from-center" })
             </td>
@@ -60,7 +60,7 @@
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.PostId }, new { @class = "home-bar-style edit-delete-details" })
                 @Html.ActionLink("Details", "Details", new { id = item.PostId }, new { @class = "home-bar-style edit-delete-details" })
-                @Html.ActionLink("Delete", "Delete", new { id = item.PostId }, new { @class = "home-bar-style edit-delete-details" })
+                @Html.ActionLink("Delete", "Delete", new { id = item.PostId }, new { @class = "home-bar-style edit-delete-details", onclick = string.Format("postDeleteHandler('{0}')",item.PostId )})
             </td>
         </tr>
         }
