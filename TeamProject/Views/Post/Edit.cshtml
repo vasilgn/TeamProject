@@ -1,9 +1,9 @@
-﻿@model TeamProject.Models.PostCreateModel
-@{ 
-    ViewBag.Title = "Edit \"" + Model.Title + "\"";
+﻿@model TeamProject.Models.PostViewModel
+@{
+    ViewBag.Title = Model.Title;
 }
 
-<h1 class="title-h1">Edit "@Model.Title" </h1>
+<h1 class="title-h1">Edit "@ViewBag.Title" </h1>
 @using (Html.BeginForm("Edit", "Post", FormMethod.Post, new { enctype = "multipart/form-data" } ))
 {
     @Html.AntiForgeryToken()

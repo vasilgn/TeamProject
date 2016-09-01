@@ -100,7 +100,7 @@ namespace TeamProject.Controllers
             {
                 return HttpNotFound();
             }
-            var toView = new PostCreateModel
+            var toView = new PostViewModel
             {
                 Body = post.Body,
                 Description = post.Description,
@@ -115,7 +115,7 @@ namespace TeamProject.Controllers
         // POST: Posts/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit(int id, PostCreateModel model, HttpPostedFileBase file)
+        public async Task<ActionResult> Edit(int id, PostViewModel model, HttpPostedFileBase file)
         {
             if (ModelState.IsValid)
             {
