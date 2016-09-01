@@ -13,20 +13,37 @@ function commentLikeSuccessHandler(data) {
     $('#comment-' + data.commentId).text(data.commentLikes);
     $('#comment-dislikes-' + data.commentId).text(data.commentDislikeCount);
     $('#comment-likes-' + data.commentId).text(data.commentLikeCount);
-    notification();
+    //notification();
 }
 function notification() {
-   /* $.ajax({
-        url: '..Views/Shared/_Alert',
-        contenType: 'application/html; chaset=utf-8',
-        type: 'GET',
-        dataType: 'html'
-    })*/
-    $(document)
-        .ready(function() {
-            console.log('change occuered');
-          
-                console.log($(window));
-                console.log('empty');
-        });
+    /*var form = $(this);
+    event.preventDefault();
+    $.getJSON(form.attr('action'),
+        form.serialize(),
+        function(data) {
+            var html = Mustache.to_html($('#notification-template').html(), { notifications: data });
+            $('#notifications').append(html);
+        });*/
+    var url = "/Home/GetNotifications";
+    $.get(url, function (response) {
+        console.log(response.alerts[0]);
+        console.log(response.size);
+        for (var i = 0; i < response.size; i++) {
+       
+            var a = {
+                alertStyle: response.alerts[i].AlertStyle,
+                dismissable: response.alerts[i].Dismissable,
+                message: response.alerts[i].Message
+            }
+            
+
+            console.log(a);
+            var html = Mustache.to_html($('#notification-template').html(), a);
+            $('#notification').append(html);
+
+        }
+        /*var html = Mustache.to_html($('#notification-template').html(), { response: data });*/
+    });
+    console.log('here');
+
 }

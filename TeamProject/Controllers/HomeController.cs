@@ -61,6 +61,23 @@ namespace TeamProject.Controllers
             return PartialView("_PostOptionsMenu");
         }
 
+        [HttpGet]
+        public ActionResult GetNotifications()
+        {
+            var alerts = TempData.ContainsKey(Alert.TempDataKey)
+
+            ? (List<Alert>)TempData[Alert.TempDataKey]
+
+            : new List<Alert>();
+            
+            var jsonResult = Json(new
+            {
+                alerts = alerts,
+                size = alerts.Count()
+            }, JsonRequestBehavior.AllowGet);
+            
+            return jsonResult;
+        }
         //
         //POST Add comment
         [HttpPost]

@@ -29,7 +29,7 @@ namespace TeamProject.Controllers
         public ActionResult Create()
         {
             ViewBag.UserId = new SelectList(db.Users, "Id", "FullName");
-            
+
             return View();
         }
 
@@ -154,9 +154,9 @@ namespace TeamProject.Controllers
                         };
                         db.PostVideos.Add(postVideo);
                         await db.SaveChangesAsync();
-                        Success("Successfully add video to post.");
+                        Success("Successfully add video to post.",true);
                     }
-                    
+
                     //Add Edit Image
 
                     if (file?.FileName != null && currentImage != null)
@@ -168,7 +168,7 @@ namespace TeamProject.Controllers
                             currentImage.PostId = id;
                             db.Entry(currentImage).State = EntityState.Modified;
                             await db.SaveChangesAsync();
-                            Information("Successfully change picture to post.",true);
+                            Information("Successfully change picture to post.", true);
                         }
 
                     }
@@ -252,7 +252,7 @@ namespace TeamProject.Controllers
         {
             var search = from s in db.Posts
                          select s;
-            if (!String.IsNullOrEmpty(searchString))
+            if (!string.IsNullOrEmpty(searchString))
             {
                 search = search.Where(s => s.Title.Contains(searchString)
                                     || s.Description.Contains(searchString));
