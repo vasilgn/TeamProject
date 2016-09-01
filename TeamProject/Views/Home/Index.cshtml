@@ -41,18 +41,12 @@
 </style>
 
 
-@*@using (Html.BeginForm())
-    {
-        <p>
-            Find by name: @Html.TextBox("SearchString")
-            <input type="submit" value="Search" />
-        </p>
-    }*@
+
 <div class="container-fluid">
 
     <div class="col-md-8 col-sm-12 col-lg-9">
 
-        @foreach (var post in Model.Posts)
+        @foreach (var post in Model.Posts.OrderByDescending(p =>p.PostDate))
         {
             <div class="panel panel-default" id="full-post-@post.Id" style="visibility:visible">
 
@@ -94,7 +88,7 @@
                                             }
                                             <span class="anchor-title"><h3 class="media-title">@post.Title</h3></span>
                                         </div>
-                                        <div class="media-right" id="post-details-@post.Id">
+                                        <div class="media-right move-right" id="post-details-@post.Id">
                                             @Ajax.ActionLink(" ", "PostById", "Home",
                                         new { id = post.Id },
                                         new AjaxOptions
@@ -108,10 +102,10 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-2 notification-@post.Id">
+                            @*<div class="col-md-2 notification-@post.Id">
 
                                 Notification
-                            </div>
+                            </div>*@
                         </div>
                     </section>
 
@@ -310,7 +304,7 @@
 
     <div class="col-md-3 col-lg-2 pull-right side-bar-nav side-bar-nav2">
 
-        @foreach (var item in Model.Posts.Take(5))
+        @foreach (var item in Model.Posts.OrderByDescending(p => p.PostDate).Take(5))
         {
             @Html.ActionLink(@item.Title, "Details", "Post", new { id = item.Id }, new { @class = "home-bar-style edit-delete-details" })
             <p></p>
