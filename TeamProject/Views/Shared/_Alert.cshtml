@@ -1,27 +1,28 @@
 ﻿@using TeamProject.Helpers
+<div id="getNotifications">
+    @{
+        var alerts = TempData.ContainsKey(Alert.TempDataKey)
 
-@{
-    var alerts = TempData.ContainsKey(Alert.TempDataKey)
+            ? (List<Alert>)TempData[Alert.TempDataKey]
 
-        ? (List<Alert>) TempData[Alert.TempDataKey]
+            : new List<Alert>();
 
-        : new List<Alert>();
+        foreach (var alert in alerts)
 
-    foreach (var alert in alerts)
+        {
 
-    {
+            var dismissableClass = alert.Dismissable ? "alert-dismissable" : null;
 
-        var dismissableClass = alert.Dismissable ? "alert-dismissable" : null;
-        
-        <div class="alert alert-@alert.AlertStyle @dismissableClass">
+            <div class="alert alert-@alert.AlertStyle @dismissableClass">
 
-            @if (alert.Dismissable)
+                @if (alert.Dismissable)
 
-            {
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-            }
+                {
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                }
 
-            @Html.Raw(alert.Message)
-        </div>
+                @Html.Raw(alert.Message)
+            </div>
+        }
     }
-}
+</div>

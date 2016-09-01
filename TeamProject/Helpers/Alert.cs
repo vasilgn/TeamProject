@@ -5,6 +5,7 @@ using System.Web;
 
 namespace TeamProject.Helpers
 {
+    //Notification System (Info / Error Messages)
     public class Alert
     {
         public const string TempDataKey = "TempDataAlerts";

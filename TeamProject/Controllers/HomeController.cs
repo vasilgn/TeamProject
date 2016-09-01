@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using TeamProject.Extensions;
+using TeamProject.Helpers;
 using TeamProject.Models;
 
 namespace TeamProject.Controllers
@@ -40,7 +41,7 @@ namespace TeamProject.Controllers
                 .Select(PostDetailsViewModel.ViewModel).
                 FirstOrDefault();
 
-            var isOwner = (postDetails != null && postDetails.UserId != null && postDetails.UserId == currentUserId);
+            var isOwner = (postDetails?.UserId != null && postDetails.UserId == currentUserId);
             this.ViewBag.CanEdit = isOwner || isAdmin;
             return this.PartialView("_PostDetailsView", postDetails);
         }
@@ -50,9 +51,9 @@ namespace TeamProject.Controllers
 
             List<SelectListItem> items = new List<SelectListItem>();
 
-            items.Add(new SelectListItem {Text = "Edit", Value = "0"});
+            items.Add(new SelectListItem { Text = "Edit", Value = "0" });
 
-            items.Add(new SelectListItem {Text = "Delete", Value = "1"});
+            items.Add(new SelectListItem { Text = "Delete", Value = "1" });
 
 
             ViewBag.CanEdit = items;
@@ -66,7 +67,7 @@ namespace TeamProject.Controllers
         public ActionResult AddComment(CommentViewModel model, int id, string commentText)
         {
             var userId = this.User.Identity.GetUserId();
-            var claim = ((ClaimsIdentity) User.Identity).FindFirst("FullName");
+            var claim = ((ClaimsIdentity)User.Identity).FindFirst("FullName");
             if (model != null && ModelState.IsValid)
             {
 
@@ -80,46 +81,42 @@ namespace TeamProject.Controllers
                     CommentLikeCounter = 0,
 
                 };
-                try
-                {
-                    this.db.Comments.Add(newComment);
-                    this.db.SaveChanges();
-                    /*var thisComments = db.Comments.Where(c=>c.PostId== id).FirstOrDefault(c => c.CommentId== newComment.CommentId);*/
-                }
-                catch (DbEntityValidationException e)
-                {
 
-                    return Json(e);
-                }
-                
+                this.db.Comments.Add(newComment);
+                this.db.SaveChanges();
+                /*var thisComments = db.Comments.Where(c=>c.PostId== id).FirstOrDefault(c => c.CommentId== newComment.CommentId);*/
+
+                Success($"You successfully add comment to {PostTitleById(id)} article.", true);
 
                 var currentComment = db.Comments.Local[0].CommentId;
                 var fullName = (claim != null) ? claim.Value : "Cant find Full name";
 
 
                 var postId = newComment.PostId;
-                    var text = newComment.Text;
-                    var commentId = currentComment;
-                
-                    var commentDate = (newComment.CommentDate).ToString();
+                var text = newComment.Text;
+                var commentId = currentComment;
 
-                    var data = new
-                    {
-                        PostId = postId,
-                        FullName = fullName,
-                        Text = text,
-                        CommentId = commentId,
-                        CommentDate = commentDate,
-                        UserName = this.User.Identity.GetUserName(),
-                    };
+                var commentDate = (newComment.CommentDate).ToString();
 
-                    return Json(new { model = data , JsonRequestBehavior.AllowGet});
+                var data = new
+                {
+                    PostId = postId,
+                    FullName = fullName,
+                    Text = text,
+                    CommentId = commentId,
+                    CommentDate = commentDate,
+                    UserName = this.User.Identity.GetUserName(),
+                };
+
+                return Json(new { model = data, JsonRequestBehavior.AllowGet });
             }
+            Warning("Missing post or reference.");
             return RedirectToAction("Index");
         }
 
         //
         //POST Like
+        
 
         [HttpPost]
         public ActionResult AddLike(PostViewModel model, int id, string command)
@@ -143,7 +140,7 @@ namespace TeamProject.Controllers
                 {
                     if (postLike != null)
                     {
-                        if (isLike && command.Equals("Dislike"))
+                        if (isLike && command.Equals("Dislike."))
                         {
                             post.PostLikeCounter -= 2;
                             postLike.Like = false;
@@ -182,7 +179,7 @@ namespace TeamProject.Controllers
                         db.PostLikes.Add(newPostLike);
                         db.SaveChanges();
                     }
-                    
+
                 }
 
                 db.Entry(post).State = EntityState.Modified;
@@ -204,10 +201,20 @@ namespace TeamProject.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult Notification(TempDataDictionary alert)
+        {
+            var alerts = TempData.ContainsKey(Alert.TempDataKey)
 
-        //
-        //POST Comment Like
-        [HttpPost]
+            ? (List<Alert>)TempData[Alert.TempDataKey]
+
+            : new List<Alert>();
+
+
+            return PartialView("_Alert", alert);
+        }
+       //
+       //POST Comment Like
+       [HttpPost]
         public ActionResult CommentLike(CommentViewModel model, int id, string command)
         {
 
@@ -237,7 +244,7 @@ namespace TeamProject.Controllers
                         {
                             comment.CommentLikeCounter -= 2;
                             commentLike.Like = false;
-                            Success("Disliked.",true);
+                            Success("Disliked.", true);
                         }
                         else if (!isLike && command.Equals("Like"))
                         {
