@@ -13,7 +13,20 @@ function commentLikeSuccessHandler(data) {
     $('#comment-' + data.commentId).text(data.commentLikes);
     $('#comment-dislikes-' + data.commentId).text(data.commentDislikeCount);
     $('#comment-likes-' + data.commentId).text(data.commentLikeCount);
+    notification();
 }
-function updateContent(){
-
+function notification() {
+   /* $.ajax({
+        url: '..Views/Shared/_Alert',
+        contenType: 'application/html; chaset=utf-8',
+        type: 'GET',
+        dataType: 'html'
+    })*/
+    $(document)
+        .ready(function() {
+            console.log('change occuered');
+          
+                console.log($(window));
+                console.log('empty');
+        });
 }

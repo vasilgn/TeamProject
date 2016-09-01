@@ -17,7 +17,6 @@ namespace TeamProject.Controllers
     {
         protected BlogDbContextEntities db = new BlogDbContextEntities();
 
-
         public string UploadPhoto(HttpPostedFileBase file)
         {
             
@@ -51,14 +50,19 @@ namespace TeamProject.Controllers
 
         }
 
+        // Checking user has permissions to get access
         public bool IsAdmin()
         {
-            
             var currentUserId = this.User.Identity.GetUserId();
             var isAdmin = (currentUserId != null && this.User.IsInRole("Administrator"));
             return isAdmin;
         }
 
+        public string PostTitleById(int postId)
+        {
+            var currentPost = this.db.Posts.FirstOrDefault(p => p.PostId == postId);
+            return currentPost?.Title;
+        }
         public void Error(string message, bool dismissable = false)
         {
             AddAlert(AlertStyles.Success, message, dismissable);
@@ -82,7 +86,7 @@ namespace TeamProject.Controllers
         {
             AddAlert(AlertStyles.Danger, message, dismissable);
         }
-
+        // pass notifications to TempData dictionary  persist or new list
         private void AddAlert(string alertStyle, string message, bool dismissable)
         {
             var alerts = TempData.ContainsKey(Alert.TempDataKey)

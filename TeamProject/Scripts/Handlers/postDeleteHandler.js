@@ -38,6 +38,7 @@ function postDeleteHandler(postId) {
                 $('#full-post-' + postId).empty();
                 $('#full-post-' + postId).hide();
                 console.log(result);
+                notification();
 
             },
             async: true,

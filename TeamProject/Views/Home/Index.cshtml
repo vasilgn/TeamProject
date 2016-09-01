@@ -137,7 +137,7 @@
                             {
 
                                 <div class="responsive-image">
-                                    <img src="@Url.Content("~/Content/images/posts/"+ post.ImageUrl)" class="post-image"/>
+                                    <img src="@Url.Content("~/Content/images/posts/"+ post.ImageUrl)" class="post-image" />
                                 </div>
                             }
 
@@ -171,16 +171,16 @@
 
                                 <li class="new-comment">
                                     @using (Ajax.BeginForm("AddComment", "Home", new { id = post.Id },
-                                            new AjaxOptions
-                                            {
-                                                InsertionMode = InsertionMode.InsertAfter,
+                        new AjaxOptions
+                        {
+                            InsertionMode = InsertionMode.InsertAfter,
 
-                                                UpdateTargetId = "comment-section-" + post.Id,
-                                                OnSuccess = "addComment(data)",
-                                            }, new
-                                            {
-                                                @class = ""
-                                            }))
+                            UpdateTargetId = "comment-section-" + post.Id,
+                            OnSuccess = "addComment(data)",
+                        }, new
+                        {
+                            @class = ""
+                        }))
                                     {
                                         string commentText = "";
                                         <div class="com">
@@ -227,18 +227,17 @@
                                     <ul class="list-inline">
                                         <li class="comment-like-{{commentId}}">
                                             <form action="/Home/CommentLike/{{commentId}}" class="" data-ajax="true" data-ajax-mode="replace" data-ajax-success="commentLikeSuccessHandler(data)" data-ajax-update="#comment-like-{{commentId}}" id="form2" method="post">
-                                            <button type="submit" name="command" class="btn btn-success" value="Like">
-                                            <span class="glyphicon glyphicon-thumbs-up" id="comment-likes-{{commentId}}">0</span></button>
-                                            <span id="comment-{{commentId}}">0</span>
-                                            <button type="submit" name="command" class="btn btn-danger" value="Dislike"><span class="glyphicon glyphicon-thumbs-down" id="comment-dislikes-{{commentId}}">0</span></button>
+                                                <button type="submit" name="command" class="btn btn-success" value="Like">
+                                                    <span class="glyphicon glyphicon-thumbs-up" id="comment-likes-{{commentId}}">0</span>
+                                                </button>
+                                                <span id="comment-{{commentId}}">0</span>
+                                                <button type="submit" name="command" class="btn btn-danger" value="Dislike"><span class="glyphicon glyphicon-thumbs-down" id="comment-dislikes-{{commentId}}">0</span></button>
                                             </form>
                                         </li>
                                     </ul>
 
                                     <hr />
-
-
-</script>
+                                </script>
                                 @foreach (var comment in post.Comments)
                                 {
                                     <div class="comment-@post.Id">
@@ -305,6 +304,11 @@
     </div>
     <div class="col-md-3 col-lg-2 pull-right side-bar-nav side-bar-nav2">
         <div class="notifications" id="notifications">Notifications:</div>
+        <script type="text/html" id="notification-template">
+            <div class="alert alert-{{AlertStyle}} {{disambleClass}}">
+
+            </div>
+        </script>
         @Html.Partial("_Alert")
     </div>
 

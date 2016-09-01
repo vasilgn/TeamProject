@@ -29,6 +29,7 @@ namespace TeamProject.Controllers
         public ActionResult Create()
         {
             ViewBag.UserId = new SelectList(db.Users, "Id", "FullName");
+            
             return View();
         }
 
@@ -72,14 +73,14 @@ namespace TeamProject.Controllers
                 }
                 if (file?.FileName != null)
                 {
-                    
-                        var postImage = new PostImage
-                        {
-                            ImageUrl = UploadPhoto(file),
-                            PostId = post.PostId
-                        };
-                        db.PostImages.Add(postImage);
-                        await db.SaveChangesAsync();
+
+                    var postImage = new PostImage
+                    {
+                        ImageUrl = UploadPhoto(file),
+                        PostId = post.PostId
+                    };
+                    db.PostImages.Add(postImage);
+                    await db.SaveChangesAsync();
                     Success("Successfully upload picture.", true);
                 }
             }
@@ -155,17 +156,9 @@ namespace TeamProject.Controllers
                         await db.SaveChangesAsync();
                         Success("Successfully add video to post.");
                     }
-                    /*else if (model.VideoUrl == null && currentVideo == null)
-                    {
-                        var postVideo = db.PostVideos.Select(p => p.PostId == id);
-                        db.Entry(postVideo).State = EntityState.Deleted;
-                        await db.SaveChangesAsync();
-                        Information("Video to this post was deleted.", true);
-
-
-                    }*/
-                    //Add Edit Image
                     
+                    //Add Edit Image
+
                     if (file?.FileName != null && currentImage != null)
                     {
                         if (file.FileName != currentImage.ImageUrl)
@@ -175,8 +168,9 @@ namespace TeamProject.Controllers
                             currentImage.PostId = id;
                             db.Entry(currentImage).State = EntityState.Modified;
                             await db.SaveChangesAsync();
+                            Information("Successfully change picture to post.",true);
                         }
-                        
+
                     }
                     else if (file?.FileName != null)
                     {
@@ -187,8 +181,9 @@ namespace TeamProject.Controllers
                         };
                         db.PostImages.Add(postImage);
                         await db.SaveChangesAsync();
+                        Information("Successfully add picture to post.", true);
                     }
-                    else if(currentImage != null && file?.FileName == null)
+                    else if (currentImage != null && file?.FileName == null)
                     {
                         db.Entry(currentImage).State = EntityState.Deleted;
                         await db.SaveChangesAsync();
@@ -196,7 +191,7 @@ namespace TeamProject.Controllers
                     }
                 }
 
-
+                Information("This post doesn't exists.", true);
                 return RedirectToAction("Index", "Home");
             }
             Error("Something went wrong.", true);
@@ -228,20 +223,14 @@ namespace TeamProject.Controllers
         [HttpPost]
         public async Task<JsonResult> DeleteComfirmed(string id)
         {
-            try
-            {
-                var postId = int.Parse(id);
-                Post post = await db.Posts.FirstOrDefaultAsync(x => x.PostId == postId);
-                db.Posts.Remove(post);
-                await db.SaveChangesAsync();
-                Information("You have successfully delete this post.", true);
-                return Json("Success", "Home");
-            }
-            catch (Exception e)
-            {
-                return Json("Error", e.ToString());
 
-            }
+            var postId = int.Parse(id);
+            Post post = await db.Posts.FirstOrDefaultAsync(x => x.PostId == postId);
+            db.Posts.Remove(post);
+            await db.SaveChangesAsync();
+            Information("You have successfully delete this post.", true);
+            return Json("Success", "Home");
+
 
 
         }

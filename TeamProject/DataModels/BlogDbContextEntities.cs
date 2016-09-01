@@ -12,7 +12,7 @@ namespace TeamProject.DataModels
          {
              try
              {
-                 return base.SaveChanges();
+                return base.SaveChanges();
              }
              catch (DbEntityValidationException ex)
              {
