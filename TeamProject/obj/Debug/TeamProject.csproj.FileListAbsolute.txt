@@ -436,7 +436,6 @@ D:\Visual Studio\TeamProject\TeamProject\bin\Microsoft.Owin.Security.Twitter.xml
 D:\Visual Studio\TeamProject\TeamProject\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 D:\Visual Studio\TeamProject\TeamProject\obj\Debug\TeamProject.dll
 D:\Visual Studio\TeamProject\TeamProject\obj\Debug\TeamProject.pdb
-C:\Users\Lencho\Desktop\Project github\TeamProject\TeamProject\obj\Debug\TeamProject.csprojResolveAssemblyReference.cache
 C:\Users\Lencho\Desktop\Project github\TeamProject\TeamProject\obj\Debug\TeamProject.dll
 C:\Users\Lencho\Desktop\Project github\TeamProject\TeamProject\obj\Debug\TeamProject.pdb
 C:\Users\Lencho\Desktop\Project github\TeamProject\TeamProject\bin\TeamProject.dll.config
