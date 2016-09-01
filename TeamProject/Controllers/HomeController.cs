@@ -22,7 +22,7 @@ namespace TeamProject.Controllers
         public ActionResult Index()
         {
 
-            var posts = this.db.Posts.OrderBy(p => p.PostedOn)
+            var posts = this.db.Posts.OrderByDescending(p => p.PostedOn)
                 .Select(PostViewModel.ViewModel);
 
             return this.View(new PostsViewModel()
@@ -218,17 +218,6 @@ namespace TeamProject.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult Notification(TempDataDictionary alert)
-        {
-            var alerts = TempData.ContainsKey(Alert.TempDataKey)
-
-            ? (List<Alert>)TempData[Alert.TempDataKey]
-
-            : new List<Alert>();
-
-
-            return PartialView("_Alert", alert);
-        }
        //
        //POST Comment Like
        [HttpPost]

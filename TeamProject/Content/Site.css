@@ -4,6 +4,10 @@ body {
     padding-top: 50px;
     padding-bottom: 20px;
     background-image: url(images/site/034.jpg);
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    line-height: 1.42857143;
+    color: #080808;
+    background-color: #F1F1F1;
 }
 
 .avatar {
@@ -14,6 +18,10 @@ body {
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
+}
+
+.body-content-post {
+    word-wrap: break-word;
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 
@@ -172,12 +180,22 @@ footer {
         border-bottom: 2px solid rgba(97, 203, 255, 0.65);
     }
 
-body {
-    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-    font-size: 14px;
-    line-height: 1.42857143;
-    color: #080808;
-    background-color: #F1F1F1;
+.posted {
+    font-size: 16px;
+}
+
+div {
+    color: black;
+}
+
+.row {
+    margin: 10px;
+    font-size: 18px;
+}
+
+footer {
+    text-align: center;
+    font-size: 16px;
 }
 
 
@@ -278,7 +296,6 @@ body {
 
 img:hover {
     opacity: 0.8;
-    filter: alpha(opacity=50); /* For IE8 and earlier */
 }
 
 .container-profile {
@@ -342,7 +359,7 @@ img:hover {
 
 .navbar-brand {
     color: #337ab7 !important;
-    font-size:16px;
+    font-size: 16px;
 }
 
     .navbar-brand:hover {
@@ -431,14 +448,12 @@ img:hover {
 }
 
 hr {
-    display: block;
-    height: 1px;
-    border-top: 1px solid #000000;
-    margin: 1em 0;
-    padding: 0;
-    margin-left:60px;
-    margin-right:-60px;
-}
+        display: block;
+        height: 1px;
+        border-top: 1px solid #000000;
+        margin: 1em 0;
+        padding: 0;
+    }
 
 .resize-box {
     resize: none;
@@ -457,13 +472,14 @@ table tr:nth-child(odd) td {
     font-family: 'Yu Gothic UI';
     font-weight: bold;
 }
-.edit-delete-details:hover {
-    font-size: 16px;
-    font-family: 'Yu Gothic UI';
-    font-weight: bold;
-    color:lightblue;
-    text-decoration:none;
-}
+
+    .edit-delete-details:hover {
+        font-size: 16px;
+        font-family: 'Yu Gothic UI';
+        font-weight: bold;
+        color: lightblue;
+        text-decoration: none;
+    }
 
 .delete {
     color: black;
@@ -481,160 +497,170 @@ table tr:nth-child(odd) td {
 .responsive-video {
     position: relative;
     padding-bottom: 56.25%;
-    padding-top: 60px; overflow: hidden;
+    padding-top: 60px;
+    overflow: hidden;
 }
 
-.responsive-video iframe,
-.responsive-video object,
-.responsive-video embed {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-}
-
-.alert-error {
-  background-image: -webkit-linear-gradient(top, #f10505 0%, #f10505 100%);
-  background-image:      -o-linear-gradient(top, #f10505 0%, #f10505 100%);
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#f10505), to(#f10505));
-  background-image:         linear-gradient(to bottom, #f10505 0%, #f10505 100%);
-  
-  background-repeat: repeat-x;
-  border-color: #f10505;
-}
-
-.image-choose{
-    background-color:transparent !important;
-    color:black;
-    border:none;
-}
-
-.image-choose:hover{
-    background-color:transparent !important;
-    color:black;
-    border:none;
-}
-
-.table {
-margin-left:25px;
-}
-.tr-my-posts-head {
-font-size:17px;
-}
-.tr-my-posts {
-font-size:15px;
-}
-
-.search-user-style{
-font-size:22px;
-}
-
-    .side-bar-nav2 {
-    text-align:center;
+    .responsive-video iframe,
+    .responsive-video object,
+    .responsive-video embed {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
     }
 
+.alert-error {
+    background-image: -webkit-linear-gradient(top, #f10505 0%, #f10505 100%);
+    background-image: -o-linear-gradient(top, #f10505 0%, #f10505 100%);
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#f10505), to(#f10505));
+    background-image: linear-gradient(to bottom, #f10505 0%, #f10505 100%);
+    background-repeat: repeat-x;
+    border-color: #f10505;
+}
+
+.image-choose {
+    background-color: transparent !important;
+    color: black;
+    border: none;
+}
+
+    .image-choose:hover {
+        background-color: transparent !important;
+        color: black;
+        border: none;
+    }
+
+.table {
+    margin-left: 25px;
+}
+
+.tr-my-posts-head {
+    font-size: 17px;
+}
+
+.tr-my-posts {
+    font-size: 15px;
+}
+
+.search-user-style {
+    font-size: 22px;
+}
+
+.side-bar-nav2 {
+    text-align: center;
+}
+
 .btn-back {
-margin-left:30px;
+    margin-left: 30px;
 }
 
 .responsive-video {
-    margin-bottom:10px;
+    margin-bottom: 10px;
 }
 
-.notifications{
+.notifications {
     color: #337ab7 !important;
-    text-align:center;
-    font-size:16px;
-    font-family:'Yu Gothic';
-    font-weight:bold;
+    text-align: center;
+    font-size: 16px;
+    font-family: 'Yu Gothic';
+    font-weight: bold;
 }
 
-.description{
-    font-family:'Yu Gothic';
-    font-weight:bold;
-    margin-left:3px;
+.description {
+    font-family: 'Yu Gothic';
+    font-weight: bold;
+    margin-left: 3px;
 }
 
 .com {
-    display:inline-block;
+    display: inline-block;
 }
 
 .com-form {
- background-color: transparent;
+    background-color: transparent;
     border: 1px solid rgba(0, 0, 0, 0.27);
     color: black;
     margin-left: 7px;
     margin-right: 15px;
-    font-size:15px;
-    border-radius:4px;
-    padding:5px;
-    width:600px;
+    font-size: 15px;
+    border-radius: 4px;
+    padding: 5px;
+    width: 600px;
 }
 
 .post-image {
-    max-width:60%;
-    max-height:60%;
+    max-width: 60%;
+    max-height: 60%;
+}
+
+.title {
+    font-weight: bold;
 }
 
 .position {
-    margin-left:28px;
+    margin-left: 28px;
 }
 
-.post-title-search{
-    color:black;
+.post-title-search {
+    color: black;
     font-size: 15px;
     font-family: 'Yu Gothic UI';
     font-weight: bold;
 }
 
-.post-title-search:hover{
-    color:lightblue;
-    text-decoration:none;
-}
+    .post-title-search:hover {
+        color: lightblue;
+        text-decoration: none;
+    }
 
 .search-margin {
-margin-left:10px;
-margin-right:20px;
-font-size:16px;
-padding:5px;
-width:600px;
-
-
+    margin-left: 10px;
+    margin-right: 20px;
+    font-size: 16px;
+    padding: 5px;
+    width: 600px;
 }
 
-.post-body-view{
-    word-break:break-word;
-}
-.post-title-view{
-width:150px !important;
-
-}
-.my-tables{
-    width:1195px !important;
+.body-content-post {
+    word-wrap: break-word;
 }
 
-.search-menu{
-    font-size:18px;
-    margin-left:-3px;
+.post-body-view {
+    word-break: break-all;
 }
-.search-menu:hover{
+
+.post-title-view {
+    width: 150px !important;
+}
+
+.my-tables {
+    width: 1195px !important;
+}
+
+.search-menu {
+    font-size: 18px;
+    margin-left: -3px;
+}
+
+    .search-menu:hover {
         background-color: #222222 !important;
         font-size: 18px;
         color: lightblue;
+    }
+
+.table-search-posts {
+    display: block;
+    margin-left: 60px;
 }
 
-.table-search-posts{
-    display:block;
-    margin-left:60px;
+.my-group {
+    margin-top: 73px;
 }
 
-.my-group{
-    margin-top:73px;
-}
-
-.my-group-search{
-    margin-top:-50px;
+.my-group-search {
+    margin-top: -50px;
     margin-left: 60px;
 }
 
@@ -642,70 +668,68 @@ width:150px !important;
     padding-bottom: 2%;
 }
 
-.my-group-details{
-        margin-top:20px;
-
+.my-group-details {
+    margin-top: 20px;
 }
 
-.my-hr{
-    margin-top:70px;
-    width:1137px;
+.my-hr {
+    margin-top: 70px;
+    width: 1137px;
 }
 
 table.table-td td {
     width: 1000px;
-    font-size:18px;
+    font-size: 18px;
 }
 
 table.table-td th {
-    
-    font-size:20px;
+    font-size: 20px;
 }
 
 p {
     font-family: "Times New Roman", Georgia, Serif;
     font-size: 1.5em;
 }
+
 div.comment-form {
     font-family: "Times New Roman", Georgia, Serif;
     font-size: 1.5em;
 }
 
 
-.container-profile{
+.container-profile {
     margin-left: 70px;
-    margin-top:10px;
-    padding-left:50px;
-    display:block;
-        color:black;
-
+    margin-top: 10px;
+    padding-left: 50px;
+    display: block;
+    color: black;
 }
 
-.image-profile{
-    margin-top:-50px;
-    margin-left:-235px;
+.image-profile {
+    margin-top: -50px;
+    margin-left: -235px;
 }
 
-.user-activity{
-    bottom:60px ;
+.user-activity {
+    bottom: 60px;
 }
 
 
 
-.password-move{
-    margin-left:-70px;
-margin-top:4px;
-    color:black;
-
+.password-move {
+    margin-left: -70px;
+    margin-top: 4px;
+    color: black;
 }
 
-.password{
-    margin-left:-96px;
-}
-.password:hover{
-    text-decoration:none;
+.password {
+    margin-left: -96px;
 }
 
-.header-profile{
-    color:black;
+    .password:hover {
+        text-decoration: none;
+    }
+
+.header-profile {
+    color: black;
 }

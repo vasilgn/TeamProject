@@ -4,49 +4,12 @@
 @using TeamProject.Models
 @model PostsViewModel
 
-<style>
-    div {
-        color: black;
-    }
-
-    .row {
-        margin: 10px;
-        font-size: 18px;
-    }
-
-    footer {
-        text-align: center;
-        font-size: 16px;
-    }
-
-    .posted {
-        font-size: 16px;
-    }
-
-    .title {
-        font-weight: bold;
-    }
-
-    hr {
-        display: block;
-        height: 1px;
-        border-top: 1px solid #000000;
-        margin: 1em 0;
-        padding: 0;
-    }
-    .body-content-post {
-        word-wrap: break-word;
-    }
-    /**/ /**/
-</style>
-
-
 
 <div class="container-fluid">
 
     <div class="col-md-8 col-sm-12 col-lg-9">
 
-        @foreach (var post in Model.Posts.OrderByDescending(p =>p.PostDate))
+        @foreach (var post in Model.Posts)
         {
             <div class="panel panel-default" id="full-post-@post.Id" style="visibility:visible">
 
@@ -315,14 +278,15 @@
     </div>
 
     <div class="col-md-3 col-lg-2 pull-right side-bar-nav side-bar-nav2">
-
-        @foreach (var item in Model.Posts.OrderByDescending(p => p.PostDate).Take(5))
+        @{
+        foreach (var item in Model.Posts.OrderByDescending(p => p.PostDate).Take(5))
         {
+            
             @Html.ActionLink(@item.Title, "Details", "Post", new { id = item.Id }, new { @class = "home-bar-style edit-delete-details" })
             <p></p>
 
         }
-
+        }
     </div>
 </div>
 
