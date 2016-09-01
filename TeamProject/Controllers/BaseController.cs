@@ -12,14 +12,14 @@ using TeamProject.Helpers;
 namespace TeamProject.Controllers
 {
     using System.Web.Mvc;
-    
+
     public class BaseController : Controller
     {
-        protected BlogDbContextEntities db = new BlogDbContextEntities();
+        protected BlogDbContext db = new BlogDbContext();
 
         public string UploadPhoto(HttpPostedFileBase file)
         {
-            
+
             if (file != null && file.ContentLength > 0)
             {
 
@@ -36,17 +36,29 @@ namespace TeamProject.Controllers
                     {
                         directory.Create();
                     }
-                    ViewBag.FilePath = filePath.ToString();
-                    file.SaveAs(filePath);
+                    try
+                    {
+                        file.SaveAs(filePath);
+
+                    }
+                    catch (Exception e)
+                    {
+
+                        Warning("Something went wrong cant upload your picture.", true);
+                        throw new Exception(e.Message);
+                    }
+                    Success("Your picture successfully uploaded to server.", true);
+
                     var startInx = filePath.LastIndexOf('\\');
 
                     var lenght = filePath.Length - 1;
 
                     string shortCut = filePath.Substring(startInx + 1, lenght - startInx);
                     return shortCut;
+
                 }
             }
-            return "Error";
+            return null;
 
         }
 
