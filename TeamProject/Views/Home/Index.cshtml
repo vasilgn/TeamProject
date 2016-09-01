@@ -297,22 +297,20 @@
 
     </div>
 <div class="col-md-3 col-lg-2 pull-right side-bar-nav side-bar-nav2">
-    <script type="text/html" id="notification-template">
+   @* <script type="text/html" id="notification-template">
 
-        <div class="alert alert-{{alertStyle}} {{dismissableClass}}">
-            
+        <div class="alert alert-{{alertStyle}} alert-{{dismissable}}">
+
             <button type="button" class="close" data-dismiss="alert" aria-hidden="false">×</button>
 
             {{message}}
         </div>
 
-    </script>
-    <div id="notifications">
-        <h4 class="notifications">Notifications:</h4>
-    </div>
+    </script>*@
+    <div class="notifications" id="notifications">Notifications:</div>
 
-   
-    </div>
+      @Html.Partial("_Alert")
+</div>
 
     <div class="col-md-3 col-lg-2 pull-right side-bar-nav side-bar-nav2">
 

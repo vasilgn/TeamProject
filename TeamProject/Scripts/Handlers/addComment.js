@@ -19,6 +19,6 @@ function addComment(data) {
 
     $("#comment-section-" + com.postId).prepend(html);
     $('#commentText').val('').removeAttr('checked').removeAttr('selected');
-    notification();
+    //notification();
 }
 

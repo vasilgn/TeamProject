@@ -102,7 +102,7 @@ namespace TeamProject.Controllers
                 this.db.Comments.Add(newComment);
                 this.db.SaveChanges();
                 /*var thisComments = db.Comments.Where(c=>c.PostId== id).FirstOrDefault(c => c.CommentId== newComment.CommentId);*/
-                
+
                 Success($"You successfully add comment to {PostTitleById(id)} article.", true);
 
                 var currentComment = db.Comments.Local[0].CommentId;
@@ -218,7 +218,17 @@ namespace TeamProject.Controllers
             return RedirectToAction("Index");
         }
 
-       
+        public ActionResult Notification(TempDataDictionary alert)
+        {
+            var alerts = TempData.ContainsKey(Alert.TempDataKey)
+
+            ? (List<Alert>)TempData[Alert.TempDataKey]
+
+            : new List<Alert>();
+
+
+            return PartialView("_Alert", alert);
+        }
        //
        //POST Comment Like
        [HttpPost]
