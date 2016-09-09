@@ -43,6 +43,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework.Extended, Version=6.0.0.0, Culture=neutral, PublicKeyToken=05b7e29bdd433584, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.Extended.6.1.0.168\lib\net45\EntityFramework.Extended.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.MappingAPI, Version=6.1.0.9, Culture=neutral, PublicKeyToken=7ee2e825d201459e, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.MappingAPI.6.1.0.9\lib\net45\EntityFramework.MappingAPI.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -169,6 +177,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="DataModels\ApplicationUser.cs" />
+    <Compile Include="DataModels\ChangeLog.cs" />
     <Compile Include="DataModels\Comment.cs" />
     <Compile Include="DataModels\CommentLike.cs" />
     <Compile Include="DataModels\PostVideo.cs" />
@@ -176,7 +185,6 @@
     <Compile Include="DataModels\Post.cs" />
     <Compile Include="DataModels\PostImage.cs" />
     <Compile Include="DataModels\PostLike.cs" />
-    <Compile Include="DataModels\UserProfile.cs" />
     <Compile Include="DataModels\BlogDbContextEntities.cs" />
     <Compile Include="Extensions\HtmlHelperExtensions.cs" />
     <Compile Include="Global.asax.cs">

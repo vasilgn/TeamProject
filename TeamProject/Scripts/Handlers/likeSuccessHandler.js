@@ -1,4 +1,5 @@
-﻿function likeSuccessHandler(data) {
+﻿
+function likeSuccessHandler(data) {
     console.log(data);
     console.log("post like dislike successfully!");
     $('#post-' + data.postId).text(data.postLikes);
@@ -16,7 +17,7 @@ function commentLikeSuccessHandler(data) {
     notification();
 }
 function notification() {
-    
+
     var url = "/Home/GetNotifications";
     
     $.get(url, function (response) {

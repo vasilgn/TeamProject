@@ -11,6 +11,13 @@ namespace TeamProject.DataModels
 {
     public class BlogDbContext : IdentityDbContext<ApplicationUser>
     {
+        
+        public BlogDbContext()
+            : base("DefaultConnection", throwIfV1Schema: false)
+            // "BlogDbConnectionString"
+        {
+        }
+
         public IDbSet<Post> Posts { get; set; }
         public IDbSet<Comment> Comments { get; set; }
         public IDbSet<CommentLike> CommentsLikes { get; set; }
@@ -18,11 +25,9 @@ namespace TeamProject.DataModels
         public IDbSet<PostImage> PostImages { get; set; }
         public IDbSet<PostVideo> PostVideos { get; set; }
         public IDbSet<UserImage> UserImages { get; set; }
-        
-        public BlogDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
-        {
-        }
+        public virtual IDbSet<ChangeLog> ChangeLogs { get; set; }
+
+
         public static BlogDbContextEntities Create()
         {
             return new BlogDbContextEntities();

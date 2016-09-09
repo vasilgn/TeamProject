@@ -57,7 +57,7 @@ namespace TeamProject.Migrations
 
         }
 
-        private void CreateSeverealTestEvents(BlogDbContextEntities context)
+        private void CreateSeverealTestEvents(BlogDbContext context)
         {
             context.Posts.Add(new Post()
             {
@@ -146,7 +146,7 @@ namespace TeamProject.Migrations
 
         }
 
-        private void CreateUsers(BlogDbContextEntities context, DbUserConfiguration currentUser)
+        private void CreateUsers(BlogDbContext context, DbUserConfiguration currentUser)
         {
             var user = new ApplicationUser
             {

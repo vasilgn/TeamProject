@@ -21,4 +21,3 @@ function addComment(data) {
     $('#commentText').val('').removeAttr('checked').removeAttr('selected');
     notification();
 }
-

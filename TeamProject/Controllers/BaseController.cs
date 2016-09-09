@@ -5,6 +5,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Hosting;
+using System.Web.Routing;
+using EntityFramework.Extensions;
 using Microsoft.AspNet.Identity;
 using TeamProject.DataModels;
 using TeamProject.Helpers;
@@ -17,6 +19,7 @@ namespace TeamProject.Controllers
     {
         protected BlogDbContextEntities db = new BlogDbContextEntities();
 
+       
         public string UploadPhoto(HttpPostedFileBase file)
         {
             
@@ -61,6 +64,7 @@ namespace TeamProject.Controllers
         public string PostTitleById(int postId)
         {
             var currentPost = this.db.Posts.FirstOrDefault(p => p.PostId == postId);
+            
             return currentPost?.Title;
         }
         public void Error(string message, bool dismissable = false)

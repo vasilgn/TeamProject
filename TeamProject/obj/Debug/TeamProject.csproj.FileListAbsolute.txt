@@ -545,4 +545,7 @@ C:\Users\Kreatos\Documents\GitHub\TeamProject\TeamProject\bin\Microsoft.Owin.Sec
 C:\Users\Kreatos\Documents\GitHub\TeamProject\TeamProject\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\Users\Kreatos\Documents\GitHub\TeamProject\TeamProject\obj\Debug\TeamProject.dll
 C:\Users\Kreatos\Documents\GitHub\TeamProject\TeamProject\obj\Debug\TeamProject.pdb
-C:\Users\Kreatos\Documents\GitHub\TeamProject\TeamProject\obj\Debug\TeamProject.csprojResolveAssemblyReference.cache
+C:\Users\Kreatos\Documents\GitHub\TeamProject\TeamProject\bin\EntityFramework.Extended.dll
+C:\Users\Kreatos\Documents\GitHub\TeamProject\TeamProject\bin\EntityFramework.Extended.xml
+C:\Users\Kreatos\Documents\GitHub\TeamProject\TeamProject\bin\EntityFramework.MappingAPI.dll
+C:\Users\Kreatos\Documents\GitHub\TeamProject\TeamProject\bin\EntityFramework.MappingAPI.pdb

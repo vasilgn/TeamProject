@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Hosting;
 using System.Web.Mvc;
+using EntityFramework.Extensions;
 using Microsoft.AspNet.Identity;
 using TeamProject.DataModels;
 using TeamProject.Helpers;
@@ -41,6 +42,7 @@ namespace TeamProject.Controllers
         {
             if (model != null && ModelState.IsValid)
             {
+                
                 var post = new Post
                 {
                     Body = model.Body,
@@ -65,7 +67,7 @@ namespace TeamProject.Controllers
                             PostId = post.PostId,
                             VideoUrl = s,
                         };
-                        db.PostVideos.Add(postVideo);
+                        db.Entry(postVideo).State = EntityState.Added;
                         await db.SaveChangesAsync();
                         Success("Video to post was successfully added.", true);
                     }
@@ -79,7 +81,7 @@ namespace TeamProject.Controllers
                         ImageUrl = UploadPhoto(file),
                         PostId = post.PostId
                     };
-                    db.PostImages.Add(postImage);
+                    db.Entry(postImage).State = EntityState.Added;
                     await db.SaveChangesAsync();
                     Success("Successfully upload picture.", true);
                 }
@@ -152,7 +154,7 @@ namespace TeamProject.Controllers
                             VideoUrl = YouTubeUrlHandler.GetVideoId(model.VideoUrl),
                             PostId = id,
                         };
-                        db.PostVideos.Add(postVideo);
+                        db.Entry(postVideo).State = EntityState.Added;
                         await db.SaveChangesAsync();
                         Success("Successfully add video to post.",true);
                     }
@@ -191,7 +193,6 @@ namespace TeamProject.Controllers
                     }
                 }
 
-                Information("This post doesn't exists.", true);
                 return RedirectToAction("Index", "Home");
             }
             Error("Something went wrong.", true);
@@ -248,7 +249,7 @@ namespace TeamProject.Controllers
             return View(post);
         }
 
-        public async Task<ActionResult> Search(string searchString)
+        public ActionResult Search(string searchString)
         {
             var search = from s in db.Posts
                          select s;
