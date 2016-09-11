@@ -158,7 +158,7 @@ namespace TeamProject.Controllers
                 {
                     if (postLike != null)
                     {
-                        if (isLike && command.Equals("Dislike."))
+                        if (isLike && command.Equals("Dislike"))
                         {
                             post.PostLikeCounter -= 2;
                             postLike.Like = false;

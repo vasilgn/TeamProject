@@ -8,23 +8,27 @@ using System.Web;
 
 namespace TeamProject.DataModels
 {
-     public class BlogDbContextEntities : BlogDbContext
-     {
+    public class BlogDbContextEntities : BlogDbContext
+    {
 
         /*protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-        }
-        object GetPrimaryKeyValue(DbEntityEntry entry)
+        }*/
+
+        /*object GetPrimaryKeyValue(DbEntityEntry entry)
         {
-            var objectStateEntry = ((IObjectContextAdapter)this).ObjectContext.ObjectStateManager.GetObjectStateEntry(entry.Entity);
+            var objectStateEntry =
+                ((IObjectContextAdapter) this).ObjectContext.ObjectStateManager.GetObjectStateEntry(entry.Entity);
             return objectStateEntry.EntityKey.EntityKeyValues[0].Value;
         }*/
+
+
         public override int SaveChanges()
-         {
+        {
             //TODO change tracker
-            /*ar modifiedEntities = ChangeTracker.Entries()
-            .Where(p => p.State == EntityState.Modified).ToList();
+            /*var modifiedEntities = ChangeTracker.Entries()
+                .Where(p => p.State == EntityState.Modified).ToList();
             var now = DateTime.Now;
 
             foreach (var change in modifiedEntities)
@@ -32,27 +36,40 @@ namespace TeamProject.DataModels
                 var entityName = change.Entity.GetType().Name;
                 var primaryKey = GetPrimaryKeyValue(change);
 
-                foreach (var prop in change.OriginalValues.PropertyNames)
+                foreach (var prop in change.OriginalValues.PropertyNames.Where(a => a != null))
                 {
-                    if
-                    var originalValue = change.OriginalValues[prop].ToString();
-                    var currentValue = change.CurrentValues[prop].ToString();
-                    if (originalValue != currentValue)
+
+                    if (prop != null)
                     {
-                        ChangeLog log = new ChangeLog()
+                        try
                         {
-                            EntityName = entityName,
-                            PrimaryKeyValue = primaryKey.ToString(),
-                            PropertyName = prop,
-                            OldValue = originalValue,
-                            NewValue = currentValue,
-                            DateChanged = now
-                        };
-                        ChangeLogs.Add(log);
+                             var originalValue = change.OriginalValues[prop].ToString();
+                            var  currentValue = change.CurrentValues[prop].ToString();
+                            if (originalValue != currentValue)
+                            {
+
+                                ChangeLog log = new ChangeLog()
+                                {
+                                    EntityName = entityName,
+                                    PrimaryKeyValue = primaryKey.ToString(),
+                                    PropertyName = prop,
+                                    OldValue = originalValue,
+                                    NewValue = currentValue,
+                                    DateChanged = now
+                                };
+                                ChangeLogs.Add(log);
+                            }
+
+                        }
+                        catch (Exception e )
+                        {
+                            e.Message.ToString();
+                        }
+                        
+                        
                     }
                 }
             }*/
-
             try
              {
                 return base.SaveChanges();

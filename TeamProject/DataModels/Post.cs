@@ -28,6 +28,7 @@ namespace TeamProject.DataModels
         [Display(Name = "Body *")]
         public string Body { get; set; }
         [Display(Name = "Description")]
+        [DefaultValue("Some Description")]
         public string Description { get; set; }
         [Required]
         public DateTime PostedOn { get; set; }
